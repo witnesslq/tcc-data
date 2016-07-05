@@ -48,6 +48,6 @@
 
     实时、集群、无状态
 
-    TCC-DATA-BR（Business Report）
+    ##TCC-DATA-BR（Business Report）
 
     	1.先调研一下FineReport后再来做设计
