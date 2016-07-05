@@ -46,7 +46,7 @@
     	
     性能：
 
-    实时、集群、无状态
+        实时、集群、无状态
 
     ##TCC-DATA-BR（Business Report）
 
