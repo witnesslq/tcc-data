@@ -1,0 +1,219 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+   <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/interface.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#49").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#49").parent("ul").css("display","block");
+            $(".jklist ul li ul li#49 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+<div class="body-r">
+    <h1>网上登录接口</h1>
+       
+
+    
+     
+    <div class="conbar">
+      <h1>表单方式</h1>
+      <div class="concon grey">
+      [表单方式]<br />
+在代理商的网页中嵌入表单HTML代码，即可在网页中跳转到自服务系统，无需登录产品网站。<br />
+接口类型：HTTP请求<br />
+接口使用账户：企业账户<br />
+接口地址：天润呼叫中心接口服务器IP或域名<br />
+接口参数：企业账号、企业账户密码、验证码、来源域名、定制域名<br />
+返回值：跳转到系统<br />
+接口URL<br />
+URL示例：<br />
+<a href="javascript:void(0)">http://ccic.ti-net.com.cn/interface/login.jsp?username=4006667773&amp;password=6752b86e91e26852346bc986fa445765&amp;authCode=pm8b&amp;fromURL=www.call4006.com&amp;toURL=www.smart400.com</a></div>
+    </div>
+     
+    <div class="conbar">
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">username</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">登录400号码</td>
+	<td style="width:312px;">4001，4006，4007或4008开头的十位数字</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">pwd</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">md5(username+password+ authCode)</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">authCode</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">验证码</td>
+	<td style="width:312px;">根据验证码接口生成的验证码</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">fromURL</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">来源域名</td>
+	<td style="width:312px;">退出或登录失败跳转到的URL，需使用URLEncode编码</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">toURL</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">定制域名码</td>
+	<td style="width:312px;">登陆成功跳转到的URL，需使用URLEncode编码</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+若登陆成功，跳转到来源域名toURL；若登录失败跳转到fromURL。<br />
+</div>
+
+
+
+    <div class="conbar">
+      <h1>Ajax方式</h1>
+      <div class="concon grey">
+      [Ajax方式]<br />
+通过Ajax方式调用接口验证用户名及密码，再进行相应后续处理。<br />
+如：跳转到自服务系统页面，并同时在自己的系统中作记录<br />
+
+接口类型：HTTP请求<br />
+接口使用账户：企业账户<br />
+接口地址：天润呼叫中心接口服务器IP或域名<br />
+接口参数：企业账号、企业账户密码、验证码<br />
+返回值：操作结果<br />
+接口URL<br />
+URL示例：<br />
+<a href="javascript:void(0)">http://ccic.ti-net.com.cn/interface/loginAjax.jsp?username=4006667773&amp;password=6752b86e91e26852346bc986fa445765&amp;authCode=pm8b</a></div>
+    </div>
+     
+    <div class="conbar">
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">username</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">登录400号码</td>
+	<td style="width:312px;">4001，4006，4007或4008开头的十位数字</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">pwd</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">md5(username+password+ authCode)</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">authCode</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">验证码</td>
+	<td style="width:312px;">根据验证码接口生成的验证码</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+返回登录状态，JSON串，格式为{result:xxxx,description:xxxx},result表示返回结果状态码，description表示结果状态的描述。<br />
+</div>
+
+<br />
+<br />
+
+result与description属性值的定义：<br />
+
+    <div class="conbar">
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>result</strong></td>
+	<td style="width:312px;"><strong>description</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">0</td>
+	<td style="width:312px;">登录失败原因</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">1</td>
+	<td style="width:312px;">登录成功</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+
+
+
+<div class="conbar">
+      <h1>验证码生成接口</h1>
+      <div class="concon grey">
+接口URL<br />
+URL示例：<br />
+<a href="javascript:void(0)">http://ccic.ti-net.com.cn /system!getLoginSecurityCodeImage.action</a></div>
+<h1>参数说明</h1><br />
+不需要参数  <br />
+<h1>返回值</h1><br />
+返回随机的数字与字母混合的验证码图片。  <br />
+</div>
+
+
+    </div>
+
+    
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR"> 
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

@@ -1,0 +1,478 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+   <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/interface.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#48").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#48").parent("ul").css("display","block");
+            $(".jklist ul li ul li#48 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+<div class="body-r">
+    <h1>网上回呼接口</h1>
+       
+ 
+    <div class="conbar">
+      <div class="concon grey"><strong>接口URL（POST方式）</strong><br />
+接口类型：HTTP请求<br />
+发起者：合作方<br />
+接受者：天润融通<br />
+返回值：JSON格式数据<br />
+接口URL<br />
+URL示例：<br />
+<a href="javascript:void(0)">http://InterfaceServerIp:port/interface/entrance/OpenInterfaceEntrance?interfaceType=webCall&amp;enterpriseId=3000000&amp;userName=admin&amp;pwd=c33367701511b4f6020ec61ded352059&amp;customerNumber=01041005970&amp;remoteIp=172.16.203.198&amp;paramNames=user_xx,user_yy&amp;paramTypes=1,2&amp;user_xx=110&amp;user_yy=welcome+to+T%26I&amp;cookie=text1111&amp;sync=0&amp;callbackUrl=http://www.baidu.com&amp;callbackParamNames=token&amp;token=iamtoken</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">enterpriseId</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">企业id</td>
+	<td style="width:312px;"></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">用户名</td>
+	<td style="width:312px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">pwd</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">对应username的密码，md5(登录密码)，例如：md5(123456)</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">interfaceType</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">请求类型</td>
+	<td style="width:312px;">开放接口请求的类型：interfaceType =webCall</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">customerNumber</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">电话号码</td>
+	<td style="width:312px;">座机带区号，手机不加0，支持多个，多个直接用英文逗号’,’分隔</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">subtel</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">分机号码</td>
+	<td style="width:312px;">如果是座机，分机号</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">remoteIp</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">发起呼叫的IP</td>
+	<td style="width:312px;"></td>
+	</tr>
+	
+	<tr>
+	<td style="width:80px;">cookie</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">cookie</td>
+	<td style="width:312px;">每次呼叫cookie必须不一致，防止防骚扰设置造成呼叫失败</td>
+	</tr>
+	
+	<tr>
+	<td style="width:80px;">userField</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">用户自定义字段</td>
+	<td style="width:312px;">长度不超过250个字节。1个汉字是3字节。</td>
+	</tr>
+	
+	<tr>
+	<td style="width:80px;">sync</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">是否是同步调用</td>
+	<td style="width:312px;">1：同步调用
+0：异步调用
+默认为同步调用</td>
+	</tr>
+	
+	<tr>
+	<td style="width:80px;">timeout</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">呼叫客户超时时间</td>
+	<td style="width:312px;">秒数，如果传入参数，参数值必须为大于0小于等于60的整数；不传入，默认为30s</td>
+	</tr>
+	
+	<tr>
+	<td style="width:80px;">amd</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">是否开启amd</td>
+	<td style="width:312px;">自动应答检查（传真机等），1.开启 0.不开启  默认为0</td>
+	</tr>
+	
+	<tr>
+	<td style="width:80px;">delay</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">延迟时长</td>
+	<td style="width:312px;">秒数，延迟多少秒呼叫，只在sync=0时生效</td>
+	</tr>
+	
+	<tr>
+	<td style="width:80px;">multiTelDelay</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">多号码时呼叫延时用</td>
+	<td style="width:312px;">customerNumber多个号码时，号码之间的呼叫延迟，最大120秒，默认0</td>
+	</tr>
+	
+	<tr>
+	<td style="width:80px;">multiTelPush</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">多号码，是否每个号码呼叫都挂机推送</td>
+	<td style="width:312px;">0：每次呼叫都触发挂机推送 1：只挂机推送一次默认0</td>
+	</tr>
+	
+	<tr>
+	<td style="width:80px;">clidNumber</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">客户侧外显号码</td>
+	<td style="width:312px;">取自中继号码或者设置的固定号码</td>
+	</tr>
+	
+	<tr>
+	<td style="width:80px;">callbackUrl</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">异步调用时的回调地址</td>
+	<td style="width:312px;">只有sync=0时有效
+callbackUrl中不能包含’?’，如需传递自定义参数需使用callbackParamNames参数</td>
+	</tr>
+	
+	<tr>
+	<td style="width:80px;">callbackParamNames</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">自定义回调参数，动态附带参数</td>
+	<td style="width:312px;">参数会写入回调参数中，
+格式：以逗号分隔
+callbackName1, callbackName1…
+callbackName必须为字符或数字
+参数名建议使用callback_开头
+设置的参数名不能和paramNames中设置的参数名一样</td>
+	</tr>
+	
+	<tr>
+	<td style="width:80px;">${callbackParamName1}</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">自定义回调参数1</td>
+	<td style="width:312px;">参数值必须使用utf-8编码进行urlencode</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">ivrId</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">回呼接通后进入的ivrid</td>
+	<td style="width:312px;">如果不传此参数，使用后台配置的ivr</td>
+	</tr>
+	
+	<tr>
+	<td style="width:80px;">paramNames</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">动态附带参数</td>
+	<td style="width:312px;">参数会写入通道中，以便ivr中调用
+格式：以逗号分隔
+name1,name2…
+name必须为字符或数字
+参数名建议使用user_开头</td>
+	</tr>
+	
+	<tr>
+	<td style="width:80px;">paramTypes</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">参数类型</td>
+	<td style="width:312px;">paramTypes与paramNames给定参数个数必须一致
+paramTypes指定了paramNames所给参数的类别
+格式：以逗号分隔
+type1,type2,…
+type1对应paraNames参数中name1，type2对应paraNames参数中name2，以此类推
+类型必须为数字,可选值如下：
+1：普通参数
+2：需要tts转换的文本参数</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">${name1}</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">自定义参数1</td>
+	<td style="width:312px;">参数值必须使用utf-8编码进行urlencode
+参数值不能含有逗号’,’，如果有会被转换为中文逗号’，’</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">${name2}</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">自定义参数2</td>
+	<td style="width:312px;">参数值必须使用utf-8编码进行urlencode
+参数值不能含有逗号’,’，如果有会被转换为中文逗号’，’</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div>
+
+    <div class="conbar">
+      <h1>返回值</h1>
+此接口为同步接口,当通过验证开始呼叫座席后只有座席接听/呼叫超时/呼叫失败时才会返回。<br />
+JSON格式数据<br />
+{&quot;result&quot;:&quot;0&quot;,&quot;description&quot;:&quot;&quot;,&quot;uniqueId&quot;:&quot;C2-1432260194.8&quot;}<br />
+uniqueId只有在同步调用时返回，为呼叫通道唯一id<br />
+result列表<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result</strong></td>
+	<td style="width:489px;height:24px;"><strong>description</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">0</td>
+	<td style="width:489px;height:24px;">呼叫失败(sync=1)/提交失败(sync=0)</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">1</td>
+	<td style="width:489px;height:24px;">呼叫成功(sync=1)/提交成功(sync=0)</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">2</td>
+	<td style="width:489px;height:24px;">AMIServer不可用</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">3</td>
+	<td style="width:489px;height:24px;">系统配置不可用</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">4</td>
+	<td style="width:489px;height:24px;">企业设置不可用</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">5</td>
+	<td style="width:489px;height:24px;">路由设置不可用</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">6</td>
+	<td style="width:489px;height:24px;">企业状态无效</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">7</td>
+	<td style="width:489px;height:24px;">企业电话冲突</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">8</td>
+	<td style="width:489px;height:24px;">当前时间不可用</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">9</td>
+	<td style="width:489px;height:24px;">企业未开启网上外呼服务</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">10</td>
+	<td style="width:489px;height:24px;">骚扰IP</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">11</td>
+	<td style="width:489px;height:24px;">骚扰cookie</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">12</td>
+	<td style="width:489px;height:24px;">骚扰骚扰电话</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">13</td>
+	<td style="width:489px;height:24px;">企业黑名单电话</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">14</td>
+	<td style="width:489px;height:24px;">未配置IVR</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">15</td>
+	<td style="width:489px;height:24px;">TTS合成失败</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">16</td>
+	<td style="width:489px;height:24px;">企业ID不正确</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">17</td>
+	<td style="width:489px;height:24px;">IVR ID不正确</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">18</td>
+	<td style="width:489px;height:24px;">外显号码不正确</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">其他</td>
+	<td style="width:489px;height:24px;">未知错误</td>
+	</tr>
+	
+</tbody>
+</table>
+</div><br />
+</div>
+
+
+<div class="conbar">
+      <h1>当sync=0异步调用时Callback接口定义</h1>
+<div class="concon grey"><strong>接口URL（GET方式）</strong><br />
+发起者：天润融通<br />
+接受者：合作方<br />
+接口类型：HTTP接口<br />
+调用方式：POST<br />
+返回格式：文本<br />
+URL规范：<br />
+callbackUrl？<br />
+</div>
+
+<div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">result</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">呼叫结果</td>
+	<td style="width:312px;">参考返回值表</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">description</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">呼叫结果描述</td>
+	<td style="width:312px;">参考返回值表</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">enterpriseId</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">企业Id</td>
+	<td style="width:312px;"></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">customerNumber</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">电话号码</td>
+	<td style="width:312px;">座机带区号，手机不加0</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">subtel</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">分机号码</td>
+	<td style="width:312px;">如果是座机，分机号</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">remoteIp</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">发起呼叫的IP</td>
+	<td style="width:312px;"></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">cookie</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">cookie</td>
+	<td style="width:312px;">每次呼叫cookie必须不一致，防止防骚扰设置造成呼叫失败</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">userField</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">用户自定义字段</td>
+	<td style="width:312px;"></td>
+	</tr>
+		<tr>
+	<td style="width:80px;">uniqueId</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">通道唯一id</td>
+	<td style="width:312px;">只有发起呼叫（result=0/1）才有通道id</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">timeout</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">超时时间</td>
+	<td style="width:312px;">发起请求时传入的呼叫客户超时时间</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">clidNumber</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">客户侧外显号码</td>
+	<td style="width:312px;">发起请求时传入的客户侧外显号码</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">startTime</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">开始发起呼叫时间</td>
+	<td style="width:312px;"></td>
+	</tr>
+			<tr>
+	<td style="width:80px;">answerTime</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">接听时间，仅当result=0呼叫成功时</td>
+	<td style="width:312px;">unix时间戳，精确到秒，
+answerTime与endTime二选一</td>
+	</tr>
+			<tr>
+	<td style="width:80px;">endTime</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">结束时间，仅当result！=0呼叫不成功时</td>
+	<td style="width:312px;">unix时间戳，精确到秒，
+answerTime与endTime二选一</td>
+	</tr>
+			<tr>
+	<td style="width:80px;">callbackParamName1</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">自定义回调参数</td>
+	<td style="width:312px;"></td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+    </div> 
+
+    </div> 
+     </div>     
+    
+  <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR"> 
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

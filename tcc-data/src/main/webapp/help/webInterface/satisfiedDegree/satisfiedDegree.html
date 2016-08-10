@@ -1,0 +1,326 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+   <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/interface.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#21").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#21").parent("ul").css("display","block");
+            $(".jklist ul li ul li#21 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+<div class="body-r">
+    <h1>满意度调查设置接口</h1>
+     
+    <div class="conbar">
+      <h1>接口作用说明</h1>
+      <div class="concon grey">通过接口实现满意度调查设置功能</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>API URL</h1>
+      <div class="concon grey"><strong>接口URL</strong><strong>（POST</strong><strong>方式）</strong><br />
+发起者：合作方<br />
+接受者：天润融通<br />
+接口类型：HTTP接口<br />
+调用方式：POST<br />
+返回格式：JSON格式数据<br />
+URL规范：<br />
+<a href="http://InterfaceServerIp:port/interfaceAction/investigationInterface!save.action?enterpriseId=&amp;userName=&amp;pwd=&amp;ivr=&amp;auto">http://InterfaceServerIp:port/interfaceAction/investigationInterface!save.action?enterpriseId=&amp;userName=&amp;pwd=&amp;ivr=&amp;auto</a>=<br />
+说明：InterfaceServerIp:port 为使用账号登录<a href="http://www.ccic2.com">www.ccic2.com</a>之后，在浏览器地址栏看到的域名地址。<br />
+例如：xa.ccic2.com<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;bj.ccic2.com<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1.ccic2.com<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:127px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:95px;"><strong>描述</strong></td>
+	<td style="width:296px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:127px;">enterpriseId</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:95px;">企业Id</td>
+	<td style="width:296px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:95px;">用户名</td>
+	<td style="width:296px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">pwd</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:95px;">密码</td>
+	<td style="width:296px;">对应username的密码，md5(登录密码)，例如：md5(123456)</td>
+	</tr>
+	<tr>
+	<td style="width:127px;height:39px;">ivr</td>
+	<td style="width:47px;height:39px;">必选</td>
+	<td style="width:95px;height:39px;">满意度调查ivr流程</td>
+	<td style="width:296px;height:39px;">json格式字符串，具体参考ivr格式说明<br />
+	传此参数ivrId参数失效<br />
+	需要将json进行urlencode编码</td>
+	</tr>
+	<tr>
+	<td style="width:127px;height:86px;">auto</td>
+	<td style="width:47px;height:86px;">可选</td>
+	<td style="width:95px;height:86px;">是否自动满意度调查</td>
+	<td style="width:296px;height:86px;">1：打开自动满意度调查<br />
+	0：手动满意度调查<br />
+	如果不传此参数默认为手动满意度调查</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>IVR参数格式说明</h1>
+      <div class="concon grey">ivr参数json格式，所有值均为字符串格式<br />
+{&quot;nodes&quot;: [<br />
+node,<br />
+node<br />
+&hellip;<br />
+]<br />
+}<br />
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:98px;"><strong>参数</strong></td>
+	<td style="width:44px;"><strong>要求</strong></td>
+	<td style="width:99px;"><strong>描述</strong></td>
+	<td style="width:324px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:98px;">nodes</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">节点列表</td>
+	<td style="width:324px;">json数组，必须有1个或以上节点</td>
+	</tr>
+</tbody>
+</table>
+node json格式<br />
+{<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;nodeId&quot;: &quot;1&quot;,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;nodeName&quot;: &quot;播放&quot;,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;action&quot;: &quot;1&quot;,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;${param}&quot;: &quot;1&quot;,<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &quot;${param}&quot;: &quot;1&quot;,<br />
+&hellip;<br />
+}<br />
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:98px;"><strong>参数</strong></td>
+	<td style="width:44px;"><strong>要求</strong></td>
+	<td style="width:99px;"><strong>描述</strong></td>
+	<td style="width:324px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:98px;">nodeId</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">节点ID</td>
+	<td style="width:324px;">字符串(仅包含数字及点号)，例如1，1.1，1.1.2，<br />
+	节点以点号区分层级关系，例如1.1.2的父节点是1.1<br />
+	节点根节点必须是1</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">ivrName</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">节点名称</td>
+	<td style="width:324px;">字符串</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">action</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">节点类型</td>
+	<td style="width:324px;">参考action取值说明</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">${param}</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">其他参数</td>
+	<td style="width:324px;">随action不同，有不同的参数要求，具体参考下述节点参数说明表</td>
+	</tr>
+</tbody>
+</table>
+action取值说明：<br />
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:98px;"><strong>值</strong></td>
+	<td style="width:97px;"><strong>节点类型</strong></td>
+	</tr>
+	<tr>
+	<td style="width:98px;">1</td>
+	<td style="width:97px;">播放节点</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">2</td>
+	<td style="width:97px;">选择节点</td>
+	</tr>
+</tbody>
+</table>
+&nbsp;<br />
+节点参数说明表：<br />
+action=1播放节点<br />
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:98px;"><strong>参数</strong></td>
+	<td style="width:44px;"><strong>要求</strong></td>
+	<td style="width:99px;"><strong>描述</strong></td>
+	<td style="width:324px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:98px;">playType</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">播放类型说明</td>
+	<td style="width:324px;">参考playType取值说明表</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">playFile</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">播放的文件名或内容</td>
+	<td style="width:324px;">当playType=1时为播放的文件名<br />
+	当playType=2时为数字值<br />
+	当playType=3时为数字值<br />
+	当playType=4时为用于TTS的文本值</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">next</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">跳转节点</td>
+	<td style="width:324px;">如果跳转节点</td>
+	</tr>
+</tbody>
+</table>
+action=2选择节点<br />
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:118px;"><strong>参数</strong></td>
+	<td style="width:57px;"><strong>要求</strong></td>
+	<td style="width:113px;"><strong>描述</strong></td>
+	<td style="width:277px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:118px;">selectFile</td>
+	<td style="width:57px;">必选</td>
+	<td style="width:113px;">播放语音文件名字</td>
+	<td style="width:277px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:118px;">select${x}Next</td>
+	<td style="width:57px;">可选</td>
+	<td style="width:113px;">记录不同按键将会跳转的节点；${x}的值可以是0~9,*以及#；</td>
+	<td style="width:277px;">不同按键将要跳转的节点；如select1Next=1.2表示在选择节点按了数字1键，对应的跳转到节点1.2；<br />
+	select4Next=1.3表示客户在选择节点按了数字4键，对应的跳转节点是1.3；如果某按键的跳转节点为空将会导致错误按键，跳转到错误按键的节点；</td>
+	</tr>
+</tbody>
+</table>
+&nbsp;<br />
+playType取值说明表:<br />
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:98px;"><strong>值</strong></td>
+	<td style="width:97px;"><strong>节点类型</strong></td>
+	</tr>
+	<tr>
+	<td style="width:98px;">1</td>
+	<td style="width:97px;">语音文件</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">2</td>
+	<td style="width:97px;">数字</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">3</td>
+	<td style="width:97px;">数目</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">4</td>
+	<td style="width:97px;">TTS文本</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+      <div class="concon grey">此接口返回JSON格式数据。<br />
+{&ldquo;result&rdquo;:&rdquo;success&rdquo;,&rdquo;description&rdquo;:&rdquo;&rdquo;}<br />
+result列表<br />
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:61px;height:24px;"><strong>result</strong></td>
+	<td style="width:359px;height:24px;"><strong>description</strong></td>
+	</tr>
+	<tr>
+	<td style="width:61px;height:24px;">success</td>
+	<td style="width:359px;height:24px;">提交成功</td>
+	</tr>
+	<tr>
+	<td style="width:61px;height:24px;">error</td>
+	<td style="width:359px;height:24px;">提交失败</td>
+	</tr>
+</tbody>
+</table>
+description为失败时错误描述<br />
+&nbsp;<br />
+每次提交会覆盖之前提交的设置。<br />
+示例<br />
+http://172.16.203.217/interfaceAction/investigationInterface!save.action?enterpriseId=3000000&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e&amp;auto=1&amp;ivr={&quot;nodes&quot;:[{&quot;nodeId&quot;:&quot;1&quot;,&quot;ivrName&quot;:&quot;选择&quot;,&quot;action&quot;:&quot;2&quot;,&quot;selectType&quot;:&quot;1&quot;,&quot;selectFile&quot;:&quot;on_duty&quot;,&quot;select1Next&quot;:&quot;1.1&quot;,&quot;select2Next&quot;:&quot;1.2&quot;,&quot;select3Next&quot;:&quot;1.3&quot;},{&quot;nodeId&quot;:&quot;1.1&quot;,&quot;ivrName&quot;:&quot;播放1&quot;,&quot;action&quot;:&quot;1&quot;,&quot;playType&quot;:&quot;1&quot;,&quot;playFile&quot;:&quot;off_duty&quot;,&quot;next&quot;:&quot;&quot;},{&quot;nodeId&quot;:&quot;1.2&quot;,&quot;ivrName&quot;:&quot;播放2&quot;,&quot;action&quot;:&quot;1&quot;,&quot;playType&quot;:&quot;1&quot;,&quot;playFile&quot;:&quot;default_voice_mail&quot;,&quot;next&quot;:&quot;&quot;},{&quot;nodeId&quot;:&quot;1.3&quot;,&quot;ivrName&quot;:&quot;播放3&quot;,&quot;action&quot;:&quot;1&quot;,&quot;playType&quot;:&quot;1&quot;,&quot;playFile&quot;:&quot;default_transfer&quot;,&quot;next&quot;:&quot;&quot;},{&quot;nodeId&quot;:&quot;1.4&quot;,&quot;ivrName&quot;:&quot;播放4&quot;,&quot;action&quot;:&quot;1&quot;,&quot;playType&quot;:&quot;1&quot;,&quot;playFile&quot;:&quot;investigation_bye&quot;,&quot;next&quot;:&quot;&quot;}]}<br />
+</div>
+    </div>
+    
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR"> 
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

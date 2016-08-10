@@ -1,0 +1,84 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+    <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/interface.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#1").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#1").parent("ul").css("display","block");
+            $(".jklist ul li ul li#1 a").addClass("cure");
+        }
+    </script>
+</head>
+
+<body>
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+    <div class="body-r">
+        <h1>开发流程</h1>
+
+        <div class="conbar">
+            <h1>售前咨询与支持</h1>
+            <div class="concon grey">请拨打400电话或从网页中的入口联系我们咨询相关业务<br />
+                <br />
+                若需要可给您安排客户经理<br />
+                <br />
+                开发过程请查看文档，我们还提供在线技术支持来解决您可能遇到的问题并协助您使用。<br />
+            </div>
+        </div>
+
+        <div class="conbar">
+            <h1>获取测试账号</h1>
+            <div class="concon grey">在明确需求后跟客户经理申请测试账号，用于后期的开发测试使用<br />
+                <br />
+                测试账号使用期限为15天，到期后数据清空，请提前跟客户经理做延期处理<br />
+            </div>
+        </div>
+
+        <div class="conbar">
+            <h1>开发测试</h1>
+            <div class="concon grey">在测试账号上，根据自己的需求，进行功能点的开发测试工作<br />
+                <br />
+                在开发测试期间会有专门负责进行对接的技术人员跟进开发进度、解决中途遇到的呼叫中心对接问题<br />
+            </div>
+        </div>
+
+        <div class="conbar">
+            <h1>正式使用</h1>
+            <div class="concon grey">开发测试完成后，跟客户经理开通正式环境账号，把功能点迁移到正式账户上。（更改Rest URL）<br />
+                <br />
+                使用过程中遇到售后、故障等相关问题可通过400电话或客户经理联系我们<br />
+            </div>
+        </div>
+        <div class="clear"></div>
+</div>
+<div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR">
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

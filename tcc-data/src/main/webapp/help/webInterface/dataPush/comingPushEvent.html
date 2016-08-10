@@ -1,0 +1,175 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+   <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/interface.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#43").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#43").parent("ul").css("display","block");
+            $(".jklist ul li ul li#43 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+<div class="body-r">
+    <h1>来电事件推送</h1>
+       
+    <div class="conbar">
+      <h1>API URL</h1>
+      <div class="concon grey"><strong>接口URL（GET方式）</strong><br />
+接口类型：HTTP请求<br />
+接口使用账户：企业账户<br />
+接口地址：天润呼叫中心接口服务器IP或域名<br />
+接口参数：企业账号、来电号码、工号、呼叫类型、callid（呼叫唯一标识）、队列号、被叫号码<br />
+返回值：网页<br />
+<br />
+<br />
+企业需要把对接的接收信息的URL在呼叫中心系统中进行设置。<br />
+进入“系统设置”—“接口设置”—“CRM对接设置”<br />
+<br />
+<br />
+先填写推送接口的URL，方式选择“来电推送”，再配置对应可选参数及自定义参数名称;<br />
+如：crmId参数在您的系统中为userid参数，那么在crmId参数下面的对应输入框填写userid;<br />
+ 
+<br />
+<br />
+<img alt="" src="/framework/images/helpcenter/ldsjts.png" style="width: 576px; height: 237px;" /><br />
+<strong>接口URL</strong>
+URL示例<br />
+<a href="javascript:void(0)">http://WebServer:Port/ringing.jsp?enterpriseId=3000028&amp;hotline=4006604889&amp;cno=2000&amp;tel=01087120766&amp;customerNumberType=1&amp;customerAreaCode=010&amp;calltype=1&amp;numberTrunk=63352451&amp;uniqueId=xian001-1363743441.417&amp;taskInventoryId=undefined&amp;taskId=undefined&amp;qid=30000280011&amp;consultCon=&amp;transferCno=</a>
+    <div class="conbar">
+      <h1>参数说明</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">enterpriseId</td>
+	<td style="width:132px;">企业id</td>
+	<td style="width:312px;">管理员后台登陆后，位于右上角位置</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">hotline</td>
+	<td style="width:132px;">企业热线号码</td>
+	<td style="width:312px;">企业登陆使用的热线号码，包括：400号码或固话</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">bindTel</td>
+	<td style="width:132px;">绑定电话</td>
+	<td style="width:312px;"></td>
+	</tr>
+		<tr>
+	<td style="width:80px;">cno</td>
+	<td style="width:132px;">坐席工号</td>
+	<td style="width:312px;"></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">customerNumber</td>
+	<td style="width:132px;">主叫号码</td>
+	<td style="width:312px;">来电呼入号码或者外呼客户号码</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">customerNumberType</td>
+	<td style="width:132px;">来电或外号码类型</td>
+	<td style="width:312px;">手机或者固话</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">customerAreaCode</td>
+	<td style="width:132px;">号码地区</td>
+	<td style="width:312px;">呼入电话或者外呼客户电话所在地区</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">calltype</td>
+	<td style="width:132px;">呼叫类型</td>
+	<td style="width:312px;">1：呼入、2：网上400、3：点击外呼、4：预览式外呼、5：预测式外呼、6：摘机外呼</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">numberTrunk</td>
+	<td style="width:132px;">目的码</td>
+	<td style="width:312px;">系统号码</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">uniqueId</td>
+	<td style="width:132px;">呼叫唯一标识</td>
+	<td style="width:312px;">即callid，用于接口取得通话记录和录音等</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">taskId</td>
+	<td style="width:132px;">外呼任务id</td>
+	<td style="width:312px;">外呼任务的标识</td>
+	</tr>
+			<tr>
+	<td style="width:80px;">taskInventoryId</td>
+	<td style="width:132px;">外呼任务详情ID</td>
+	<td style="width:312px;">外呼任务的内部标识</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">qid</td>
+	<td style="width:132px;">呼入队列号</td>
+	<td style="width:312px;">企业编号+四位队列号</td>
+	</tr>
+			<tr>
+	<td style="width:80px;">consulterCno</td>
+	<td style="width:132px;">咨询自座席号</td>
+	<td style="width:312px;">事件来自咨询时，此参数为咨询来自的座席工号</td>
+	</tr>		
+	<tr>
+	<td style="width:80px;">transferCno</td>
+	<td style="width:132px;">转移自座席号</td>
+	<td style="width:312px;">事件来自转移时，此参数为转移来自的座席工号</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">自定义参数变量</td>
+	<td style="width:132px;">ivr变量</td>
+	<td style="width:312px;">在IVR语音导航使用的变量可以传递到来电推送信息中</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     </div> 
+    <div class="conbar">
+      <h1>返回值</h1>
+{'reuslt':'success'}<br />
+</div>
+
+</div>
+    
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR"> 
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

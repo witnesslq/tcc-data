@@ -1,0 +1,70 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>对接接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+    <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/toolbar.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#2").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#2").parent("ul").css("display","block");
+            $(".jklist ul li ul li#2 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+
+    <div class="body-r">
+        <h1>注意事项</h1>
+
+        <div class="conbar">
+            <h1>测试</h1>
+            <div class="concon grey">
+                a) 使用IE浏览器，因为跨域问题，必须把网页放到服务器上才能正常运行；或者使用Firefox；<br />
+                b) iFrame方式在Demo页面中输入热线号码、座席号、密码等信息即可测试；<br />
+                c) JS嵌入方式，需要修改代码中的热线号码等信息；<br />
+            </div>
+        </div>
+
+        <div class="conbar">
+            <h1>开发</h1>
+            <div class="concon grey">
+                a) 基于JS版demo开发，对接CRM等业务系统，必须实现函数有：登录,登出,退出，外呼，咨询，转移及对应的回调等，以及状态回调：来电弹屏等<br />
+                b) 嵌入iFrame方式的页面不能全局刷新<br />
+            </div>
+        </div>
+
+        <div class="clear"></div>
+
+    </div>
+    <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR">
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

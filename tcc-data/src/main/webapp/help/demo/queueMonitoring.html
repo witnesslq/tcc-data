@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>云计算呼叫中心-天润融通</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script type="text/javascript" src="js/queueMonitoring.js"></script>
+<link rel="stylesheet" href="queueMonitoring.css" />
+</head>
+<body>
+<div class="list_Div" style="min-width:1050px;">
+	<div class="list_title">
+        <div class="chooseQueue">选择队列：</div>
+       	<div class="chooseQueue_select">
+        	<select id="queueSelect">
+            </select>
+        </div>
+        <div class="chooseQueue_right">
+        	<div class="chooseQueue_right_time"></div>
+            <!--<div class="chooseQueue_right_img"><img src="./images/queueMonitoringIMG/toCount01.png"/></div>-->
+        </div>
+    </div>
+    
+    <div class="list_title" style="padding-right:30px; margin:15px 0; height:28px;">
+        <div class="queue_news">
+        	<div class="queue_news_div">
+            	<span>队列名称：</span>
+            	<span id="qname"></span>
+            </div>
+        	<div class="queue_news_div">
+                <span>座席总数：</span>
+                <span id="cnoSum"></span>
+            </div>
+            <div class="queue_news_div">
+            	<span>呼叫分配方式：</span>
+            	<span id="strategy"></span>
+            </div>
+            <div class="queue_news_div">
+                <span>班长席：</span>
+                <span id="monitor"></span>
+            </div>
+        </div>
+    </div>
+    <div style="display:none">
+	<div class="list_title">
+        <span class="list_title_titleSpan">队列状态</span>
+        <span class="list_title_hrSpan" style="left:60px;"><hr class="list_title_hrSpan_hr" size="2" color="f0f0f0"/></span>
+        <span class="list_title_imgSpan"><img src="./images/buttonArrow01.png" id='qStatus'/></span>
+    </div>
+    
+        <div class="list_content" id="qStatusContent" style="height:235px; width:100%; display:none;">
+             <div class="reportForms_iframe"><iframe width="620" height="235" src="reportForms.html" scrolling="no" frameborder="0" id="reportForms"></iframe></div>
+             <div class="waitservice">
+                <div class="waitservice_content">
+                    <div class="waitservice_content_wait">
+                        <span class="waitservice_content_span waitservice_content_wait_span_img"></span>
+                        <span class="waitservice_content_span waitservice_content_span_text">等待人数：</span>
+                        <span class="waitservice_content_span waitservice_content_span_number" id="waitNormal">0</span>
+                    </div>
+                    <div class="waitservice_content_service">
+                        <span class="waitservice_content_span waitservice_content_service_span_img"></span>
+                        <span class="waitservice_content_span waitservice_content_span_text">服务水平：</span>
+                        <span class="waitservice_content_span waitservice_content_span_number" id="serviceLevel"></span>
+                    </div>
+                </div>
+                <div class="cnoForms_iframe"><iframe width="400" height="180" src="cnoForms.html" scrolling="no" frameborder="0" id="cnoForms"></iframe></div>
+             </div>
+        </div>
+    </div>
+    <div class="list_title">
+        <span class="list_title_titleSpan">座席列表</span>
+        <span class="list_title_numSpan">(<span id="onlineCno">0</span>/<span id="allCno">0</span>)</span>
+        <span class="list_title_hrSpan" style="left:100px;"><hr class="list_title_hrSpan_hr" size="2" color="f0f0f0"/></span>
+        <span class="list_title_imgSpan"><img src="./images/queueMonitoringIMG/buttonArrow01.png" id='cnoList'/></span>
+    </div>
+
+     <div class="list_title positionState">
+     	<div class="positionState_content">
+            <span class="positionState_content_text">座席状态：</span>
+            <span class="positionState_content_checkbox"><input name="positionStateCheckbox" type="checkbox" value="checkAll" checked="checked"/></span>
+            <span class="positionState_content_text">全选</span>
+            <span class="positionState_content_checkbox"><input name="positionStateCheckbox" type="checkbox" value="Idle" checked="checked"/></span>
+            <span class="positionState_content_text">空闲</span>
+            <span class="positionState_content_checkbox"><input name="positionStateCheckbox" type="checkbox" value="offline" checked="checked"/></span>
+            <span class="positionState_content_text">离线</span>
+            <span class="positionState_content_checkbox"><input name="positionStateCheckbox" type="checkbox" value="ring" checked="checked"/></span>
+            <span class="positionState_content_text">响铃</span>
+            <span class="positionState_content_checkbox"><input name="positionStateCheckbox" type="checkbox" value="busy" checked="checked"/></span>
+            <span class="positionState_content_text">通话</span>
+             <span class="positionState_content_checkbox"><input name="positionStateCheckbox" type="checkbox" value="neaten" checked="checked"/></span>
+            <span class="positionState_content_text">整理</span>
+            <span class="positionState_content_checkbox"><input name="positionStateCheckbox" type="checkbox" value="pause" checked="checked"/></span>
+            <span class="positionState_content_text">置忙</span>
+        </div>
+    </div>
+    
+    <div class="list_content" id="cnoContent">
+    	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+        	<tr class="list_content_title_tr">
+                <td align="center" class="list_content_title_leftTd" width="5%"></td>
+                <td align="center" class="list_content_title_middleTd" width="5%">座席编号</td>
+                <td align="center" class="list_content_title_middleTd" width="15%">姓名</td>
+                <td align="center" class="list_content_title_middleTd" width="15%">座席类型</td>
+                <td align="center" class="list_content_title_middleTd" width="15%">接听总数</td>
+                <td align="center" class="list_content_title_middleTd" width="15%">登陆时长</td>
+                <td align="center" class="list_content_title_middleTd" width="10%">状态时长</td>
+                <td align="center" class="list_content_title_middleTd" width="15%">主叫号码</td>
+                <td align="center" class="list_content_title_rightTd" width="5%">操作</td>
+            </tr>
+        </table>
+        <div id="cnoTableDiv">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" id="cnoTable">
+               
+            </table>
+        </div>
+    </div>
+	<div class="list_title">
+        <span class="list_title_titleSpan">呼叫列表</span>
+        <span class="list_title_numSpan">(共<span id="callNumber">0</span>条呼叫信息)</span>
+        <span class="list_title_hrSpan"><hr class="list_title_hrSpan_hr" size="2" color="f0f0f0"/></span>
+        <span class="list_title_imgSpan"><img src="./images/queueMonitoringIMG/buttonArrow01.png" id="callList"/></span>
+    </div>
+    <div class="list_content" id="callContent">
+    	<table border="0" cellpadding="0" cellspacing="0" width="100%">
+        	<tr class="list_content_title_tr">
+                <td align="center" class="list_content_title_leftTd" width="15%">主叫号码</td>
+                <td align="center" class="list_content_title_middleTd" width="15%">来电时间</td>
+                <td align="center" class="list_content_title_middleTd" width="15%">进入队列时间</td>
+                <td align="center" class="list_content_title_middleTd" width="10%">排队等待时长</td>
+                <td align="center" class="list_content_title_middleTd" width="10%">呼叫状态</td>
+                <td align="center" class="list_content_title_middleTd" width="10%">溢出次数</td>
+                <td align="center" class="list_content_title_rightTd" width="10%">排队位置</td>
+            </tr>
+        </table>
+    	<div style="height:170px; overflow:auto;">
+            <table border="0" cellpadding="0" cellspacing="0" width="100%" id="callTable">
+              
+            </table>
+        </div>
+  </div>
+</div>
+</body>
+</html>

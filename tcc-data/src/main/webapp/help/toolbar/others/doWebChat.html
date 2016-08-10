@@ -1,0 +1,240 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description"
+          content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet"/>
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet"/>
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet"/>
+    <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/toolbar.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function () {
+            $(".jklist ul li ul li#41").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#41").parent("ul").css("display", "block");
+            $(".jklist ul li ul li#41 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+    <div class="body-r">
+        <h1>在线聊天 – doWebChat</h1>
+
+
+        <div class="conbar">
+            <h1>接口作用说明</h1>
+            <div class="concon grey"><p>座席聊天</p>
+            </div>
+        </div>
+
+        <div class="conbar">
+            <h1>调用方式</h1>
+            <div class="concon grey">doWebChat(JSON)<br/>
+            </div>
+        </div>
+
+        <div class="conbar">
+            <h1>回调函数</h1>
+            <div class="concon grey">cbWebChat()<br/>
+            </div>
+        </div>
+
+        <div class="conbar">
+            <h1>相关参数</h1>
+            <div class="concon grey">
+                <table border="0" cellpadding="0" cellspacing="0" style="height:100%;width:100%;" width="423">
+                    <tbody>
+                    <tr>
+                        <td style="width:98px;">参数</td>
+                        <td style="width:44px;">要求</td>
+                        <td style="width:99px;">描述</td>
+                        <td style="width:323px;">备注</td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">webchatMsg</td>
+                        <td style="width:44px;">必选</td>
+                        <td style="width:99px;">发送的信息</td>
+                        <td style="width:323px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">webchatType</td>
+                        <td style="width:44px;">必选</td>
+                        <td style="width:99px;">发送信息的类型</td>
+                        <td style="width:323px;">1：发送到指定的座席，2：发送到群</td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">groupId</td>
+                        <td style="width:44px;">必选</td>
+                        <td style="width:99px;">发送到群的ID</td>
+                        <td style="width:323px;">如果发送到座席，groupId为空</td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">cno</td>
+                        <td style="width:44px;">必选</td>
+                        <td style="width:99px;">座席工号</td>
+                        <td style="width:323px;">如果webchatType=1，cno是发送指定座席工号，webchatType=2，cno是发送方座席工号</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <br/>
+            </div>
+        </div>
+
+        <div class="conbar">
+            <h1>返回值</h1>
+            <div class="concon grey">
+                无
+            </div>
+        </div>
+
+        <div class="conbar">
+            <h1>示例</h1>
+            <div class="concon grey">
+                var object = {};<br/>
+                object.webchatMsg = "发送指定座席2000";<br/>
+                object.webchatType = "1";<br/>
+                object.groupId = "";<br/>
+                object.cno = "2000";<br/>
+                executeAction('doWebChat', object);<br/>
+                回调 - cbWebChat()<br/>
+                返回JSON对象<br/>
+                群聊返回：<br/>
+                {"type":"event","name":"webchatMsg","webchatSenderCno":"2002","webchatSenderCname":"座席2002", "enterpriseId":"3000000","cno":"2002","webchatMsg":"接收信息","webchatType":"2","groupId":"2"}<br/>
+                单聊返回：<br/>
+                {"type":"event","name":"webchatMsg","webchatTargetCno":"2000","webchatTargetCname":"座席2000", "enterpriseId":"3000000","cno":"2002","webchatMsg":"接收信息","webchatType":"1"}
+            </div>
+        </div>
+
+        <div class="conbar">
+            <h1>群聊返回json参数描述</h1>
+            <div class="concon grey">
+                <table border="0" cellpadding="0" cellspacing="0" style="height:100%;width:100%;" width="423">
+                    <tbody>
+                    <tr>
+                        <td style="width:98px;">参数名</td>
+                        <td style="width:44px;">类型</td>
+                        <td style="width:99px;">描述</td>
+                        <td style="width:323px;">备注</td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">webchatSenderCno</td>
+                        <td style="width:44px;">String</td>
+                        <td style="width:99px;">发送座席号</td>
+                        <td style="width:323px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">webchatSenderCname</td>
+                        <td style="width:44px;">String</td>
+                        <td style="width:99px;">发送座席名称</td>
+                        <td style="width:323px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">webchatMsg</td>
+                        <td style="width:44px;">String</td>
+                        <td style="width:99px;">接收信息</td>
+                        <td style="width:323px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">groupId</td>
+                        <td style="width:44px;">String</td>
+                        <td style="width:99px;">群ID</td>
+                        <td style="width:323px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">webchatType</td>
+                        <td style="width:44px;">String</td>
+                        <td style="width:99px;">发送类型</td>
+                        <td style="width:323px;">1：发送到单人，2：发送到群</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">cno</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">发送人座席号</td>
+                        <td style="width: 98px; height: 40px;"></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <br/>
+            </div>
+        </div>
+
+        <div class="conbar">
+            <h1>单聊返回json参数描述</h1>
+            <div class="concon grey">
+                <table border="0" cellpadding="0" cellspacing="0" style="height:100%;width:100%;" width="423">
+                    <tbody>
+                    <tr>
+                        <td style="width:98px;">参数名</td>
+                        <td style="width:44px;">类型</td>
+                        <td style="width:99px;">描述</td>
+                        <td style="width:323px;">备注</td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">webchatTargetCno</td>
+                        <td style="width:44px;">String</td>
+                        <td style="width:99px;">接收座席工号</td>
+                        <td style="width:323px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">webchatTargetCname</td>
+                        <td style="width:44px;">String</td>
+                        <td style="width:99px;">接收座席名称</td>
+                        <td style="width:323px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">webchatMsg</td>
+                        <td style="width:44px;">String</td>
+                        <td style="width:99px;">接收信息</td>
+                        <td style="width:323px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">webchatType</td>
+                        <td style="width:44px;">String</td>
+                        <td style="width:99px;">发送类型</td>
+                        <td style="width:323px;">1：发送到单人，2：发送到群</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">cno</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">发送人座席号</td>
+                        <td style="width: 98px; height: 40px;"></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <br/>
+            </div>
+        </div>
+
+    </div>
+    <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR">
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span
+        class="icon_m arrowup"></span></a></div>
+</body>
+</html>

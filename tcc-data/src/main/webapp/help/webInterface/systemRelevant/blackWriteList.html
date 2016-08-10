@@ -1,0 +1,440 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+   <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/interface.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#31").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#31").parent("ul").css("display","block");
+            $(".jklist ul li ul li#31 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+<div class="body-r">
+    <h1>黑白名单</h1>
+     
+    <div class="conbar">
+      <h1>接口作用说明</h1>
+      <div class="concon grey">企业用来配置或者新增黑、白名单</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>设置黑白名单</h1>
+      <div class="concon grey">接口类型：HTTP请求<br />
+接口使用账户：企业账户<br />
+接口地址：天润呼叫中心接口服务器IP或域名<br />
+接口参数：企业编号，请求类型，用户名，密码接口返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+http://TIWebServer:TIPort/interface/entrance/OpenInterfaceEntrance?interfaceType=setRestrictTel&amp;enterpriseId=&amp;userName=&amp;pwd=&amp;setRestrictTelType=<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:150px;height:21px;"><strong>参数</strong></td>
+	<td style="width:46px;height:21px;"><strong>要求</strong></td>
+	<td style="width:88px;height:21px;"><strong>描述</strong></td>
+	<td style="width:322px;height:21px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">enterpriseId</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">企业编号</td>
+	<td style="width:322px;height:21px;">管理员后台登陆后，位于右上角位置</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">interfaceType</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">请求类型</td>
+	<td style="width:322px;height:21px;">interfaceType=setRestrictTel&nbsp;&nbsp; 设置黑白名单</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:20px;">userName</td>
+	<td style="width:46px;height:20px;">必选</td>
+	<td style="width:88px;height:20px;">用户名</td>
+	<td style="width:322px;height:20px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">pwd</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">密码</td>
+	<td style="width:322px;height:21px;">需进行MD5加密，格式：md5(对应userName的密码)，例如：md5(123456)</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">setRestrictTelType</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">设置黑白名单开启状态</td>
+	<td style="width:322px;height:21px;">0表示关闭黑白名单，1表示开启黑名单，2表示开启白名单</td>
+	</tr>
+</tbody>
+</table>
+&nbsp;<br />
+返回值<br />
+URL实例：<br />
+<a href="http://172.16.203.190/interfaceAction/enterpriseVoiceInterface!uploadEntVoice.action?enterpriseId=3000005&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e">http://172.16.203.190/interface/entrance/OpenInterfaceEntrance?interfaceType=setRestrictTel&amp;enterpriseId=3000002&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e&amp;setRestrictTelType=0</a>&nbsp;<br />
+JSON格式数据：<br />
+{result:返回结果, code:结果代码,msg:描述}<br />
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:54px;height:24px;"><strong>result</strong></td>
+	<td style="width:46px;height:24px;"><strong>code</strong></td>
+	<td style="width:489px;height:24px;"><strong>msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:24px;">success</td>
+	<td style="width:46px;height:24px;">0</td>
+	<td style="width:489px;height:24px;">操作成功返回信息</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">1</td>
+	<td style="width:489px;height:17px;">参数[具体参数名]不能为空</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">2</td>
+	<td style="width:489px;height:17px;">参数[具体参数名]不正确</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>查询黑白名单设置</h1>
+      <div class="concon grey">接口类型：HTTP请求<br />
+接口使用账户：企业账户<br />
+接口地址：天润呼叫中心接口服务器IP或域名<br />
+接口参数：企业编号，请求类型，用户名，密码接口返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+http://TIWebServer:TIPort/interface/entrance/OpenInterfaceEntrance?interfaceType=getRestrictTel&amp;enterpriseId=&amp;userName=&amp;pwd=<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:150px;height:21px;"><strong>参数</strong></td>
+	<td style="width:46px;height:21px;"><strong>要求</strong></td>
+	<td style="width:88px;height:21px;"><strong>描述</strong></td>
+	<td style="width:322px;height:21px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">enterpriseId</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">企业编号</td>
+	<td style="width:322px;height:21px;">管理员后台登陆后，位于右上角位置</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">interfaceType</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">请求类型</td>
+	<td style="width:322px;height:21px;">interfaceType=setRestrictTel&nbsp;&nbsp; 设置黑白名单</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:20px;">userName</td>
+	<td style="width:46px;height:20px;">必选</td>
+	<td style="width:88px;height:20px;">用户名</td>
+	<td style="width:322px;height:20px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">pwd</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">密码</td>
+	<td style="width:322px;height:21px;">需进行MD5加密，格式：md5(对应userName的密码)，例如：md5(123456)</td>
+	</tr>
+</tbody>
+</table>
+&nbsp;<br />
+返回值<br />
+URL实例：<br />
+<a href="http://172.16.203.190/interfaceAction/enterpriseVoiceInterface!uploadEntVoice.action?enterpriseId=3000005&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e">http://172.16.203.190/interface/entrance/OpenInterfaceEntrance?interfaceType=getRestrictTel&amp;enterpriseId=3000002&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e</a>&nbsp;<br />
+JSON格式数据：<br />
+{result:返回结果, code:结果代码,msg:描述,restrictTelType:0}<br />
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:54px;height:24px;"><strong>result</strong></td>
+	<td style="width:46px;height:24px;"><strong>code</strong></td>
+	<td style="width:489px;height:24px;"><strong>msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:24px;">success</td>
+	<td style="width:46px;height:24px;">0</td>
+	<td style="width:489px;height:24px;">操作成功返回信息</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">1</td>
+	<td style="width:489px;height:17px;">参数[具体参数名]不能为空</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">2</td>
+	<td style="width:489px;height:17px;">参数[具体参数名]不正确</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>管理黑名单</h1>
+      <div class="concon grey">接口类型：HTTP请求<br />
+接口使用账户：企业账户<br />
+接口地址：天润呼叫中心接口服务器IP或域名<br />
+接口参数：企业编号，请求类型，用户名，密码，客户号码，操作代号<br />
+接口返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+http://TIWebServer:TIPort/interface/entrance/OpenInterfaceEntrance?interfaceType=blacklist&amp;enterpriseId=&amp;userName=&amp;pwd=&amp;customerNumber=&amp;action=<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:150px;height:21px;"><strong>参数</strong></td>
+	<td style="width:46px;height:21px;"><strong>要求</strong></td>
+	<td style="width:88px;height:21px;"><strong>描述</strong></td>
+	<td style="width:322px;height:21px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">enterpriseId</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">企业编号</td>
+	<td style="width:322px;height:21px;">管理员后台登陆后，位于右上角位置</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">interfaceType</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">请求类型</td>
+	<td style="width:322px;height:21px;">interfaceType=blacklist&nbsp;&nbsp; 黑名单</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:20px;">userName</td>
+	<td style="width:46px;height:20px;">必选</td>
+	<td style="width:88px;height:20px;">用户名</td>
+	<td style="width:322px;height:20px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">pwd</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">密码</td>
+	<td style="width:322px;height:21px;">需进行MD5加密，格式：md5(对应userName的密码)，例如：md5(123456)</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">customerNumber</td>
+	<td style="width:46px;height:21px;">必选/可选</td>
+	<td style="width:88px;height:21px;">客户号码</td>
+	<td style="width:322px;height:21px;">只能是座机或者手机号码；<br />
+	action=1时可选</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">action</td>
+	<td style="width:46px;height:21px;">可选</td>
+	<td style="width:88px;height:21px;">操作代号</td>
+	<td style="width:322px;height:21px;">默认是0表示新增，1表示查询，2表示删除</td>
+	</tr>
+</tbody>
+</table>
+&nbsp;<br />
+返回值<br />
+URL实例：<br />
+新增：<br />
+<a href="http://172.16.203.190/interfaceAction/enterpriseVoiceInterface!uploadEntVoice.action?enterpriseId=3000005&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e">http://172.16.203.190/interface/entrance/OpenInterfaceEntrance?interfaceType=blacklist&amp;enterpriseId=3000002&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e&amp;customerNumber=15120054657&amp;action=0</a>&nbsp;<br />
+查询：<br />
+<a href="http://172.16.203.190/interfaceAction/enterpriseVoiceInterface!uploadEntVoice.action?enterpriseId=3000005&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e">http://172.16.203.190/interface/entrance/OpenInterfaceEntrance?interfaceType=blacklist&amp;enterpriseId=3000002&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e&amp;customerNumber=15120054657&amp;action=1</a><br />
+删除：<br />
+<a href="http://172.16.203.190/interfaceAction/enterpriseVoiceInterface!uploadEntVoice.action?enterpriseId=3000005&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e">http://172.16.203.190/interface/entrance/OpenInterfaceEntrance?interfaceType=blacklist&amp;enterpriseId=3000002&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e&amp;customerNumber=15120054657&amp;action=2</a><br />
+JSON格式数据：<br />
+action=0&nbsp;&nbsp; {result:返回结果, description:描述}<br />
+action=1&nbsp;&nbsp; {result:返回结果, code:结果代码,msg:[[&ldquo;enterpriseId&rdquo;:&rdquo;xxx&rdquo;, &ldquo;tel&rdquo;:&ldquo;xxx&rdquo;, &ldquo;comment&rdquo;:&rdquo;xxx&rdquo;}]<br />
+action=2&nbsp;&nbsp; {result:返回结果, code:结果代码,msg:描述]<br />
+&nbsp;<br />
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:54px;height:24px;"><strong>result</strong></td>
+	<td style="width:489px;height:24px;"><strong>msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">ok</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:489px;height:17px;">黑名单号码已经存在，不能重复添加</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:489px;height:17px;">用户名错误</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:6px;">error</td>
+	<td style="width:489px;height:6px;">企业ID错误</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:489px;height:17px;">用户名密码不正确</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>管理白名单</h1>
+      <div class="concon grey">接口类型：HTTP请求<br />
+接口使用账户：企业账户<br />
+接口地址：天润呼叫中心接口服务器IP或域名<br />
+接口参数：企业编号，请求类型，用户名，密码，客户号码，操作代号<br />
+接口返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+http://TIWebServer:TIPort/interface/entrance/OpenInterfaceEntrance?interfaceType=whitelist&amp;enterpriseId=&amp;userName=&amp;pwd=&amp;customerNumber=&amp;action=<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:150px;height:21px;"><strong>参数</strong></td>
+	<td style="width:46px;height:21px;"><strong>要求</strong></td>
+	<td style="width:88px;height:21px;"><strong>描述</strong></td>
+	<td style="width:322px;height:21px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">enterpriseId</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">企业编号</td>
+	<td style="width:322px;height:21px;">管理员后台登陆后，位于右上角位置</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">interfaceType</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">请求类型</td>
+	<td style="width:322px;height:21px;">interfaceType=whitelist&nbsp;&nbsp; 白名单</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:20px;">userName</td>
+	<td style="width:46px;height:20px;">必选</td>
+	<td style="width:88px;height:20px;">用户名</td>
+	<td style="width:322px;height:20px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">pwd</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">密码</td>
+	<td style="width:322px;height:21px;">需进行MD5加密，格式：md5(对应userName的密码)，例如：md5(123456)</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">customerNumber</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">客户号码</td>
+	<td style="width:322px;height:21px;">只能是座机或者手机号码</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">action</td>
+	<td style="width:46px;height:21px;">可选</td>
+	<td style="width:88px;height:21px;">操作代号</td>
+	<td style="width:322px;height:21px;">默认是0表示新增，1表示查询，2表示删除</td>
+	</tr>
+</tbody>
+</table>
+&nbsp;<br />
+返回值<br />
+URL实例：<br />
+新增：<br />
+<a href="http://172.16.203.190/interfaceAction/enterpriseVoiceInterface!uploadEntVoice.action?enterpriseId=3000005&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e">http://172.16.203.190/interface/entrance/OpenInterfaceEntrance?interfaceType=whitelist&amp;enterpriseId=3000002&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e&amp;customerNumber=15120054657&amp;action=0</a><br />
+查询：<a href="http://172.16.203.190/interfaceAction/enterpriseVoiceInterface!uploadEntVoice.action?enterpriseId=3000005&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e">http://172.16.203.190/interface/entrance/OpenInterfaceEntrance?interfaceType=whitelist&amp;enterpriseId=3000002&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e&amp;customerNumber=15120054657&amp;action=1</a><br />
+删除：<br />
+<a href="http://172.16.203.190/interfaceAction/enterpriseVoiceInterface!uploadEntVoice.action?enterpriseId=3000005&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e">http://172.16.203.190/interface/entrance/OpenInterfaceEntrance?interfaceType=whitelist&amp;enterpriseId=3000002&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e&amp;customerNumber=15120054657&amp;action=2</a><br />
+JSON格式数据：<br />
+action=0&nbsp;&nbsp; {result:返回结果, description:描述}<br />
+action=1&nbsp;&nbsp; {result:返回结果, code:结果代码,msg:[[&ldquo;enterpriseId&rdquo;:&rdquo;xxx&rdquo;, &ldquo;tel&rdquo;:&ldquo;xxx&rdquo;, &ldquo;comment&rdquo;:&rdquo;xxx&rdquo;}]<br />
+action=2&nbsp;&nbsp; {result:返回结果, code:结果代码,msg:描述}<br />
+&nbsp;<br />
+返回结果说明：<br />
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:54px;height:24px;"><strong>result</strong></td>
+	<td style="width:46px;height:24px;"><strong>code</strong></td>
+	<td style="width:489px;height:24px;"><strong>msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:24px;">success</td>
+	<td style="width:46px;height:24px;">0</td>
+	<td style="width:489px;height:24px;">操作成功</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">1</td>
+	<td style="width:489px;height:17px;">参数[具体参数名]不能为空</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">2</td>
+	<td style="width:489px;height:17px;">参数[具体参数名]格式不正确</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">6</td>
+	<td style="width:489px;height:17px;">白名单号码已经存在，不能重复添加</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">0</td>
+	<td style="width:46px;height:17px;">&nbsp;</td>
+	<td style="width:489px;height:17px;">用户名或密码不正确</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">0</td>
+	<td style="width:46px;height:17px;">&nbsp;</td>
+	<td style="width:489px;height:17px;">用户名错误</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">0</td>
+	<td style="width:46px;height:17px;">&nbsp;</td>
+	<td style="width:489px;height:17px;">企业ID错误</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+    
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR"> 
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

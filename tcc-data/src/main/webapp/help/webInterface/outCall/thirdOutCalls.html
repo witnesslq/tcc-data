@@ -1,0 +1,231 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+    <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/interface.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#3").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#3").parent("ul").css("display","block");
+            $(".jklist ul li ul li#3 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+<div class="body-r">
+    <h1>第三方外呼调用</h1>
+       
+  
+     
+    <div class="conbar">
+      <h1>接口作用说明</h1>
+      <div class="concon grey"><p>当座席在线时，可以直接将此接口嵌入到客户的CRM系统中，在对应的号码后面增加图标或者链接，从而实现点击呼叫功能</p>
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>API URL</h1>
+      <div class="concon grey">请求地址：<a href="http://InterfaceServerIp:port/interface/PreviewOutcall">http://InterfaceServerIp:port/interface/PreviewOutcall</a><br />
+请求方式：GET请求<br />
+&nbsp; &nbsp; &nbsp; &nbsp;说明：InterfaceServerIp:port 为使用账号登录<a href="http://www.ccic2.com">www.ccic2.com</a>之后，在浏览器地址栏看到的域名地址。<br />
+&nbsp; &nbsp; &nbsp; &nbsp;例如：xa.ccic2.com<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; bj.ccic2.com<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 1.ccic2.com<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="0" cellpadding="0" cellspacing="0" style="height:100%;width:100%;" width="423">
+<tbody>
+	<tr>
+	<td style="width:98px;">参数</td>
+	<td style="width:44px;">要求</td>
+	<td style="width:99px;">描述</td>
+	<td style="width:323px;">备注</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">enterpriseId</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">企业ID</td>
+	<td style="width:323px;">enterpriseId与hotline必须二选一</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">hotline</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">企业热线号码</td>
+	<td style="width:323px;">enterpriseId与hotline必须二选一</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">cno</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">座席号</td>
+	<td style="width:323px;">比如2000此座席必须在线</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">pwd</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">密码</td>
+	<td style="width:323px;">登录密码MD5加密</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">customerNumber</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">客户电话号码</td>
+	<td style="width:323px;">客户方电话号码。</td>
+	</tr>
+	<tr>
+	<td style="width: 98px; height: 40px;">userField</td>
+	<td style="width: 98px; height: 40px;">可选</td>
+	<td style="width: 98px; height: 40px;">用户自定义参数</td>
+	<td style="width: 98px; height: 40px;">数据会写入cdr中，供第三方调用解析</td>
+	</tr>
+	<tr>
+	<td style="width: 98px; height: 40px;">clidLeftNumber</td>
+	<td style="width: 98px; height: 40px;">可选</td>
+	<td style="width: 98px; height: 40px;">客户侧外显号码</td>
+	<td style="width: 98px; height: 40px;">可传入企业中继号码或设置好的客户侧外显号码</td>
+	</tr>
+	<tr>
+	<td style="width: 98px; height: 40px;">sync</td>
+	<td style="width: 98px; height: 40px;">可选</td>
+	<td style="width: 98px; height: 40px;">是否异步调用</td>
+	<td style="width: 98px; height: 40px;">1：同步调用 0：异步调用<br />
+	默认为同步调用（座席接听或呼叫座席失败后返回结果）</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+      <div class="concon grey">此接口为同步接口,当通过验证开始呼叫座席后只有座席接听/呼叫超时/呼叫失败时才会返回。<br />
+JSON格式数据<br />
+{&quot;res&quot;:&quot;0&quot;,&quot;uniqueId&quot;:&quot;15534345.2343&quot;}<br />
+注：uniqueId仅在同步调用(sync=1)时返回。<br />
+<table border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+	<tr>
+	<td style="width:127px;"><strong>res</strong><strong>返回值</strong></td>
+	<td style="width:353px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:127px;height:25px;">0</td>
+	<td style="width:353px;height:25px;">sync=1时表示座席已接听，sync=0时表示发起呼叫请求成功</td>
+	</tr>
+	<tr>
+	<td style="width:127px;height:25px;">1</td>
+	<td style="width:353px;height:25px;">呼叫座席失败</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">2</td>
+	<td style="width:353px;">参数不正确</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">3</td>
+	<td style="width:353px;">用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">4</td>
+	<td style="width:353px;">账号被停用</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">5</td>
+	<td style="width:353px;">资费不足</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">6</td>
+	<td style="width:353px;">指定的业务尚未开通</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">7</td>
+	<td style="width:353px;">电话号码不正确</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">8</td>
+	<td style="width:353px;">座席工号（cno）不存在</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">9</td>
+	<td style="width:353px;">座席状态不为空闲，可能未登录或忙</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">10</td>
+	<td style="width:353px;">其他错误</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">11</td>
+	<td style="width:353px;">电话号码为黑名单</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">12</td>
+	<td style="width:353px;">座席不在线</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">13</td>
+	<td style="width:353px;">座席正在通话/呼叫中</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">14</td>
+	<td style="width:353px;">外显号码不正确 &nbsp; &nbsp;&nbsp;</td>
+	</tr>
+</tbody>
+</table>
+uniqueId为通道唯一标识为可选项，只有呼叫产生通道了才有此参数</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>示例</h1>
+      <div class="concon grey">http://bj.ccic2.com/interface/PreviewOutcall?enterpriseId=3000149&amp;hotline=&amp;cno=3002&amp;pwd=df10ef8509dc176d733d59549e7dbfaf&amp;customerNumber={客户电话}&amp;userField={自定义字段，写入cdr中}&amp;clidLeftNumber={外显号码}&amp;sync=<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>常见问题</h1>
+      <div class="concon grey">①：userField、clidLeftNumber、sync都是可选参数<br />
+②：外显号码必须营帐中设置的号码才可以<br />
+③：uniqueId为通道唯一标识，只有sync=1同步调用才有此参数</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>注意事项</h1>
+      <div class="concon grey">①：前提是进行外呼的座席必须在线，否则无法进行外呼。<br />
+②：该接口的使用一般都是配合着CRM对接到CCIC2系统，座席登录系统后，在客户管理界面显示CRM内容，在CRM中点击外呼。<br />
+③：呼叫过程中会先呼叫座席，座席接听后系统会呼叫客户</div>
+    </div>
+    
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR">
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

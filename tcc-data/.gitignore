@@ -1,0 +1,29 @@
+### Java template
+*.class
+
+# Package Files #
+*.jar
+*.war
+*.ear
+
+
+# IntelliJ project files
+.idea
+*.iml
+target
+classes
+
+# Eclipse project files
+.classpath
+.project
+*.prefs
+.settings*
+
+
+# db properties
+#jdbc.properties
+#redis.properties
+
+# log
+#logback.xml
+

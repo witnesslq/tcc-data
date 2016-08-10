@@ -1,0 +1,332 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+   <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/interface.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#23").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#23").parent("ul").css("display","block");
+            $(".jklist ul li ul li#23 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+ <div class="body-r">
+    <h1>队列座席状态</h1>
+     
+    <div class="conbar">
+      <h1>接口作用说明</h1>
+      <div class="concon grey">以队列为条件，查询座席状态</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>API URL</h1>
+      <div class="concon grey"><strong>接口URL</strong><strong>（POST</strong><strong>方式）</strong><br />
+发起者：合作方<br />
+接受者：天润融通<br />
+接口类型：HTTP接口<br />
+调用方式：POST<br />
+返回格式：JSON数据<br />
+URL规范：<br />
+http://172.16.203.210/interface/queueMonitoring/QueueMonitoring?userName=admin&amp;pwd= e10adc3949ba59abbe56e057f20f883e&amp;enterpriseId=3000000&amp;queueQids=30000000001<br />
+说明：InterfaceServerIp:port 为使用账号登录<a href="http://www.ccic2.com">www.ccic2.com</a>之后，在浏览器地址栏看到的域名地址。<br />
+例如：xa.ccic2.com<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;bj.ccic2.com<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1.ccic2.com<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="423">
+<tbody>
+	<tr>
+	<td style="width:98px;"><strong>参数</strong></td>
+	<td style="width:44px;"><strong>要求</strong></td>
+	<td style="width:99px;"><strong>描述</strong></td>
+	<td style="width:323px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:98px;">enterpriseId</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">企业Id</td>
+	<td style="width:323px;">必选企业id</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">queueQids</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">请求类型</td>
+	<td style="width:323px;">企业id+队列id</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">userName</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">用户名</td>
+	<td style="width:323px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">pwd</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">密码</td>
+	<td style="width:323px;">对应username的密码，md5(登录密码)，例如：md5(123456)</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+      <div class="concon grey">此接口返回JSON格式数据。<br />
+<table border="1" cellpadding="0" cellspacing="0" width="440">
+<tbody>
+	<tr>
+	<td style="width:54px;height:24px;"><strong>result</strong></td>
+	<td style="width:365px;height:24px;"><strong>msg</strong></td>
+	<td style="width:168px;height:24px;"><strong>description</strong></td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:24px;">success</td>
+	<td style="width:365px;height:24px;">{&quot;queueStatus&quot;:[{&quot;qid&quot;:&quot;30000000001&quot;,&quot;qname&quot;:&quot;咨询&quot;,&quot;memberStatus&quot;:[{&quot;loginStatus&quot;:&quot;online&quot;,&quot;deviceStatus&quot;:&quot;idle&quot;,&quot;cid&quot;:&quot;30000002000&quot;,&quot;cname&quot;:&quot;test&quot;,&quot;power&quot;:1,&quot;bindTel&quot;:&quot;01041005975&quot;,&quot;duration&quot;:1022,&quot;callstaken&quot;:0,&quot;loginTime&quot;:1137},{&quot;loginStatus&quot;:&quot;online&quot;,&quot;deviceStatus&quot;:&quot;idle&quot;,&quot;cid&quot;:&quot;30000002001&quot;,&quot;cname&quot;:&quot;test&quot;,&quot;power&quot;:0,&quot;bindTel&quot;:&quot;15229893387&quot;,&quot;duration&quot;:1215,&quot;callstaken&quot;:0,&quot;loginTime&quot;:1215}],&quot;queueEntry&quot;:[],&quot;queueParams&quot;:{&quot;queueTimeout&quot;:600,&quot;memberTimeout&quot;:25,&quot;max&quot;:5,&quot;wrapupTime&quot;:30,&quot;strategy&quot;:&quot;rrmemory&quot;,&quot;calls&quot;:0,&quot;holdTime&quot;:0,&quot;talkTime&quot;:0,&quot;completed&quot;:0,&quot;abandoned&quot;:0,&quot;serviceLevel&quot;:10,&quot;serviceLevelPerf&quot;:0,&quot;weight&quot;:1}}]}</td>
+	<td style="width:168px;height:24px;">成功返回队列座席状态详细信息</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:53px;">error</td>
+	<td style="width:365px;height:53px;">&quot;无权访问&quot;</td>
+	<td style="width:168px;height:53px;">查询队列座席状态详细失败原因</td>
+	</tr>
+</tbody>
+</table>
+&nbsp;<br />
+json格式数据记录的各属性定义<strong>:</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:114px;"><strong>名称</strong></td>
+	<td style="width:114px;"><strong>描述</strong></td>
+	<td style="width:114px;"><strong>数据格式</strong></td>
+	<td style="width:114px;"><strong>取值范围</strong></td>
+	<td style="width:114px;"><strong>例子</strong></td>
+	</tr>
+	<tr>
+	<td style="width:114px;">qid</td>
+	<td style="width:114px;">企业id+队列id</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">30000000001</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">qname</td>
+	<td style="width:114px;">队列名称</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">队列一</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">loginStatus</td>
+	<td style="width:114px;">座席是否在线</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">Offine&nbsp; 不在线<br />
+	Online&nbsp; 在线<br />
+	pause 置忙（或自定义状态）</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">deviceStatus</td>
+	<td style="width:114px;">电话设备状态</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">idle 可用<br />
+	Ringing 振铃<br />
+	Busy 通话中<br />
+	UNAVAILABLE 失效</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">pauseDescription</td>
+	<td style="width:114px;">话后整理或置忙理由（企业自定义坐席状态）</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">PauseWrapup（整理），午饭，WC等</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">cid</td>
+	<td style="width:114px;">企业id+座席工号</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">30000002000</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">cname</td>
+	<td style="width:114px;">座席名称</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">Test</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">Power</td>
+	<td style="width:114px;">座席类型</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">1 普通座席<br />
+	0班长席</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">bindTel</td>
+	<td style="width:114px;">绑定的电话</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">15129893387</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">duration</td>
+	<td style="width:114px;">座席状态持续时间</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">15696</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">Callstaken</td>
+	<td style="width:114px;">座席接听总次数</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">2</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">loginTime</td>
+	<td style="width:114px;">座席本次登录时长</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">13585</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">queueTimeout</td>
+	<td style="width:114px;">队列超时时长</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">600</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">memberTimeout</td>
+	<td style="width:114px;">队列中座席超时时长</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">25</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">Max</td>
+	<td style="width:114px;">队列中最大座席等待数</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">5</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">wrapupTime</td>
+	<td style="width:114px;">队列默认整理时间</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">30</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">Strategy</td>
+	<td style="width:114px;">队列排队策略</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">rrmemory</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">calls</td>
+	<td style="width:114px;">队列当前等待电话数</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">2</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">holdTime</td>
+	<td style="width:114px;">队列中电话接通平均等待时长</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">0</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">talkTime</td>
+	<td style="width:114px;">平均通话时长</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">0</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">Completed</td>
+	<td style="width:114px;">队列中接通电话数</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">1</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">Abandoned</td>
+	<td style="width:114px;">队列中放弃电话数</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">1</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">serviceLevel</td>
+	<td style="width:114px;">队列服务水平描述</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">10</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">serviceLevelPerf</td>
+	<td style="width:114px;">队列服务水平</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">0</td>
+	</tr>
+	<tr>
+	<td style="width:114px;">Weight</td>
+	<td style="width:114px;">队列优先级</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">&nbsp;</td>
+	<td style="width:114px;">1</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+    
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR"> 
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

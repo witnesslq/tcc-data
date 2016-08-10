@@ -1,0 +1,887 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+    <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/interface.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#35").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#35").parent("ul").css("display","block");
+            $(".jklist ul li ul li#35 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+<div class="body-r">
+    <h1>企业语音库管理接口</h1>
+     
+    <div class="conbar">
+      <h1>接口作用说明</h1>
+      <div class="concon grey">此接口可实现对企业语音库的管理，例如上传、下载、删除等</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>企业语音上传</h1>
+      <div class="concon grey">接口类型：HTTP请求<br />
+接口使用账户：企业账户<br />
+接口地址：天润呼叫中心接口服务器IP或域名<br />
+接口参数：企业编号，用户名，密码<br />
+接口返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+http://TIWebServer:TIPort/interfaceAction/enterpriseVoiceInterface!uploadVoice.action?enterpriseId=?&amp;userName=&amp;pwd=&amp;seed=&amp;description=<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+	<tr>
+	<td style="width:150px;height:21px;"><strong>参数</strong></td>
+	<td style="width:46px;height:21px;"><strong>要求</strong></td>
+	<td style="width:88px;height:21px;"><strong>描述</strong></td>
+	<td style="width:322px;height:21px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">enterpriseId</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">企业编号</td>
+	<td style="width:322px;height:21px;">管理员后台登陆后，位于右上角位置</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:20px;">userName</td>
+	<td style="width:46px;height:20px;">必选</td>
+	<td style="width:88px;height:20px;">用户名</td>
+	<td style="width:322px;height:20px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">pwd</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">密码</td>
+	<td style="width:322px;height:21px;">需和seed进行MD5加密，格式：md5(md5(对应userName的密码)+seed)，例如：md5(md5(123456)seed)</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">seed</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">随机字符串</td>
+	<td style="width:322px;height:21px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">file</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">语音文件</td>
+	<td style="width:322px;height:21px;">必须使用multipart/form-data进行post提交；如果是表单提交上传，input中的name必须为file，如<input name="’file’/" type="’file’" />；如果是代码POST提交，语音文参数名必须为file</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">isMoh</td>
+	<td style="width:46px;height:21px;">可选</td>
+	<td style="width:88px;height:21px;">是否为等待音</td>
+	<td style="width:322px;height:21px;">0: 否 1：是 默认为0</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">description</td>
+	<td style="width:46px;height:21px;">可选</td>
+	<td style="width:88px;height:21px;">文件描述</td>
+	<td style="width:322px;height:21px;">&nbsp;</td>
+	</tr>
+</tbody>
+</table>
+接口使用说明<br />
+使用cURL上传语音文件：<br />
+curl -F file=@/home/haohuawuyuan.wav &#39;http://172.16.203.182/interfaceAction/enterpriseVoiceInterface!uploadVoice.action?enterpriseId=3010066&amp;userName=admin&amp;pwd=b605e86d02eef8bfd0646f6a704c17c9&amp;seed=1234&amp;description=uploadwav&#39;<br />
+&nbsp;<br />
+用户可以自己写一个html页面用来选择需要上传语音文件，然后以post的方式提交表单，form表单的action参数是用户上传的URL，enctype=&quot;multipart/form-data&quot;，需要包含企业的参数验证信息，<br />
+通过<xmp><input id="file" name="file" type="file" /></xmp> 来选择上传文件,<br />
+<strong>注意：请保证name </strong><strong>的值与上面所描述的一致</strong><br />
+如：<br />
+<xmp>
+<form action="http://172.16.203.182/interfaceAction/enterpriseVoiceInterface!uploadVoice.action" enctype="multipart/form-data" method="post">
+	<br />
+	&nbsp;
+	<p>enterpriseId: <input name="enterpriseId" type="text" /></p>
+	<br />
+	&nbsp;
+	<p>userName: <input name="userName" type="text" /></p>
+	<br />
+	&nbsp;
+	<p>pwd: <input name="pwd" type="text" /></p>
+	<br />
+	&nbsp;
+	<p>seed: <input name="seed" type="text" /></p>
+	<br />
+	&nbsp;
+	<p>file: <input name="file" type="file" /></p>
+	<br />
+	&nbsp;
+	<p>description: <input name="description" type="text" /></p>
+	<br />
+	&nbsp;<input type="submit" value="Submit" />&nbsp;</form>
+	</xmp>
+<br />
+&nbsp;<br />
+JAVA代码示例<br />
+<strong>import</strong> java.io.File;<br />
+<strong>import</strong> java.nio.charset.Charset;<br />
+&nbsp;<br />
+<strong>import</strong> org.apache.http.HttpEntity;<br />
+<strong>import</strong> org.apache.http.HttpResponse;<br />
+<strong>import</strong> org.apache.http.HttpStatus;<br />
+<strong>import</strong> org.apache.http.client.HttpClient;<br />
+<strong>import</strong> org.apache.http.client.methods.HttpPost;<br />
+<strong>import</strong> org.apache.http.entity.mime.HttpMultipartMode;<br />
+<strong>import</strong> org.apache.http.entity.mime.MultipartEntityBuilder;<br />
+<strong>import</strong> org.apache.http.entity.ContentType;<br />
+<strong>import</strong> org.apache.http.impl.client.HttpClients;<br />
+<strong>import</strong> org.apache.http.util.EntityUtils;<br />
+&nbsp;<br />
+<strong>public</strong> <strong>class</strong> Test {<br />
+&nbsp;&nbsp; &nbsp;<strong>public</strong> <strong>static</strong> <strong>void</strong> main(String[] args) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; String url = &quot;http://172.16.203.182/interfaceAction/enterpriseVoiceInterface!uploadVoice.action&quot;;<br />
+&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; HttpPost httpPost = <strong>new</strong> HttpPost(url);<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; <strong>try</strong> {<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HttpClient httpclient = HttpClients.<em>createDefault</em>();<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; // 组装基本的参数<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; MultipartEntityBuilder multipartEntityBuilder = MultipartEntityBuilder.<em>create</em>();<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; multipartEntityBuilder.setMode(HttpMultipartMode.<em>BROWSER_COMPATIBLE</em>);<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; multipartEntityBuilder.setCharset(Charset.<em>forName</em>(&quot;UTF-8&quot;));<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; multipartEntityBuilder.addTextBody(&quot;enterpriseId&quot;, &quot;3010066&quot;, ContentType.<em>create</em>(&quot;text/plain&quot;, Charset.<em>forName</em>(&quot;UTF-8&quot;)));<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; multipartEntityBuilder.addTextBody(&quot;userName&quot;, &quot;admin&quot;, ContentType.<em>create</em>(&quot;text/plain&quot;, Charset.<em>forName</em>(&quot;UTF-8&quot;)));<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; multipartEntityBuilder.addTextBody(&quot;pwd&quot;, &quot;b605e86d02eef8bfd0646f6a704c17c9&quot;, ContentType.<em>create</em>(&quot;text/plain&quot;, Charset.<em>forName</em>(&quot;UTF-8&quot;)));<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; multipartEntityBuilder.addTextBody(&quot;seed&quot;, &quot;1234&quot;, ContentType.<em>create</em>(&quot;text/plain&quot;, Charset.<em>forName</em>(&quot;UTF-8&quot;)));<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; multipartEntityBuilder.addTextBody(&quot;description&quot;, &quot;描述信息&quot;, ContentType.<em>create</em>(&quot;text/plain&quot;, Charset.<em>forName</em>(&quot;UTF-8&quot;)));<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; File file = <strong>new</strong> File(&quot;c:\\080715112220.wav&quot;);<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; multipartEntityBuilder.addBinaryBody(&quot;file&quot;, file);<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HttpEntity httpEntity = multipartEntityBuilder.build();<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; httpPost.setEntity(httpEntity);<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; HttpResponse response = httpclient.execute(httpPost);<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // 处理响应<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <strong>if</strong> (response.getStatusLine().getStatusCode() == HttpStatus.<em>SC_OK</em>) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; // 正常返回<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; System.<em>out</em>.println(EntityUtils.<em>toString</em>(response.getEntity()));<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<strong>else</strong>{<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; EntityUtils.<em>consume</em>(httpEntity);<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; } <strong>catch</strong> (Exception e) {<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; e.printStackTrace();<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; }<strong>finally</strong>{<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; httpPost.releaseConnection();<br />
+&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp; }<br />
+&nbsp;&nbsp;&nbsp;&nbsp; }<br />
+}<br />
+返回值<br />
+URL实例：<br />
+<a href="http://172.16.203.190/interfaceAction/enterpriseVoiceInterface!uploadEntVoice.action?enterpriseId=3000005&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e">http://172.16.203.190/interfaceAction/enterpriseVoiceInterface!uploadVoice.action?enterpriseId=3000005&amp;userName=admin&amp;pwd=d0782bdf141e366014b4bc0d7dc6ea00&amp;seed=aaa</a><br />
+JSON格式数据：<br />
+若上传成功{result:返回结果, code:结果代码,msg:描述,voiceId: id, voicePath: path}<br />
+若失败{result:返回结果, code:结果代码,msg:描述}<br />
+&nbsp;<br />
+返回值说明：<br />
+<table border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+	<tr>
+	<td style="width:90px;height:24px;"><strong>返回值</strong></td>
+	<td style="width:247px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:17px;">voiceId</td>
+	<td style="width:247px;height:17px;">语音文件Id，可用于语音文件的下载、删除接口</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:17px;">voicePath</td>
+	<td style="width:247px;height:17px;">语音变量值，可用于设置语音变量</td>
+	</tr>
+</tbody>
+</table>
+&nbsp;<br />
+返回结果说明：<br />
+<table border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+	<tr>
+	<td style="width:54px;height:24px;"><strong>result</strong></td>
+	<td style="width:46px;height:24px;"><strong>code</strong></td>
+	<td style="width:489px;height:24px;"><strong>msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:24px;">success</td>
+	<td style="width:46px;height:24px;">0</td>
+	<td style="width:489px;height:24px;">文件上传成功</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:24px;">success</td>
+	<td style="width:46px;height:24px;">1</td>
+	<td style="width:489px;height:24px;">文件上传成功，等待语音设置失败</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">1</td>
+	<td style="width:489px;height:17px;">参数[具体参数名]不能为空</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">2</td>
+	<td style="width:489px;height:17px;">参数[具体参数名]格式不正确</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">3</td>
+	<td style="width:489px;height:17px;">企业不存在或状态不正常</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">4</td>
+	<td style="width:489px;height:17px;">无权操作，接口未开通</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">5</td>
+	<td style="width:489px;height:17px;">验证失败，用户名或密码不正确</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">6</td>
+	<td style="width:489px;height:17px;">文件上传失败</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>企业语音下载</h1>
+      <div class="concon grey">接口类型：HTTP请求<br />
+接口使用账户：企业账户<br />
+接口地址：天润呼叫中心接口服务器IP或域名<br />
+接口参数：企业编号，用户名，密码，语音id<br />
+接口返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+http://TIWebServer:TIPort/interfaceAction/enterpriseVoiceInterface!downloadVoice.action?enterpriseId=?&amp;userName=&amp;pwd=&amp;seed=&amp;voiceId=<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+	<tr>
+	<td style="width:150px;height:21px;"><strong>参数</strong></td>
+	<td style="width:46px;height:21px;"><strong>要求</strong></td>
+	<td style="width:88px;height:21px;"><strong>描述</strong></td>
+	<td style="width:322px;height:21px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">enterpriseId</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">企业编号</td>
+	<td style="width:322px;height:21px;">管理员后台登陆后，位于右上角位置</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:20px;">userName</td>
+	<td style="width:46px;height:20px;">必选</td>
+	<td style="width:88px;height:20px;">用户名</td>
+	<td style="width:322px;height:20px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">pwd</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">密码</td>
+	<td style="width:322px;height:21px;">需和seed进行MD5加密，格式：md5(md5(对应userName的密码)+seed)，例如：md5(md5(123456)seed)</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">seed</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">随机字符串</td>
+	<td style="width:322px;height:21px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:20px;">voiceId</td>
+	<td style="width:46px;height:20px;">必选</td>
+	<td style="width:88px;height:20px;">语音id</td>
+	<td style="width:322px;height:20px;">通过语音id下载语音</td>
+	</tr>
+</tbody>
+</table>
+返回值<br />
+URL实例：<br />
+<a href="http://172.16.203.190/interfaceAction/enterpriseVoiceInterface!uploadEntVoice.action?enterpriseId=3000005&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e">http://172.16.203.190/interfaceAction/enterpriseVoiceInterface!downloadVoice.action?enterpriseId=3000002&amp;userName=admin&amp;pwd=d0782bdf141e366014b4bc0d7dc6ea00&amp;seed=aaa&amp;voiceId=27</a><br />
+&nbsp;<br />
+成功则直接下载文件，如果不成功返回如下JSON格式数据：<br />
+{result:返回结果, code:结果代码,msg:描述}<br />
+&nbsp;<br />
+<table border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+	<tr>
+	<td style="width:54px;height:24px;"><strong>result</strong></td>
+	<td style="width:46px;height:24px;"><strong>code</strong></td>
+	<td style="width:489px;height:24px;"><strong>msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">1</td>
+	<td style="width:489px;height:17px;">参数[具体参数名]不能为空</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">2</td>
+	<td style="width:489px;height:17px;">参数[具体参数名]格式不正确</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">3</td>
+	<td style="width:489px;height:17px;">企业不存在或状态不正常</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">4</td>
+	<td style="width:489px;height:17px;">无权操作，接口未开通</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">5</td>
+	<td style="width:489px;height:17px;">验证失败，用户名或密码不正确</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">6</td>
+	<td style="width:489px;height:17px;">语音文件不存在</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>查询企业语音</h1>
+      <div class="concon grey">接口类型：HTTP请求<br />
+接口使用账户：企业账户<br />
+接口地址：天润呼叫中心接口服务器IP或域名<br />
+接口参数：企业编号，用户名，密码，语音名称，语音id<br />
+接口返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+http://TIWebServer:TIPort/interfaceAction/enterpriseVoiceInterface!listVoice.action?enterpriseId=?&amp;userName=&amp;pwd=&amp;seed=&amp;voiceName=&amp;voiceId=<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:150px;height:21px;"><strong>参数</strong></td>
+	<td style="width:46px;height:21px;"><strong>要求</strong></td>
+	<td style="width:88px;height:21px;"><strong>描述</strong></td>
+	<td style="width:322px;height:21px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">enterpriseId</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">企业编号</td>
+	<td style="width:322px;height:21px;">管理员后台登陆后，位于右上角位置</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:20px;">userName</td>
+	<td style="width:46px;height:20px;">必选</td>
+	<td style="width:88px;height:20px;">用户名</td>
+	<td style="width:322px;height:20px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">pwd</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">密码</td>
+	<td style="width:322px;height:21px;">需和seed进行MD5加密，格式：md5(md5(对应userName的密码)+seed)，例如：md5(md5(123456)seed)</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">seed</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">随机字符串</td>
+	<td style="width:322px;height:21px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">voiceName</td>
+	<td style="width:46px;height:21px;">可选</td>
+	<td style="width:88px;height:21px;">语音名称</td>
+	<td style="width:322px;height:21px;">通过语音名称查看语音信息(名称和id都不写，则查全部)</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:20px;">voiceId</td>
+	<td style="width:46px;height:20px;">可选</td>
+	<td style="width:88px;height:20px;">语音id</td>
+	<td style="width:322px;height:20px;">通过语音id查看语音的信息(名称和id都不写，则查全部)</td>
+	</tr>
+</tbody>
+</table>
+返回值<br />
+URL实例：<br />
+<a href="http://172.16.203.190/interfaceAction/enterpriseVoiceInterface!uploadEntVoice.action?enterpriseId=3000005&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e">http://172.16.203.190/interfaceAction/enterpriseVoiceInterface!listVoice.action?enterpriseId=3000002&amp;userName=admin&amp;pwd=d0782bdf141e366014b4bc0d7dc6ea00&amp;seed=aaa&amp;voiceId=27</a><br />
+JSON格式数据：<br />
+{result:返回结果, code:结果代码,msg:描述,listVoice:[enterpriseId: , voiceId: , voiceName: , voicePath:,isMoh:,description: ] .......}<br />
+返回值说明：<br />
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:90px;height:24px;"><strong>返回值</strong></td>
+	<td style="width:247px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:24px;">listVoice</td>
+	<td style="width:247px;height:24px;">语音列表</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:24px;">enterpriseId</td>
+	<td style="width:247px;height:24px;">企业编号</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:17px;">voiceId</td>
+	<td style="width:247px;height:17px;">语音文件Id，可用于语音文件的下载、删除接口</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:17px;">voiceName</td>
+	<td style="width:247px;height:17px;">语音文件名</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:17px;">voicePath</td>
+	<td style="width:247px;height:17px;">语音变量值，可用于设置语音变量</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:17px;">isMoh</td>
+	<td style="width:247px;height:17px;">0：不是等待音&nbsp; 1：等待音</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:17px;">description</td>
+	<td style="width:247px;height:17px;">描述</td>
+	</tr>
+</tbody>
+</table>
+&nbsp;<br />
+返回结果说明：<br />
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:54px;height:24px;"><strong>result</strong></td>
+	<td style="width:46px;height:24px;"><strong>code</strong></td>
+	<td style="width:489px;height:24px;"><strong>msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:24px;">success</td>
+	<td style="width:46px;height:24px;">0</td>
+	<td style="width:489px;height:24px;">操作成功</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">1</td>
+	<td style="width:489px;height:17px;">参数[具体参数名]不能为空</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">2</td>
+	<td style="width:489px;height:17px;">参数[具体参数名]格式不正确</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">3</td>
+	<td style="width:489px;height:17px;">企业不存在或状态不正常</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">4</td>
+	<td style="width:489px;height:17px;">无权操作，接口未开通</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">5</td>
+	<td style="width:489px;height:17px;">验证失败，用户名或密码不正确</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>删除企业语音</h1>
+      <div class="concon grey">接口类型：HTTP请求<br />
+接口使用账户：企业账户<br />
+接口地址：天润呼叫中心接口服务器IP或域名<br />
+接口参数：企业编号，用户名，密码，语音id<br />
+接口返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+http://TIWebServer:TIPort/interfaceAction/enterpriseVoiceInterface!deleteVoice.action?enterpriseId=?&amp;userName=&amp;pwd=&amp;seed=&amp;voiceId=<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:150px;height:21px;"><strong>参数</strong></td>
+	<td style="width:46px;height:21px;"><strong>要求</strong></td>
+	<td style="width:88px;height:21px;"><strong>描述</strong></td>
+	<td style="width:322px;height:21px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">enterpriseId</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">企业编号</td>
+	<td style="width:322px;height:21px;">管理员后台登陆后，位于右上角位置</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:20px;">userName</td>
+	<td style="width:46px;height:20px;">必选</td>
+	<td style="width:88px;height:20px;">用户名</td>
+	<td style="width:322px;height:20px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">pwd</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">密码</td>
+	<td style="width:322px;height:21px;">需和seed进行MD5加密，格式：md5(md5(对应userName的密码)+seed)，例如：md5(md5(123456)seed)</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">seed</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">随机字符串</td>
+	<td style="width:322px;height:21px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:20px;">voiceId</td>
+	<td style="width:46px;height:20px;">必选</td>
+	<td style="width:88px;height:20px;">语音id</td>
+	<td style="width:322px;height:20px;">通过语音id删除语音</td>
+	</tr>
+</tbody>
+</table>
+返回值<br />
+URL实例：<br />
+http://172.16.203.190/interfaceAction/enterpriseVoiceInterface!deleteVoice.action?enterpriseId=3000002&amp;userName=admin&amp;pwd=d0782bdf141e366014b4bc0d7dc6ea00&amp;seed=aaa&amp;voiceId=35<br />
+JSON格式数据：<br />
+{result:返回结果, code:结果代码,msg:描述}<br />
+&nbsp;<br />
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:54px;height:24px;"><strong>result</strong></td>
+	<td style="width:46px;height:24px;"><strong>code</strong></td>
+	<td style="width:489px;height:24px;"><strong>msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:24px;">success</td>
+	<td style="width:46px;height:24px;">0</td>
+	<td style="width:489px;height:24px;">操作成功</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">1</td>
+	<td style="width:489px;height:17px;">参数[具体参数名]不能为空</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">2</td>
+	<td style="width:489px;height:17px;">参数[具体参数名]格式不正确</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">3</td>
+	<td style="width:489px;height:17px;">企业不存在或状态不正常</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">4</td>
+	<td style="width:489px;height:17px;">无权操作，接口未开通</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">5</td>
+	<td style="width:489px;height:17px;">验证失败，用户名或密码不正确</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">6</td>
+	<td style="width:489px;height:17px;">已被等待音乐设置，不能删除</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">7</td>
+	<td style="width:489px;height:17px;">文件删除失败</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">8</td>
+	<td style="width:489px;height:17px;">语音文件不存在</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>设置等待音乐</h1>
+      <div class="concon grey">接口类型：HTTP请求<br />
+接口使用账户：企业账户<br />
+接口地址：天润呼叫中心接口服务器IP或域名<br />
+接口参数：企业编号，用户名，密码，随机字符串<br />
+接口返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+http://TIWebServer:TIPort/interfaceAction/enterpriseVoiceInterface!setMoh.action?enterpriseId=?&amp;userName=&amp;pwd=&amp;seed=&amp;id=&amp;isMoh=<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:150px;height:21px;"><strong>参数</strong></td>
+	<td style="width:46px;height:21px;"><strong>要求</strong></td>
+	<td style="width:88px;height:21px;"><strong>描述</strong></td>
+	<td style="width:322px;height:21px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">enterpriseId</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">企业编号</td>
+	<td style="width:322px;height:21px;">管理员后台登陆后，位于右上角位置</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:20px;">userName</td>
+	<td style="width:46px;height:20px;">必选</td>
+	<td style="width:88px;height:20px;">用户名</td>
+	<td style="width:322px;height:20px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">pwd</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">密码</td>
+	<td style="width:322px;height:21px;">需和seed进行MD5加密，格式：md5(md5(对应userName的密码)+seed)，例如：md5(md5(123456)seed)</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">seed</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">随机字符串</td>
+	<td style="width:322px;height:21px;">例如：seed=aaa</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">voiceId</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">语音id</td>
+	<td style="width:322px;height:21px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">isMoh</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">等待语音</td>
+	<td style="width:322px;height:21px;">0：取消&nbsp; 1：设置</td>
+	</tr>
+</tbody>
+</table>
+返回值<br />
+URL实例：<br />
+<a href="http://172.16.203.190/interfaceAction/enterpriseVoiceInterface!setMoh.action?enterpriseId=3000002&amp;userName=admin&amp;pwd=d0782bdf141e366014b4bc0d7dc6ea00&amp;seed=aaa&amp;voiceId=35&amp;isMoh=1">http://172.16.203.190/interfaceAction/enterpriseVoiceInterface!setMoh.action?enterpriseId=3000002&amp;userName=admin&amp;pwd=d0782bdf141e366014b4bc0d7dc6ea00&amp;seed=aaa&amp;voiceId=35&amp;isMoh=1</a><br />
+JSON格式数据：<br />
+{result:返回结果, code:结果代码,msg:描述}<br />
+&nbsp;<br />
+返回结果说明：<br />
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:54px;height:24px;"><strong>result</strong></td>
+	<td style="width:46px;height:24px;"><strong>code</strong></td>
+	<td style="width:489px;height:24px;"><strong>msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:24px;">success</td>
+	<td style="width:46px;height:24px;">0</td>
+	<td style="width:489px;height:24px;">操作成功</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">1</td>
+	<td style="width:489px;height:17px;">参数[具体参数名]不能为空</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">2</td>
+	<td style="width:489px;height:17px;">参数[具体参数名]格式不正确</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">3</td>
+	<td style="width:489px;height:17px;">企业不存在或状态不正常</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">4</td>
+	<td style="width:489px;height:17px;">无权操作，接口未开通</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">5</td>
+	<td style="width:489px;height:17px;">验证失败，用户名或密码不正确</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">6</td>
+	<td style="width:489px;height:17px;">已被等待音乐设置</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">7</td>
+	<td style="width:489px;height:17px;">操作失败</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">8</td>
+	<td style="width:489px;height:17px;">语音文件不存在</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">9</td>
+	<td style="width:489px;height:17px;">语音文件不是等待音乐</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">10</td>
+	<td style="width:489px;height:17px;">使用中,不可取消设置等待音乐</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>查询公共语音库</h1>
+      <div class="concon grey">接口类型：HTTP请求<br />
+接口使用账户：企业账户<br />
+接口地址：天润呼叫中心接口服务器IP或域名<br />
+接口参数：企业编号，用户名，密码，随机字符串<br />
+接口返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+http://TIWebServer:TIPort/interfaceAction/publicVoiceInterface!listVoice.action?enterpriseId=?&amp;userName=&amp;pwd=&amp;seed=<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:150px;height:21px;"><strong>参数</strong></td>
+	<td style="width:46px;height:21px;"><strong>要求</strong></td>
+	<td style="width:88px;height:21px;"><strong>描述</strong></td>
+	<td style="width:322px;height:21px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">enterpriseId</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">企业编号</td>
+	<td style="width:322px;height:21px;">管理员后台登陆后，位于右上角位置</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:20px;">userName</td>
+	<td style="width:46px;height:20px;">必选</td>
+	<td style="width:88px;height:20px;">用户名</td>
+	<td style="width:322px;height:20px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">pwd</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">密码</td>
+	<td style="width:322px;height:21px;">需和seed进行MD5加密，格式：md5(md5(对应userName的密码)+seed)，例如：md5(md5(123456)seed)</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">seed</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">随机字符串</td>
+	<td style="width:322px;height:21px;">例如：seed=aaa</td>
+	</tr>
+</tbody>
+</table>
+返回值<br />
+URL实例：<br />
+http://172.16.203.190/interfaceAction/publicVoiceInterface!listVoice.action?enterpriseId=3000002&amp;userName=admin&amp;pwd=d0782bdf141e366014b4bc0d7dc6ea00&amp;seed=aaa<br />
+JSON格式数据：<br />
+{result:返回结果, code:结果代码,msg:描述,listVoice:[publicVoiceId: , publicName: , publicVoicePath: , publicVoiceDescription::] .......}<br />
+返回值说明：<br />
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:90px;height:24px;"><strong>返回值</strong></td>
+	<td style="width:247px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:24px;">listVoice</td>
+	<td style="width:247px;height:24px;">语音列表</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:17px;">voiceId</td>
+	<td style="width:247px;height:17px;">语音文件Id</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:17px;">voiceName</td>
+	<td style="width:247px;height:17px;">语音文件名</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:17px;">voicePath</td>
+	<td style="width:247px;height:17px;">语音变量值，可用于设置语音变量</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:17px;">description</td>
+	<td style="width:247px;height:17px;">描述</td>
+	</tr>
+</tbody>
+</table>
+&nbsp;<br />
+返回结果说明：<br />
+<table border="0" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:54px;height:24px;"><strong>result</strong></td>
+	<td style="width:46px;height:24px;"><strong>code</strong></td>
+	<td style="width:489px;height:24px;"><strong>msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:24px;">success</td>
+	<td style="width:46px;height:24px;">0</td>
+	<td style="width:489px;height:24px;">操作成功</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">1</td>
+	<td style="width:489px;height:17px;">参数[具体参数名]不能为空</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">2</td>
+	<td style="width:489px;height:17px;">参数[具体参数名]格式不正确</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:17px;">error</td>
+	<td style="width:46px;height:17px;">3</td>
+	<td style="width:489px;height:17px;">验证失败，用户名或密码不正确</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+    
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR"> 
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

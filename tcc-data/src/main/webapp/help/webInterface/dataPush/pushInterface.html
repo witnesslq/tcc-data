@@ -1,0 +1,990 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+   <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/interface.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#37").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#37").parent("ul").css("display","block");
+            $(".jklist ul li ul li#37 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+<div class="body-r">
+    <h1>推送接口</h1>
+    <div class="conbar">
+      <h1>接口作用说明</h1>
+      <div class="concon grey">可实现在通话各种状态下推送通话数据信息</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>呼入挂机推送</h1>
+      <div class="concon grey">接口类型：HTTP请求<br />
+推送方式：POST<br />
+接口地址：企业系统推送信息接收地址<br />
+接口返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+<a href="http://WebServer:Port/interface">http://WebServer:Port/interface</a>?<br />
+参数变量的名称可以自定义配置。<br />
+参数变量说明<br />
+<table align="center" border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+	<tr>
+	<td style="width:171px;"><strong>参数</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:252px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_main_unique_id</td>
+	<td style="width:132px;">通话记录唯一标识</td>
+	<td style="width:252px;">一通呼叫的唯一标识；如：ccic2_202-1367040082.6</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_enterprise_id</td>
+	<td style="width:132px;">企业Id</td>
+	<td style="width:252px;">企业号，7位数字；如：3000290</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_customer_number</td>
+	<td style="width:132px;">客户号码</td>
+	<td style="width:252px;">客户的号码；如：01087128906</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_customer_area_code</td>
+	<td style="width:132px;">呼入或外呼座席接听后的座席区号</td>
+	<td style="width:252px;">3位或4位电话区号；如：010</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_customer_number_type</td>
+	<td style="width:132px;">来电或外呼客户号码类型: 手机/固话</td>
+	<td style="width:252px;">客户号码类型，其值为1或2；1--固话，2--手机</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_start_time</td>
+	<td style="width:132px;">进入系统时间</td>
+	<td style="width:252px;">UNIX时间戳；如：1367040082（易理解格式为2013-04-27 13:21:22）</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_answer_time</td>
+	<td style="width:132px;">系统接听时间</td>
+	<td style="width:252px;">UNIX时间戳；同上</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_join_queue_time</td>
+	<td style="width:132px;">进队列时间</td>
+	<td style="width:252px;">UNIX时间戳；同上</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_bridge_time</td>
+	<td style="width:132px;">桥接时间，留言时用作留言开始时间</td>
+	<td style="width:252px;">UNIX时间戳；同上</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_end_time</td>
+	<td style="width:132px;">挂机时间</td>
+	<td style="width:252px;">UNIX时间戳；同上</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_ivr_id</td>
+	<td style="width:132px;">ivr id</td>
+	<td style="width:252px;">系统中ivr的id</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_ivr_flow</td>
+	<td style="width:132px;">ivr流程；每个节点使用逗号分隔，节点内各个参数段使竖线分隔。<br />
+	定义：ivrId|nodeID|actionType|startTime|endTime</td>
+	<td style="width:252px;">如：6|1|2|1367040083<br />
+	当actionType为2时表示选择节点，为8时表示按收号节点；当进入这两种类型的节点后，本节点的vir流程会多两段数据，格式如下：<br />
+	ivrId|nodeID|actionType|startTime|endTime|inputData|inputTime；如：<br />
+	6|1|2|1367052344|1367052345|5|1367052345<br />
+	表示，客户在2013-04-27 16:45:45进入选择节点后按下了&ldquo;5&rdquo;。</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_call_type</td>
+	<td style="width:132px;">呼叫类型</td>
+	<td style="width:252px;">1:呼入 2:web400呼入</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_status</td>
+	<td style="width:132px;">通话状态</td>
+	<td style="width:252px;">1:座席接听 2:已呼叫座席，座席未接听 3:系统接听 4:系统未接-IVR配置错误 5:系统未接-停机 6:系统未接-欠费 7:系统未接-黑名单 8:系统未接-未注册 9:系统未接-彩铃 10:网上400未接受 11:系统未接-呼叫超出营帐中设置的最大限制 12:其他错误</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_mark</td>
+	<td style="width:132px;">标识</td>
+	<td style="width:252px;">1：留言 2：咨询 3：转移 4：三方5：传真接收6：会议7：交互8：AMD 9：已进入IVR<br />
+	10：未进入IVR 11：队列中放弃12：队列中溢出13：预约</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_gw_ip</td>
+	<td style="width:132px;">网关地址</td>
+	<td style="width:252px;">网关IP；如：172.16.1.111</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_number_trunk</td>
+	<td style="width:132px;">目的码</td>
+	<td style="width:252px;">没有区号的8为号码，如：59222903</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_bridged_cno</td>
+	<td style="width:132px;">呼入/呼出接听电话的座席号码</td>
+	<td style="width:252px;">如：2000</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">CDR(userfield)</td>
+	<td style="width:132px;">使用网上回呼接口时传递了参数userField</td>
+	<td style="width:252px;">该值只是用于利用网上回呼接口发起的呼叫，且传递了userField参数，在挂机推送时用来获取userField传递的值。</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">&hellip;</td>
+	<td style="width:132px;">其他自定义字段</td>
+	<td style="width:252px;">&nbsp;</td>
+	</tr>
+</tbody>
+</table>
+<div style="clear:both;">&nbsp;</div>
+&nbsp;<br />
+返回值<br />
+企业接口返回信息。<br />
+JSON格式数据：<br />
+{result:返回结果}<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;height:24px;"><strong>result</strong></td>
+	<td style="width:123px;height:24px;"><strong>description</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;height:24px;">success</td>
+	<td style="width:123px;height:24px;">CDR记录接收成功</td>
+	</tr>
+	<tr>
+	<td style="width:80px;height:21px;">error</td>
+	<td style="width:123px;height:21px;">CDR记录接收失败</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>外呼挂机推送</h1>
+      <div class="concon grey">接口类型：HTTP请求<br />
+推送方式：POST<br />
+接口地址：企业系统推送信息接收地址<br />
+接口返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+<a href="http://WebServer:Port/interface">http://WebServer:Port/interface</a>?<br />
+参数变量说明<br />
+<table align="center" border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+	<tr>
+	<td style="width:171px;"><strong>参数</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:252px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_main_unique_id</td>
+	<td style="width:132px;">通话记录唯一标识</td>
+	<td style="width:252px;">一通呼叫的唯一标识；如：ccic2_202-1367040082.6</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_enterprise_id</td>
+	<td style="width:132px;">企业Id</td>
+	<td style="width:252px;">企业号，7位数字；如：3000290</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_customer_number</td>
+	<td style="width:132px;">客户号码</td>
+	<td style="width:252px;">客户的号码；如：01087128906</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_customer_area_code</td>
+	<td style="width:132px;">呼入或外呼座席接听后的座席区号</td>
+	<td style="width:252px;">3位或4位电话区号；如：010</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_customer_number_type</td>
+	<td style="width:132px;">来电或外呼客户号码类型: 手机/固话</td>
+	<td style="width:252px;">客户号码类型，其值为1或2；1--固话，2--手机</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_start_time</td>
+	<td style="width:132px;">呼叫座席时间</td>
+	<td style="width:252px;">UNIX时间戳；如：1367040082（易理解格式为2013-04-27 13:21:22）</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_answer_time</td>
+	<td style="width:132px;">座席接听时间</td>
+	<td style="width:252px;">UNIX时间戳；同上</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_bridge_time</td>
+	<td style="width:132px;">客户接听时间</td>
+	<td style="width:252px;">UNIX时间戳；同上</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_end_time</td>
+	<td style="width:132px;">挂机时间</td>
+	<td style="width:252px;">UNIX时间戳；同上</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_call_type</td>
+	<td style="width:132px;">呼叫类型</td>
+	<td style="width:252px;">3:点击外呼 4:预览外呼</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_status</td>
+	<td style="width:132px;">通话状态</td>
+	<td style="width:252px;">21:（点击外呼、预览外呼时）座席接听，客户未接听(超时) 22:（点击外呼、预览外呼时）座席接听，客户未接听(空号拥塞) 24:（点击外呼、预览外呼时）座席未接听 28:双方接听</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_mark</td>
+	<td style="width:132px;">标识</td>
+	<td style="width:252px;">1：留言<br />
+	2：咨询<br />
+	3：转移<br />
+	7：交互</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_number_trunk</td>
+	<td style="width:132px;">外显号码</td>
+	<td style="width:252px;">没有区号的8为号码，如：59222903</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cdr_bridged_cno</td>
+	<td style="width:132px;">呼出接听电话的座席号码</td>
+	<td style="width:252px;">如：2000</td>
+	</tr>
+	<tr>
+	<td style="width:171px;height:28px;">CDR(userfield)</td>
+	<td style="width:132px;height:28px;">使用第三方外呼调用接口时传递了参数userField</td>
+	<td style="width:252px;height:28px;">该值只是第三方外呼调用接口发起的呼叫，且传递了userField参数，在挂机推送时用来获取userField传递的值。</td>
+	</tr>
+</tbody>
+</table>
+<div style="clear:both;">&nbsp;</div>
+&nbsp;<br />
+返回值<br />
+企业接口返回信息。<br />
+JSON格式数据：<br />
+{result:返回结果}<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;height:24px;"><strong>result</strong></td>
+	<td style="width:123px;height:24px;"><strong>description</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;height:24px;">success</td>
+	<td style="width:123px;height:24px;">CDR记录接收成功</td>
+	</tr>
+	<tr>
+	<td style="width:80px;height:21px;">error</td>
+	<td style="width:123px;height:21px;">CDR记录接收失败</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>来电推送</h1>
+      <div class="concon grey">接口类型：HTTP请求<br />
+推送方式：POST<br />
+接口地址：企业系统推送信息接收地址<br />
+接口返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+<a href="http://WebServer:Port/interface">http://WebServer:Port/interface</a>?<br />
+参数变量说明<br />
+<table align="center" border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+	<tr>
+	<td style="width:171px;"><strong>参数</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:252px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:171px;">enterpriseId</td>
+	<td style="width:132px;">企业Id</td>
+	<td style="width:252px;">企业号，7位数字；如：3000290</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">customerNumber</td>
+	<td style="width:132px;">客户号码</td>
+	<td style="width:252px;">客户的号码；如：01087128906</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">customerAreaCode</td>
+	<td style="width:132px;">呼入或外呼座席接听后的座席区号</td>
+	<td style="width:252px;">3位或4位电话区号；如：010</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">customerNumberType</td>
+	<td style="width:132px;">来电或外呼客户号码类型: 手机/固话</td>
+	<td style="width:252px;">客户号码类型，其值为1或2；1--固话，2--手机</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">callType</td>
+	<td style="width:132px;">呼叫类型</td>
+	<td style="width:252px;">1:呼入 2:web400呼入</td>
+	</tr>
+</tbody>
+</table>
+<div style="clear:both;">&nbsp;</div>
+&nbsp;<br />
+返回值<br />
+企业接口返回信息。<br />
+JSON格式数据：<br />
+{result:返回结果}<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;height:24px;"><strong>result</strong></td>
+	<td style="width:123px;height:24px;"><strong>description</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;height:24px;">success</td>
+	<td style="width:123px;height:24px;">CDR记录接收成功</td>
+	</tr>
+	<tr>
+	<td style="width:80px;height:21px;">error</td>
+	<td style="width:123px;height:21px;">CDR记录接收失败</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>来电响铃推送</h1>
+      <div class="concon grey">接口类型：HTTP请求<br />
+推送方式：POST<br />
+接口地址：企业系统推送信息接收地址<br />
+接口返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+<a href="http://WebServer:Port/interface">http://WebServer:Port/interface</a>?<br />
+参数变量说明<br />
+<table align="center" border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+	<tr>
+	<td style="width:171px;"><strong>参数</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:252px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:171px;">uniqueId</td>
+	<td style="width:132px;">通话记录唯一标识</td>
+	<td style="width:252px;">一通呼叫的唯一标识；如：ccic2_202-1367040082.6</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">enterpriseId</td>
+	<td style="width:132px;">企业Id</td>
+	<td style="width:252px;">企业号，7位数字；如：3000290</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">customerNumber</td>
+	<td style="width:132px;">客户号码</td>
+	<td style="width:252px;">客户的号码；如：01087128906</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">customerAreaCode</td>
+	<td style="width:132px;">呼入或外呼座席接听后的座席区号</td>
+	<td style="width:252px;">3位或4位电话区号；如：010</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">customerNumberType</td>
+	<td style="width:132px;">来电或外呼客户号码类型: 手机/固话</td>
+	<td style="width:252px;">客户号码类型，其值为1或2；1--固话，2--手机</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">hotline</td>
+	<td style="width:132px;">热线号码</td>
+	<td style="width:252px;">400600800</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">crmId</td>
+	<td style="width:132px;">座席crm id</td>
+	<td style="width:252px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cno</td>
+	<td style="width:132px;">座席工号</td>
+	<td style="width:252px;">2000</td>
+	</tr>
+	<tr>
+	<td style="width:171px;height:10px;">pwd</td>
+	<td style="width:132px;height:10px;">座席密码</td>
+	<td style="width:252px;height:10px;">123456</td>
+	</tr>
+	<tr>
+	<td style="width:171px;height:10px;">bindTel</td>
+	<td style="width:132px;height:10px;">绑定电话</td>
+	<td style="width:252px;height:10px;">15110258981</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">callType</td>
+	<td style="width:132px;">呼叫类型</td>
+	<td style="width:252px;">&nbsp;1:呼入 2:web400呼入</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">numberTrunk</td>
+	<td style="width:132px;">中继号码</td>
+	<td style="width:252px;">没有区号的8为号码，如：59222903</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">taskInventoryId</td>
+	<td style="width:132px;">任务记录id</td>
+	<td style="width:252px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">taskId</td>
+	<td style="width:132px;">任务id</td>
+	<td style="width:252px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">qid</td>
+	<td style="width:132px;">队列id</td>
+	<td style="width:252px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">consulterCno</td>
+	<td style="width:132px;">咨询座席号</td>
+	<td style="width:252px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">transferCno</td>
+	<td style="width:132px;">转移座席号</td>
+	<td style="width:252px;">&nbsp;</td>
+	</tr>
+</tbody>
+</table>
+<div style="clear:both;">&nbsp;</div>
+&nbsp;<br />
+返回值<br />
+企业接口返回信息。<br />
+JSON格式数据：<br />
+{result:返回结果}<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;height:24px;"><strong>result</strong></td>
+	<td style="width:123px;height:24px;"><strong>description</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;height:24px;">success</td>
+	<td style="width:123px;height:24px;">CDR记录接收成功</td>
+	</tr>
+	<tr>
+	<td style="width:80px;height:21px;">error</td>
+	<td style="width:123px;height:21px;">CDR记录接收失败</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>外呼响铃推送</h1>
+      <div class="concon grey">接口类型：HTTP请求<br />
+推送方式：POST<br />
+接口地址：企业系统推送信息接收地址<br />
+接口返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+<a href="http://WebServer:Port/interface">http://WebServer:Port/interface</a>?<br />
+参数变量说明<br />
+<table align="center" border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+	<tr>
+	<td style="width:171px;"><strong>参数</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:252px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:171px;">uniqueId</td>
+	<td style="width:132px;">通话记录唯一标识</td>
+	<td style="width:252px;">一通呼叫的唯一标识；如：ccic2_202-1367040082.6</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">enterpriseId</td>
+	<td style="width:132px;">企业Id</td>
+	<td style="width:252px;">企业号，7位数字；如：3000290</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">customerNumber</td>
+	<td style="width:132px;">客户号码</td>
+	<td style="width:252px;">客户的号码；如：01087128906</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">customerAreaCode</td>
+	<td style="width:132px;">呼入或外呼座席接听后的座席区号</td>
+	<td style="width:252px;">3位或4位电话区号；如：010</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">customerNumberType</td>
+	<td style="width:132px;">来电或外呼客户号码类型: 手机/固话</td>
+	<td style="width:252px;">客户号码类型，其值为1或2；1--固话，2--手机</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">hotline</td>
+	<td style="width:132px;">热线号码</td>
+	<td style="width:252px;">400600800</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">crmId</td>
+	<td style="width:132px;">座席crm id</td>
+	<td style="width:252px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cno</td>
+	<td style="width:132px;">座席工号</td>
+	<td style="width:252px;">2000</td>
+	</tr>
+	<tr>
+	<td style="width:171px;height:10px;">pwd</td>
+	<td style="width:132px;height:10px;">座席密码</td>
+	<td style="width:252px;height:10px;">123456</td>
+	</tr>
+	<tr>
+	<td style="width:171px;height:10px;">bindTel</td>
+	<td style="width:132px;height:10px;">绑定电话</td>
+	<td style="width:252px;height:10px;">15110258981</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">callType</td>
+	<td style="width:132px;">呼叫类型</td>
+	<td style="width:252px;">&nbsp;3:点击外呼 4:预览外呼 5:预测外呼</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">numberTrunk</td>
+	<td style="width:132px;">中继号码</td>
+	<td style="width:252px;">没有区号的8为号码，如：59222903</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">taskInventoryId</td>
+	<td style="width:132px;">任务记录id</td>
+	<td style="width:252px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">taskId</td>
+	<td style="width:132px;">任务id</td>
+	<td style="width:252px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">qid</td>
+	<td style="width:132px;">队列id</td>
+	<td style="width:252px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">consulterCno</td>
+	<td style="width:132px;">咨询座席号</td>
+	<td style="width:252px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">transferCno</td>
+	<td style="width:132px;">转移座席号</td>
+	<td style="width:252px;">&nbsp;</td>
+	</tr>
+</tbody>
+</table>
+<div style="clear:both;">&nbsp;</div>
+&nbsp;<br />
+返回值<br />
+企业接口返回信息。<br />
+JSON格式数据：<br />
+{result:返回结果}<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;height:24px;"><strong>result</strong></td>
+	<td style="width:123px;height:24px;"><strong>description</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;height:24px;">success</td>
+	<td style="width:123px;height:24px;">CDR记录接收成功</td>
+	</tr>
+	<tr>
+	<td style="width:80px;height:21px;">error</td>
+	<td style="width:123px;height:21px;">CDR记录接收失败</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>来电接通推送</h1>
+      <div class="concon grey">接口类型：HTTP请求<br />
+推送方式：POST<br />
+接口地址：企业系统推送信息接收地址<br />
+接口返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+<a href="http://WebServer:Port/interface">http://WebServer:Port/interface</a>?<br />
+参数变量说明<br />
+<table align="center" border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+	<tr>
+	<td style="width:171px;"><strong>参数</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:252px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:171px;">enterpriseId</td>
+	<td style="width:132px;">企业Id</td>
+	<td style="width:252px;">企业号，7位数字；如：3000290</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">customerNumber</td>
+	<td style="width:132px;">客户号码</td>
+	<td style="width:252px;">客户的号码；如：01087128906</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">bridgeTime</td>
+	<td style="width:132px;">接通时间</td>
+	<td style="width:252px;">UNIX时间戳</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">calleeNumber</td>
+	<td style="width:132px;">呼叫的号码，可能是座席也可能是普通电话</td>
+	<td style="width:252px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cno</td>
+	<td style="width:132px;">座席工号</td>
+	<td style="width:252px;">2000</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">callType</td>
+	<td style="width:132px;">呼叫类型</td>
+	<td style="width:252px;">&nbsp;1:呼入 2:web400呼入</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">detailCallType</td>
+	<td style="width:132px;">呼叫类型</td>
+	<td style="width:252px;">201:呼转座席 202:转移 203:咨询 204:三方 205:监听 206:耳语 207:拦截 208:呼转客户</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">userFiled</td>
+	<td style="width:132px;">&nbsp;</td>
+	<td style="width:252px;">&nbsp;</td>
+	</tr>
+</tbody>
+</table>
+<div style="clear:both;">&nbsp;</div>
+&nbsp;<br />
+返回值<br />
+企业接口返回信息。<br />
+JSON格式数据：<br />
+{result:返回结果}<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;height:24px;"><strong>result</strong></td>
+	<td style="width:123px;height:24px;"><strong>description</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;height:24px;">success</td>
+	<td style="width:123px;height:24px;">CDR记录接收成功</td>
+	</tr>
+	<tr>
+	<td style="width:80px;height:21px;">error</td>
+	<td style="width:123px;height:21px;">CDR记录接收失败</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>外呼接通推送</h1>
+      <div class="concon grey">接口类型：HTTP请求<br />
+推送方式：POST<br />
+接口地址：企业系统推送信息接收地址<br />
+接口返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+<a href="http://WebServer:Port/interface">http://WebServer:Port/interface</a>?<br />
+参数变量说明<br />
+<table align="center" border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+	<tr>
+	<td style="width:171px;"><strong>参数</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:252px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:171px;">enterpriseId</td>
+	<td style="width:132px;">企业Id</td>
+	<td style="width:252px;">企业号，7位数字；如：3000290</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">customerNumber</td>
+	<td style="width:132px;">客户号码</td>
+	<td style="width:252px;">客户的号码；如：01087128906</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">customerNumberType</td>
+	<td style="width:132px;">客户号码类型</td>
+	<td style="width:252px;">客户号码类型，其值为1或2；1--固话，2--手机</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">customerAreaCode</td>
+	<td style="width:132px;">客户号码所在地区</td>
+	<td style="width:252px;">010</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">cno</td>
+	<td style="width:132px;">座席工号</td>
+	<td style="width:252px;">2000</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">callType</td>
+	<td style="width:132px;">呼叫类型</td>
+	<td style="width:252px;">&nbsp;1:呼入 2:web400呼入</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">mainUniqueId</td>
+	<td style="width:132px;">通话记录唯一标识</td>
+	<td style="width:252px;">一通呼叫的唯一标识；如：ccic2_202-1367040082.6</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">taskId</td>
+	<td style="width:132px;">任务id</td>
+	<td style="width:252px;">&nbsp;</td>
+	</tr>
+</tbody>
+</table>
+<div style="clear:both;">&nbsp;</div>
+&nbsp;<br />
+返回值<br />
+企业接口返回信息。<br />
+JSON格式数据：<br />
+{result:返回结果}<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;height:24px;"><strong>result</strong></td>
+	<td style="width:123px;height:24px;"><strong>description</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;height:24px;">success</td>
+	<td style="width:123px;height:24px;">CDR记录接收成功</td>
+	</tr>
+	<tr>
+	<td style="width:80px;height:21px;">error</td>
+	<td style="width:123px;height:21px;">CDR记录接收失败</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>按键推送</h1>
+      <div class="concon grey">接口类型：HTTP请求<br />
+推送方式：POST<br />
+接口地址：企业系统推送信息接收地址<br />
+接口返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+<a href="http://WebServer:Port/interface">http://WebServer:Port/interface</a>?<br />
+参数变量说明<br />
+<table align="center" border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+	<tr>
+	<td style="width:171px;"><strong>参数</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:252px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:171px;height:4px;">enterpriseId</td>
+	<td style="width:132px;height:4px;">企业Id</td>
+	<td style="width:252px;height:4px;">企业号，7位数字；如：3000290</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">customerNumber</td>
+	<td style="width:132px;">客户号码</td>
+	<td style="width:252px;">客户的号码；如：01087128906</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">ivrId</td>
+	<td style="width:132px;">所属ivr_id</td>
+	<td style="width:252px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">ivrNode</td>
+	<td style="width:132px;">节点</td>
+	<td style="width:252px;">2</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">time</td>
+	<td style="width:132px;">按键时间</td>
+	<td style="width:252px;">UNIX时间戳</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">callType</td>
+	<td style="width:132px;">呼叫类型</td>
+	<td style="width:252px;">&nbsp;1:呼入 2:web400呼入</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">userField</td>
+	<td style="width:132px;">&nbsp;</td>
+	<td style="width:252px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">keys</td>
+	<td style="width:132px;">所按键</td>
+	<td style="width:252px;">1</td>
+	</tr>
+</tbody>
+</table>
+<div style="clear:both;">&nbsp;</div>
+&nbsp;<br />
+返回值<br />
+企业接口返回信息。<br />
+JSON格式数据：<br />
+{result:返回结果}<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;height:24px;"><strong>result</strong></td>
+	<td style="width:123px;height:24px;"><strong>description</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;height:24px;">success</td>
+	<td style="width:123px;height:24px;">CDR记录接收成功</td>
+	</tr>
+	<tr>
+	<td style="width:80px;height:21px;">error</td>
+	<td style="width:123px;height:21px;">CDR记录接收失败</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>号码状态识别推送</h1>
+      <div class="concon grey">接口类型：HTTP请求<br />
+推送方式：POST<br />
+接口地址：企业系统推送信息接收地址<br />
+接口返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+<a href="http://WebServer:Port/interface">http://WebServer:Port/interface</a>?<br />
+参数变量说明<br />
+<table align="center" border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+	<tr>
+	<td style="width:171px;"><strong>参数</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:252px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:171px;">enterpriseId</td>
+	<td style="width:132px;">企业Id</td>
+	<td style="width:252px;">企业号，7位数字；如：3000290</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">customerNumber</td>
+	<td style="width:132px;">客户号码</td>
+	<td style="width:252px;">客户的号码；如：01087128906</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">uniqueId</td>
+	<td style="width:132px;">通话记录唯一标识</td>
+	<td style="width:252px;">一通呼叫的唯一标识；如：ccic2_202-1367040082.6</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">callType</td>
+	<td style="width:132px;">呼叫类型</td>
+	<td style="width:252px;">&nbsp;1:呼入 2:web400呼入</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">userField</td>
+	<td style="width:132px;">&nbsp;</td>
+	<td style="width:252px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:171px;">status</td>
+	<td style="width:132px;">号码状态</td>
+	<td style="width:252px;">710忙，711超时，712拒接，713空号，714关机，715暂时无法接听，716停机</td>
+	</tr>
+</tbody>
+</table>
+<div style="clear:both;">&nbsp;</div>
+&nbsp;<br />
+返回值<br />
+企业接口返回信息。<br />
+JSON格式数据：<br />
+{result:返回结果}<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;height:24px;"><strong>result</strong></td>
+	<td style="width:123px;height:24px;"><strong>description</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;height:24px;">success</td>
+	<td style="width:123px;height:24px;">CDR记录接收成功</td>
+	</tr>
+	<tr>
+	<td style="width:80px;height:21px;">error</td>
+	<td style="width:123px;height:21px;">CDR记录接收失败</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+          
+    
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR"> 
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

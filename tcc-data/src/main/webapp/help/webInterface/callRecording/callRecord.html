@@ -1,0 +1,515 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+    <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/interface.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#5").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#5").parent("ul").css("display","block");
+            $(".jklist ul li ul li#5 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+ <div class="body-r">
+    <h1>来电通话记录</h1>
+       
+     
+    <div class="conbar">
+      <h1>实现步骤</h1>
+      <div class="concon grey">接口URL（POST方式）<br />
+发起者：合作方<br />
+接受者：天润融通<br />
+接口类型：HTTP接口<br />
+调用方式：POST<br />
+返回格式：JSON数据<br />
+URL规范：<br />
+http://InterfaceServerIp:port /interfaceAction/cdrIbInterface!listCdrIb.action<br />
+说明：InterfaceServerIp:port 为使用账号登录<a href="http://www.ccic2.com">www.ccic2.com</a>之后，在浏览器地址栏看到的域名地址。<br />
+例如：xa.ccic2.com<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;bj.ccic2.com<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1.ccic2.com<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+	<tr>
+	<td style="width:98px;"><strong>参数</strong></td>
+	<td style="width:44px;"><strong>要求</strong></td>
+	<td style="width:99px;"><strong>描述</strong></td>
+	<td style="width:323px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:98px;">hotline</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">企业热线号码</td>
+	<td style="width:323px;">与enterpriseId二选一</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">enterpriseId</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">企业Id</td>
+	<td style="width:323px;">与hotline二选一</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">userName</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">用户名</td>
+	<td style="width:323px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">pwd</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">密码</td>
+	<td style="width:323px;">对应username的密码，md5(md5(登录密码)+seed)，例如：md5(md5(123456)seed)</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">seed</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">随机字符串</td>
+	<td style="width:323px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">uniqueId</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">电话唯一标识</td>
+	<td style="width:323px;">如果uniqueId值不为空，则其余参数无效，仅hotline、enterpriseId、userName、pwd、seed、uniqueId参数值有效。即仅查询电话唯一标识为uniqueId的记录信息。</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">answerType</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">接听状态</td>
+	<td style="width:323px;">为空表示全部，clientAnswer表人工接听, clientNoAnswer表示人工未接听，systemAnswer表示系统接听，systemNoAnswer表示系统未接听&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">mark</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">标记</td>
+	<td style="width:323px;">为空表示全部，1:留言 2:转移 3:咨询 4:三方 5:传真接收 6:会议 7:交互9:已进入IVR 10:未进入IVR 11:队列中放弃&nbsp; 12:队列中溢出 13:预约<br />
+	注：<br />
+	其中mark值2,3,4,7仅在answerType=clientAnswer时有效，<br />
+	mark值1,5,6,9,10,11,12在answerType=sysemAnswer时有效</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">title</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">查询条件</td>
+	<td style="width:323px;">qno表示队列号(多个之间用英文逗号隔开)，tsno表示电话组号(多个用英文逗号隔开)，customer_number表示客户电话，cno表示座席工号(多个之间用英文逗号隔开)，number_trunk表示中继号码(多个之间用英文逗号隔开)，client_number表示座席电话</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">value</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">查询条件值</td>
+	<td style="width:323px;">对应title的值</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">province</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">来电省份</td>
+	<td style="width:323px;">为空表示全部，如&quot;四川&quot;，此参数需要URLEncode</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">city</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">来电城市</td>
+	<td style="width:323px;">为空表示全部，如&quot;成都&quot;，此参数需要URLEncode</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">startTime</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">开始时间</td>
+	<td style="width:323px;">格式&ldquo;yyyy-mm-dd hh:mm:ss&rdquo;，例如：2012-08-01 00:00:00，默认当月第一天，此参数需要URLEncode</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">endTime</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">结束时间</td>
+	<td style="width:323px;">格式&ldquo;yyyy-mm-dd hh:mm:ss&rdquo;，例如：2012-08-08 00:00:00，默认当月最后一天，此参数需要URLEncode</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">userField</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">用户自定义字段</td>
+	<td style="width:323px;">网上回呼传入的userField字段，此参数需要URLEncode</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">start</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">从第几条开始取</td>
+	<td style="width:323px;">正整数，大于等于0，默认0</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">limit</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">需要取出的数据条数</td>
+	<td style="width:323px;">正整数，大于0，最大不能超过1000，默认10</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+      <div class="concon grey">此接口返回JSON格式数据。<br />
+JSON格式数据<br />
+{result:返回结果,<br />
+msg:{<br />
+data:[{通话记录数据},{}..],<br />
+paging:{&quot;从第几条开始取&quot;:&quot;0&quot;,&quot;总条数&quot;:15,&quot;本页条数&quot;:10}<br />
+}<br />
+}<br />
+&nbsp;<br />
+<table border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+	<tr>
+	<td style="width:54px;height:24px;"><strong>result</strong></td>
+	<td style="width:365px;height:24px;"><strong>msg</strong></td>
+	<td style="width:168px;height:24px;"><strong>description</strong></td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:24px;">success</td>
+	<td style="width:365px;height:24px;">{&quot;result&quot;:&quot;success&quot;,&quot;msg&quot;:{&quot;data&quot;:[{&quot;uniqueId&quot;:&quot;ccic_dev_11-1344493753.3&quot;,&quot;hotline&quot;:&quot;4008001234&quot;,&quot;numberTrunk&quot;:&quot;01087120766&quot;,&quot;customerNumber&quot;:&quot;01087125972&quot;,&quot;customerProvince&quot;:&quot;北京&quot;,&quot;customerCity&quot;:&quot;北京&quot;,&quot;queueName&quot;:&quot;0001&quot;,&quot;cno&quot;:&quot;2002&quot;,&quot;clientNumber&quot;:&quot;01041005968&quot;,&quot;status&quot;:&quot;座席接听&quot;,&quot;startTime&quot;:&quot;2012-08-09 14:29:13&quot;,&quot;endTime&quot;:&quot;2012-08-07 15:19:25&quot;,&quot;bridgeTime&quot;:&quot;2012-08-09 14:30:11&quot;,&quot;bridgeDuration&quot;:&quot;00:00:03&quot;,&quot;cost&quot;:&quot;0.000&quot;,&quot;totalDuration&quot;:&quot;00:01:01&quot;,&quot;recordFile&quot;:&quot;20120809/3000001-20120809142913-01087125972-01041005968-record-ccic_dev_11-1344493753.3.mp3&quot;,&quot;inCaseLib&quot;:&quot;不在&quot;,&quot;score&quot;:&quot;0&quot;,&quot;callType&quot;:&quot;普通呼入&quot;,&quot;comment&quot;:&quot;无&quot;,&quot;ivrName&quot;:&quot;转咨询队列&quot;,&quot;endReason&quot;:&quot;座席挂机&quot;,&quot;userField&quot;:&quot;xxx&quot;,&quot;sipCause&quot;:&quot;0&quot;},...],&quot;paging&quot;:{&quot;start&quot;:&quot;0&quot;,&quot;totalSize&quot;:34,&quot;pageSize&quot;:2}}}</td>
+	<td style="width:168px;height:24px;">成功返回通话信息</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:53px;">error</td>
+	<td style="width:365px;height:53px;">&quot;无权访问&quot;</td>
+	<td style="width:168px;height:53px;">查询通话记录失败原因</td>
+	</tr>
+</tbody>
+</table>
+<strong>说明： data</strong><strong>取值为json</strong><strong>数组。</strong><br />
+&nbsp;<br />
+<strong>json</strong><strong>格式数据记录data</strong><strong>的各属性定义：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+	<tr>
+	<td style="width:89px;"><strong>名称</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:161px;"><strong>数据格式</strong></td>
+	<td style="width:113px;"><strong>取值范围</strong></td>
+	<td style="width:95px;"><strong>例子</strong></td>
+	</tr>
+	<tr>
+	<td style="width:89px;">uniqueId</td>
+	<td style="width:132px;">电话唯一标识</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">ccic_dev_11-1334563616.70</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">hotline</td>
+	<td style="width:132px;">热线号码</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">numberTrunk</td>
+	<td style="width:132px;">中继号码</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">customerNumber</td>
+	<td style="width:132px;">来电号码</td>
+	<td style="width:161px;">区号 + 7或8位的固话号码，区号与固话号码之间无&#39;-&#39;；或11位长度的手机号码。</td>
+	<td style="width:113px;">中国国内固话或手机</td>
+	<td style="width:95px;">01059222999<br />
+	或18701051984</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">customerProvince</td>
+	<td style="width:132px;">来电省份</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">北京</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">customerCity</td>
+	<td style="width:132px;">来电城市</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">北京</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">numberTrunk</td>
+	<td style="width:132px;">中继号码</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">6009</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">queueName</td>
+	<td style="width:132px;">队列号</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">0001</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">cno</td>
+	<td style="width:132px;">座席工号</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">1001</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">clientNumber</td>
+	<td style="width:132px;">接听号码</td>
+	<td style="width:161px;">区号 + 7或8位的固话号码，区号与固话号码之间无&#39;-&#39;；或11位长度的手机号码。</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">01041003149</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">status</td>
+	<td style="width:132px;">接听状态</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">座席接听</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">mark</td>
+	<td style="width:132px;">标记</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:113px;">1:留言 2:转移 3:咨询 4:三方 5:传真接收 6:会议 7:交互9:已进入IVR 10:未进入IVR 11:队列中放弃&nbsp; 12:队列中溢出 13预约</td>
+	<td style="width:95px;">留言</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">startTime</td>
+	<td style="width:132px;">电话进入系统时间</td>
+	<td style="width:161px;">时间格式&ldquo;yyyy-mm-dd hh:mm:ss&rdquo;</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">2012-05-01 15:00:02</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">answerTime</td>
+	<td style="width:132px;">系统接听时间/网上回呼客户接听时间</td>
+	<td style="width:161px;">时间格式&ldquo;yyyy-mm-dd hh:mm:ss&rdquo;</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">2012-05-01 15:00:12</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">bridgeTime</td>
+	<td style="width:132px;">座席接听时间</td>
+	<td style="width:161px;">时间格式&ldquo;yyyy-mm-dd hh:mm:ss&rdquo;</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">2012-05-01 15:00:12</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">bridgeDuration</td>
+	<td style="width:132px;">通话时长</td>
+	<td style="width:161px;">格式&ldquo;hh:mm:ss&rdquo;</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">00:02:26</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">cost</td>
+	<td style="width:132px;">费用</td>
+	<td style="width:161px;">保留三位小数的有效小数</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">0.600元</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">totalDuration</td>
+	<td style="width:132px;">总时长</td>
+	<td style="width:161px;">格式&ldquo;hh:mm:ss&rdquo;</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">00:02:36</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">recordFile</td>
+	<td style="width:132px;">录音文件的最终地址及录音文件名</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">http://172.16.203.190/voices/record/20120813/3000001-20120813123014-01087125972-01041005966-record-ccic_dev_11-1344832214.2.mp3</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">inCaseLib</td>
+	<td style="width:132px;">是否在案例库</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:113px;">在/不在</td>
+	<td style="width:95px;">在</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">score</td>
+	<td style="width:132px;">录音质检打分，0为未打分</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">80</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">callType</td>
+	<td style="width:132px;">呼叫类型</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">普通呼入</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">comment</td>
+	<td style="width:132px;">备注(应用mark参数)</td>
+	<td style="width:161px;">标记类型:标记的数据</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">转移:座席号-1002</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">ivrName</td>
+	<td style="width:132px;">IVR名称</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">默认自定义IVR</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">endReason</td>
+	<td style="width:132px;">结束原因</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">客户挂机</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">userField</td>
+	<td style="width:132px;">自定义字段</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:95px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">sipCause</td>
+	<td style="width:132px;">呼叫结果</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:113px;">0：无<br />
+	510：忙<br />
+	511：超时<br />
+	512：拒接<br />
+	513：空号<br />
+	514：关机<br />
+	515：暂时无法接听<br />
+	516：停机</td>
+	<td style="width:95px;">&nbsp;</td>
+	</tr>
+</tbody>
+</table>
+&nbsp;<br />
+注：针对recordFile有录音文件时，在录音文件后添加以下参数进行访问：<br />
+&nbsp;<br />
+相关参数<br />
+<table border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+	<tr>
+	<td style="width:98px;"><strong>参数</strong></td>
+	<td style="width:44px;"><strong>要求</strong></td>
+	<td style="width:99px;"><strong>描述</strong></td>
+	<td style="width:323px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:98px;">hotline</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">企业热线号码</td>
+	<td style="width:323px;">与enterpriseId二选一</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">enterpriseId</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">企业Id</td>
+	<td style="width:323px;">与hotline二选一</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">userName</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">用户名</td>
+	<td style="width:323px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">pwd</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">密码</td>
+	<td style="width:323px;">对应username的密码，md5(md5(登录密码)+seed)，例如：md5(md5(123456)seed)</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">seed</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">随机字符串</td>
+	<td style="width:323px;">&nbsp;</td>
+	</tr>
+</tbody>
+</table>
+例：<br />
+http://172.16.203.190/voices/record/20120813/3000001-20120813123014-01087125972-01041005966-record-ccic_dev_11-1344832214.2.mp3?hotline=&amp;enterpriseId=&amp;userName=&amp;pwd=&amp;seed=<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>示例</h1>
+      <div class="concon grey">查询来电通话记录：<br />
+&lt;form action=&quot;http://172.16.203.190 /interfaceAction/cdrIbInterface!listCdrIb.action&quot; method=&quot;post&quot;&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input type=&quot;text&quot; name=&quot;hotline&quot; value=&quot;&quot; /&gt;&lt;/br&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input type=&quot;text&quot; name=&quot;enterpriseId&quot; value=&quot;3000001&quot; /&gt;&lt;/br&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input type=&quot;text&quot; name=&quot;userName&quot; value=&quot;admin&quot; /&gt;&lt;/br&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input type=&quot;text&quot; name=&quot;pwd&quot; value=&quot;d0782bdf141e366014b4bc0d7dc6ea00&quot; /&gt;&lt;/br&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input type=&quot;text&quot; name=&quot;seed&quot; value=&quot;aaa&quot; /&gt;&lt;/br&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input type=&quot;text&quot; name=&quot;uniqueId&quot; value=&quot;&quot; /&gt;&lt;/br&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input type=&quot;text&quot; name=&quot;answerType&quot; value=&quot;&quot; /&gt;&lt;/br&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input type=&quot;text&quot; name=&quot;mark&quot; value=&quot;&quot; /&gt;&lt;/br&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input type=&quot;text&quot; name=&quot;title&quot; value=&quot;&quot; /&gt;&lt;/br&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input type=&quot;text&quot; name=&quot;value&quot; value=&quot;&quot; /&gt;&lt;/br&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input type=&quot;text&quot; name=&quot;province&quot; value=&quot;&quot; /&gt;&lt;/br&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input type=&quot;text&quot; name=&quot;city&quot; value=&quot;&quot; /&gt;&lt;/br&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input type=&quot;text&quot; name=&quot;startTime&quot; value=&quot;2012-08-08 00:00:00&quot; /&gt;&lt;/br&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input type=&quot;text&quot; name=&quot;endTime&quot; value=&quot;2012-08-09 23:00:00&quot; /&gt;&lt;/br&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input type=&quot;text&quot; name=&quot;start&quot; value=&quot;0&quot; /&gt;&lt;/br&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input type=&quot;text&quot; name=&quot;limit&quot; value=&quot;2&quot; /&gt;&lt;/br&gt;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &lt;input type=&quot;submit&quot; value=&quot;提交&quot; /&gt;<br />
+&lt;/form&gt;<br />
+&nbsp;<br />
+返回：<br />
+{&quot;result&quot;:&quot;success&quot;,&quot;msg&quot;:{&quot;data&quot;:[{&quot;uniqueId&quot;:&quot;ccic_dev_11-1344510702.21&quot;,&quot;customerNumber&quot;:&quot;01087125972&quot;,&quot;customerProvince&quot;:&quot;北京&quot;,&quot;customerCity&quot;:&quot;北京&quot;,&quot;numberTrunk&quot;:&quot;6001&quot;,&quot;queueName&quot;:&quot;0001&quot;,&quot;cno&quot;:&quot;2002&quot;,&quot;clientNumber&quot;:&quot;01041005968&quot;,&quot;status&quot;:&quot;座席接听&quot;,&quot;mark&quot;:&quot;&quot;,&quot;startTime&quot;:&quot;2012-08-09 19:11:42&quot;,&quot;endTime&quot;:&quot;2012-08-07 15:19:25&quot;,&quot;bridgeTime&quot;:&quot;2012-08-09 19:12:21&quot;,&quot;bridgeDuration&quot;:&quot;00:00:10&quot;,&quot;cost&quot;:&quot;0.000&quot;,&quot;totalDuration&quot;:&quot;00:00:49&quot;,&quot;recordFile&quot;:&quot;20120809/3000001-20120809191142-01087125972-01041005968-record-ccic_dev_11-1344510702.21.mp3&quot;,&quot;inCaseLib&quot;:&quot;不在&quot;,&quot;score&quot;:&quot;0&quot;,&quot;callType&quot;:&quot;普通呼入&quot;,&quot;comment&quot;:&quot;无&quot;,&quot;ivrName&quot;:&quot;转咨询队列&quot;,&quot;endReason&quot;:&quot;座席挂机d&quot;},{&quot;uniqueId&quot;:&quot;ccic_dev_11-1344510632.19&quot;,&quot;customerNumber&quot;:&quot;01087125972&quot;,&quot;customerProvince&quot;:&quot;北京&quot;,&quot;customerCity&quot;:&quot;北京&quot;,&quot;numberTrunk&quot;:&quot;6001&quot;,&quot;queueName&quot;:&quot;0001&quot;,&quot;cno&quot;:&quot;2002&quot;,&quot;clientNumber&quot;:&quot;01041005968&quot;,&quot;status&quot;:&quot;座席接听&quot;,&quot;mark&quot;:&quot;&quot;,&quot;startTime&quot;:&quot;2012-08-09 19:10:32&quot;,&quot;bridgeTime&quot;:&quot;2012-08-09 19:10:44&quot;,&quot;bridgeDuration&quot;:&quot;00:00:34&quot;,&quot;cost&quot;:&quot;0.000&quot;,&quot;totalDuration&quot;:&quot;00:00:46&quot;,&quot;recordFile&quot;:&quot;20120809/3000001-20120809191032-01087125972-01041005968-record-ccic_dev_11-1344510632.19.mp3&quot;,&quot;inCaseLib&quot;:&quot;不在&quot;,&quot;score&quot;:&quot;0&quot;,&quot;callType&quot;:&quot;普通呼入&quot;,&quot;comment&quot;:&quot;无&quot;,&quot;ivrName&quot;:&quot;转咨询队列&quot;,&quot;endReason&quot;:&quot;客户挂机&quot;}],&quot;paging&quot;:{&quot;start&quot;:&quot;0&quot;,&quot;totalSize&quot;:9,&quot;pageSize&quot;:2}}}<br />
+&nbsp;<br />
+&nbsp;<br />
+获取录音文件：<br />
+http://172.16.203.190/voices/record/20120813/3000001-20120813123014-01087125972-01041005966-record-ccic_dev_11-1344832214.2.mp3?hotline=&amp;enterpriseId=3000001&amp;userName=admin&amp;pwd=d0782bdf141e366014b4bc0d7dc6ea00&amp;seed=aaa<br />
+&nbsp;<br />
+返回：<br />
+录音文件</div>
+    </div>
+          
+
+    
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR"> 
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

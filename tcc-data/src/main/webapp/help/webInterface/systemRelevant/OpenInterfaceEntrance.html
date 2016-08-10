@@ -1,0 +1,253 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+   <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/interface.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#34").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#34").parent("ul").css("display","block");
+            $(".jklist ul li ul li#34 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+  <div class="body-r">
+    <h1>获取企业IVR清单</h1>
+     
+    <div class="conbar">
+      <h1>接口作用说明</h1>
+      <div class="concon grey">获取企业ivr流程清单<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>API URL</h1>
+      <div class="concon grey"><strong>接口URL（POST方式）</strong><br />
+发起者：合作方<br />
+接受者：天润融通<br />
+接口类型：HTTP接口<br />
+调用方式：POST<br />
+返回格式：JSON数据<br />
+URL规范：<br />
+<a href="http://InterfaceServerIp:port/">http://InterfaceServerIp:port/</a>interface/entrance/OpenInterfaceEntrance?interfaceType=ivrList&amp;enterpriseId=3000000&amp;userName=admin&amp;pwd=c33367701511b4f6020ec61ded352059<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="423">
+<tbody>
+	<tr>
+	<td style="width:98px;"><strong>参数</strong></td>
+	<td style="width:44px;"><strong>要求</strong></td>
+	<td style="width:99px;"><strong>描述</strong></td>
+	<td style="width:323px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:98px;">enterpriseId</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">企业Id</td>
+	<td style="width:323px;">必选企业id</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">interfaceType</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">请求类型</td>
+	<td style="width:323px;">ivrList: 获取当前企业的IVR清单</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">userName</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">用户名</td>
+	<td style="width:323px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">pwd</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">密码</td>
+	<td style="width:323px;">对应username的密码，md5(登录密码)，例如：md5(123456)</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="315">
+<tbody>
+	<tr>
+	<td style="width:165px;">字段</td>
+	<td style="width:255px;"><strong>说明</strong></td>
+	</tr>
+	<tr>
+	<td style="width:165px;">ivrList</td>
+	<td style="width:255px;">所有ivr列表</td>
+	</tr>
+	<tr>
+	<td style="width:165px;">ivrList[i].id</td>
+	<td style="width:255px;">某个ivr的id</td>
+	</tr>
+	<tr>
+	<td style="width:165px;">ivrList[i].ivrName</td>
+	<td style="width:255px;">ivr名称</td>
+	</tr>
+	<tr>
+	<td style="width:165px;">ivrList[i].nodes</td>
+	<td style="width:255px;">某个ivr的节点列表</td>
+	</tr>
+	<tr>
+	<td style="width:165px;">ivrList[i].nodes[i].id</td>
+	<td style="width:255px;">ivr节点id</td>
+	</tr>
+	<tr>
+	<td style="width:165px;">ivrList[i].nodes[i].path</td>
+	<td style="width:255px;">ivr节点path</td>
+	</tr>
+	<tr>
+	<td style="width:165px;">ivrList[i].nodes[i].pathName</td>
+	<td style="width:255px;">ivr节点名称</td>
+	</tr>
+	<tr>
+	<td style="width:165px;">ivrList[i].nodes[i].typeName</td>
+	<td style="width:255px;">ivr节点类型，参考类型列表</td>
+	</tr>
+	<tr>
+	<td style="width:165px;">ivrList[i].nodes[i].parentId</td>
+	<td style="width:255px;">ivr节点父节点</td>
+	</tr>
+</tbody>
+</table>
+所有的ivr节点从1开始<br />
+&nbsp;<br />
+节点类型表：<br />
+<table border="1" cellpadding="0" cellspacing="0" width="159">
+<tbody>
+	<tr>
+	<td style="width:98px;"><strong>值</strong></td>
+	<td style="width:115px;"><strong>节点类型</strong></td>
+	</tr>
+	<tr>
+	<td style="width:98px;">1</td>
+	<td style="width:115px;">播放</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">2</td>
+	<td style="width:115px;">选择</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">3</td>
+	<td style="width:115px;">留言</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">4</td>
+	<td style="width:115px;">队列</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">5</td>
+	<td style="width:115px;">时间</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">6</td>
+	<td style="width:115px;">地区</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">7</td>
+	<td style="width:115px;">传真</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">8</td>
+	<td style="width:115px;">设置变量</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">9</td>
+	<td style="width:115px;">收号</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">10</td>
+	<td style="width:115px;">等待</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">11</td>
+	<td style="width:115px;">判断</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">12</td>
+	<td style="width:115px;">HTTP交互</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">13</td>
+	<td style="width:115px;">直呼</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">14</td>
+	<td style="width:115px;">数据库</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">15</td>
+	<td style="width:115px;">会议室</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">16</td>
+	<td style="width:115px;">分支</td>
+	</tr>
+</tbody>
+</table>
+&nbsp;<br />
+JSON格式数据示例<br />
+{&quot;ivrList&quot;:<br />
+[<br />
+{&quot;id&quot;:39,&quot;ivrName&quot;:&quot;测试网上400&quot;,&quot;nodes&quot;:<br />
+[<br />
+{&quot;id&quot;:56,&quot;path&quot;:&quot;1&quot;,&quot;pathName&quot;:&quot;播放tts&quot;,&quot;typeName&quot;:&quot;播放&quot;,&quot;parentId&quot;:0}<br />
+]<br />
+},<br />
+{&quot;id&quot;:44,&quot;ivrName&quot;:&quot;测试db&quot;,&quot;nodes&quot;:<br />
+[<br />
+{&quot;id&quot;:69,&quot;path&quot;:&quot;1&quot;,&quot;pathName&quot;:&quot;判断初始化&quot;,&quot;typeName&quot;:&quot;分支&quot;,&quot;parentId&quot;:0},<br />
+{&quot;id&quot;:70,&quot;path&quot;:&quot;1.1&quot;,&quot;pathName&quot;:&quot;加1&quot;,&quot;typeName&quot;:&quot;设置变量&quot;,&quot;parentId&quot;:69}<br />
+]<br />
+}<br />
+]<br />
+}<br />
+&nbsp;<br />
+URL示例：<br />
+http://172.16.203.182/interface/entrance/OpenInterfaceEntrance?interfaceType=ivrList&amp;enterpriseId=3010066&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e<br />
+</div>
+    </div>
+    
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR"> 
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

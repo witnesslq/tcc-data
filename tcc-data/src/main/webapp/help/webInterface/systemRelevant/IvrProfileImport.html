@@ -1,0 +1,254 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+   <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/interface.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#36").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#36").parent("ul").css("display","block");
+            $(".jklist ul li ul li#36 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+<div class="body-r">
+    <h1>企业IVR管理</h1>
+     
+    <div class="conbar">
+      <h1>接口作用说明</h1>
+      <div class="concon grey">通过接口实现对企业IVR的管理</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>API URL</h1>
+      <div class="concon grey">接口类型：HTTP请求<br />
+接口使用账户：企业账户<br />
+接口地址：天润呼叫中心接口服务器IP或域名<br />
+接口参数：企业编号，用户名，密码<br />
+接口返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+http://TIWebServer:TIPort/interface/ivr/IvrProfileImport?enterpriseId=&amp;userName=&amp;pwd=&amp;seed=&amp;action=&amp;ivrProfileId=&amp;stringIvr=<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+	<tr>
+	<td style="width:150px;height:21px;"><strong>参数</strong></td>
+	<td style="width:46px;height:21px;"><strong>要求</strong></td>
+	<td style="width:88px;height:21px;"><strong>描述</strong></td>
+	<td style="width:322px;height:21px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">enterpriseId</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">企业编号</td>
+	<td style="width:322px;height:21px;">管理员后台登陆后，位于右上角位置</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:20px;">userName</td>
+	<td style="width:46px;height:20px;">必选</td>
+	<td style="width:88px;height:20px;">用户名</td>
+	<td style="width:322px;height:20px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">pwd</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">密码</td>
+	<td style="width:322px;height:21px;">需和seed进行MD5加密，格式：md5(md5(对应userName的密码)+seed)，例如：md5(md5(123456)seed)</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">seed</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">随机字符串</td>
+	<td style="width:322px;height:21px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">action</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">操作</td>
+	<td style="width:322px;height:21px;">取值为：<br />
+	add：新增IVR<br />
+	delete：删除IVR<br />
+	update：更新IVR</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">ivrProfileId</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">IVR ID</td>
+	<td style="width:322px;height:21px;">action=delete和action=update时，此参数必选，表示要删除或更新的IVR导航的ID</td>
+	</tr>
+	<tr>
+	<td style="width:150px;height:21px;">stringIvr</td>
+	<td style="width:46px;height:21px;">必选</td>
+	<td style="width:88px;height:21px;">IVR导航内容</td>
+	<td style="width:322px;height:21px;">参数需要URLEncode；action=add和action=update时，此参数必选，表示要新增和更新的IVR导航内容；</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>IVR导出格式说明</h1>
+      <div class="concon grey"><strong>IVR</strong><strong>配置如：</strong><br />
+<img alt="" src="/framework/images/helpcenter/20151014060644873.png" style="width: 167px; height: 70px;" /><br />
+<strong>导出后格式为：</strong><br />
+IVR_VERSION:2.0.6&nbsp; //IVR版本，2.0.5及之前版本可能没有这一行，不需要改动<br />
+默认自定义IVR<br />
+默认自定义IVR<br />
+1&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;//这三行分别为：IVR导航的名称、备注和类型（默认为1）<br />
+69<br />
+2<br />
+0<br />
+1<br />
+1<br />
+on_duty;3;1-1.1,2-1.2;0;;;1;&nbsp;&nbsp;&nbsp; //选择节点<br />
+70<br />
+4<br />
+69<br />
+1.1<br />
+业务咨询<br />
+default_transfer;30100670000;;;;0&nbsp;&nbsp;&nbsp; //业务咨询节点<br />
+71<br />
+4<br />
+69<br />
+1.2<br />
+投诉建议<br />
+default_transfer;30100670001;1;1;1;0&nbsp;&nbsp;&nbsp; //投诉建议节点<br />
+导出内容的前三行分别为：IVR导航的名称、备注和类型（默认为1），往下每6行一个节点，分别表示：<br />
+1.&nbsp;&nbsp;&nbsp;&nbsp; 节点ID&nbsp;&nbsp; （导入时不用更改）<br />
+2.&nbsp;&nbsp;&nbsp;&nbsp; 节点类型 如 1（播放）&nbsp; 2（选择）&nbsp; 3（留言） 4（队列） ...<br />
+3.&nbsp;&nbsp;&nbsp;&nbsp; 父节点ID&nbsp; （导入时如果上下级关系不变，不用更改）<br />
+4.&nbsp;&nbsp;&nbsp;&nbsp; 节点&nbsp;&nbsp;&nbsp; 如1.1<br />
+5.&nbsp;&nbsp;&nbsp;&nbsp; 节点名称&nbsp; 如 业务咨询<br />
+6.&nbsp;&nbsp;&nbsp;&nbsp; 设置值<br />
+注：<br />
+如果使用的语音文件是企业语音，需要在语音变量值前加上企业号如：3000001/1395910693978<br />
+&nbsp;<br />
+stringIvr格式<br />
+直接将导入内容修改后进行URLEncode，如：<br />
+名称<br />
+说明<br />
+1<br />
+5000<br />
+2<br />
+0<br />
+1<br />
+导航<br />
+on_duty;3;1-1.1,2-1.2;0;;;1;<br />
+5001<br />
+4<br />
+5000<br />
+1.1<br />
+队列1<br />
+default_transfer;30004850000;;;;0<br />
+5002<br />
+4<br />
+5000<br />
+1.2<br />
+队列2<br />
+public_transfer;30004850000;;;;0<br />
+进行URLEncode后为：<br />
+%e5%90%8d%e7%a7%b0%0d%0a%e8%af%b4%e6%98%8e%0d%0a1%0d%0a5000%0d%0a2%0d%0a0%0d%0a1%0d%0a%e5%af%bc%e8%88%aa%0d%0aon_duty%3b3%3b1-1.1%2c2-1.2%3b0%3b%3b%3b1%3b%0d%0a5001%0d%0a4%0d%0a5000%0d%0a1.1%0d%0a%e9%98%9f%e5%88%971%0d%0adefault_transfer%3b30004850000%3b%3b%3b%3b0%0d%0a5002%0d%0a4%0d%0a5000%0d%0a1.2%0d%0a%e9%98%9f%e5%88%972%0d%0apublic_transfer%3b30004850000%3b%3b%3b%3b0<br />
+即每行之间是用%0d%0a进行分隔。<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+      <div class="concon grey">URL实例：<br />
+<a href="http://172.16.203.192/interface/ivr/IvrProfileImport?enterpriseId=3000004&amp;userName=admin&amp;seed=1234&amp;pwd=e10adc3949ba59abbe56e057f20f883e&amp;action=update&amp;ivrProfileId=62&amp;stringIvr=%e5%90%8d%e7%a7%b0%0d%0a%e8%af%b4%e6%98%8e%0d%0a1%0d%0a5000%0d%0a2%0d%0a0%0d%0a1%0d%0a%e5%af%bc%e8%88%aa%0d%0aon_duty%3b3%3b1-1.1%2c2-1.2%3b0%3b%3b%3b1%3b%0d%0a5001%0d%0a4%0d%0a5000%0d%0a1.1%0d%0a%e9%98%9f%e5%88%971%0d%0adefault_transfer%3b30004850000%3b%3b%3b%3b0%0d%0a5002%0d%0a4%0d%0a5000%0d%0a1.2%0d%0a%e9%98%9f%e5%88%972%0d%0apubli">http://172.16.203.192/interface/ivr/IvrProfileImport?enterpriseId=3000004&amp;userName=admin&amp;seed=1234&amp;pwd=e10adc3949ba59abbe56e057f20f883e&amp;action=update&amp;ivrProfileId=62&amp;stringIvr=%e5%90%8d%e7%a7%b0%0d%0a%e8%af%b4%e6%98%8e%0d%0a1%0d%0a5000%0d%0a2%0d%0a0%0d%0a1%0d%0a%e5%af%bc%e8%88%aa%0d%0aon_duty%3b3%3b1-1.1%2c2-1.2%3b0%3b%3b%3b1%3b%0d%0a5001%0d%0a4%0d%0a5000%0d%0a1.1%0d%0a%e9%98%9f%e5%88%971%0d%0adefault_transfer%3b30004850000%3b%3b%3b%3b0%0d%0a5002%0d%0a4%0d%0a5000%0d%0a1.2%0d%0a%e9%98%9f%e5%88%972%0d%0apublic_transfer%3b30004850000%3b%3b%3b%3b0</a><br />
+&nbsp;<br />
+JSON格式数据<br />
+action=add时，如果导入成功，将返回ivrProfileId，<br />
+{result:返回结果, code:结果代码,msg:描述,ivrProfileId:&rsquo;&rsquo;}<br />
+其他操作时返回：<br />
+{result:返回结果, code:结果代码,msg:描述}<br />
+&nbsp;<br />
+<table border="1" cellpadding="0" cellspacing="0" style="width: 100%;">
+<tbody>
+	<tr>
+	<td style="width:90px;"><strong>result</strong></td>
+	<td style="width:69px;"><strong>code</strong></td>
+	<td style="width:317px;"><strong>msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:25px;">success</td>
+	<td style="width:69px;height:25px;">0</td>
+	<td style="width:317px;height:25px;">导入、更新或者删除成功</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:25px;">error</td>
+	<td style="width:69px;height:25px;">1</td>
+	<td style="width:317px;height:25px;">参数[具体参数名]不能为空</td>
+	</tr>
+	<tr>
+	<td style="width:90px;">error</td>
+	<td style="width:69px;">2</td>
+	<td style="width:317px;">参数[具体参数名]格式不正确</td>
+	</tr>
+	<tr>
+	<td style="width:90px;">error</td>
+	<td style="width:69px;">3</td>
+	<td style="width:317px;">传入的企业[[具体参数名]有误</td>
+	</tr>
+	<tr>
+	<td style="width:90px;">error</td>
+	<td style="width:69px;">4</td>
+	<td style="width:317px;">无权操作，接口未开通</td>
+	</tr>
+	<tr>
+	<td style="width:90px;">error</td>
+	<td style="width:69px;">5</td>
+	<td style="width:317px;">密码错误</td>
+	</tr>
+	<tr>
+	<td style="width:90px;">error</td>
+	<td style="width:69px;">6</td>
+	<td style="width:317px;">导入ivr出现异常，请联系管理员</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+    
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR"> 
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

@@ -1,0 +1,213 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+    <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/interface.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#16").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#16").parent("ul").css("display","block");
+            $(".jklist ul li ul li#16 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+<div class="body-r">
+    <h1>外呼通话记录Excel导出接口</h1>
+     
+    <div class="conbar">
+      <h1>实现步骤</h1>
+      <div class="concon grey"><strong>接口URL</strong><strong>（POST</strong><strong>方式）</strong><br />
+发起者：合作方<br />
+接受者：天润融通<br />
+接口类型：HTTP接口<br />
+调用方式：POST<br />
+返回格式：JSON数据<br />
+URL规范：<br />
+<a href="http://InterfaceServerIp:port/interfaceAction/cdrObInterface!exportCdrObExcel.action?hotline=4006006003&amp;userName=admin&amp;pwd=41d2980a04aecc516f88b42899abd948&amp;seed=asdf&amp;startTime=&amp;endTime=&amp;start=&amp;limit">http://InterfaceServerIp:port/interfaceAction/cdrObInterface!exportCdrObExcel.action?hotline=4006006003&amp;userName=admin&amp;pwd=41d2980a04aecc516f88b42899abd948&amp;seed=asdf&amp;startTime=&amp;endTime=&amp;start=&amp;limit</a>=<br />
+说明：InterfaceServerIp:port 为使用账号登录<a href="http://www.ccic2.com">www.ccic2.com</a>之后，在浏览器地址栏看到的域名地址。<br />
+例如：xa.ccic2.com<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;bj.ccic2.com<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1.ccic2.com</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="423">
+<tbody>
+	<tr>
+	<td style="width:98px;"><strong>参数</strong></td>
+	<td style="width:44px;"><strong>要求</strong></td>
+	<td style="width:99px;"><strong>描述</strong></td>
+	<td style="width:323px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:98px;">hotline</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">企业热线号码</td>
+	<td style="width:323px;"><strong>与</strong><strong>enterpriseId</strong><strong>二选一</strong></td>
+	</tr>
+	<tr>
+	<td style="width:98px;">enterpriseId</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">企业Id</td>
+	<td style="width:323px;"><strong>与</strong><strong>hotline</strong><strong>二选一</strong></td>
+	</tr>
+	<tr>
+	<td style="width:98px;"><strong>userName</strong></td>
+	<td style="width:44px;"><strong>必选</strong></td>
+	<td style="width:99px;">用户名</td>
+	<td style="width:323px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:98px;"><strong>pwd</strong></td>
+	<td style="width:44px;"><strong>必选</strong></td>
+	<td style="width:99px;">密码</td>
+	<td style="width:323px;">对应username的密码，md5(md5(登录密码)+seed)，例如：md5(md5(123456)seed)</td>
+	</tr>
+	<tr>
+	<td style="width:98px;"><strong>seed</strong></td>
+	<td style="width:44px;"><strong>必选</strong></td>
+	<td style="width:99px;">随机字符串</td>
+	<td style="width:323px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">uniqueId</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">电话唯一标识</td>
+	<td style="width:323px;">如果uniqueId值不为空，则其余参数无效，仅hotline、enterpriseId、userName、pwd、seed、uniqueId参数值有效。即仅查询电话唯一标识为uniqueId的记录信息。</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">callType</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">呼叫类型</td>
+	<td style="width:323px;">为空表示全部，3表示点击外呼,4表示预览外呼,5表示预测外呼,6表示主叫外呼,7表示自助录音,8表示传真发送</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">taskId</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">任务Id</td>
+	<td style="width:323px;">callType为预览或预测外呼时才有此条件</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">status</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">呼叫结果</td>
+	<td style="width:323px;">为空表示全部，1表示客户未接听, 2表示座席未接听，3表示双方接听</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">title</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">查询条件</td>
+	<td style="width:323px;">qno表示队列号(多个之间用英文逗号隔开)，customer_number表示客户电话，cno表示座席工号(多个之间用英文逗号隔开)，number_trunk表示中继号码(多个之间用英文逗号隔开)，client_number表示座席电话</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">value</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">查询条件值</td>
+	<td style="width:323px;">对应title的值</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">province</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">客户电话归属省份</td>
+	<td style="width:323px;">为空表示全部，如&quot;四川&quot;，此参数需要URLEncode</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">city</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">客户电话归属城市</td>
+	<td style="width:323px;">为空表示全部，如&quot;成都&quot;，此参数需要URLEncode</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">startTime</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">开始时间</td>
+	<td style="width:323px;">格式&ldquo;yyyy-mm-dd hh:mm:ss&rdquo;，例如：2012-08-01 00:00:00，默认当月第一天</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">endTime</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">结束时间</td>
+	<td style="width:323px;">格式&ldquo;yyyy-mm-dd hh:mm:ss&rdquo;，例如：2012-08-08 00:00:00，默认当月最后一天</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">start</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">从第几条开始取</td>
+	<td style="width:323px;">正整数，大于等于0，默认0</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">limit</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">需要取出的数据条数</td>
+	<td style="width:323px;">正整数，大于0，最大不能超过1000，默认10</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+      <div class="concon grey">根据参数returnType返回相应格式的数据，若该参数值不对，返回default的JSON格式的提示信息。<br />
+成功输出Excel:<br />
+<img alt="" src="/framework/images/helpcenter/20151012102639925.png" style="width: 664px; height: 173px;" /><br />
+失败返回JSON：<br />
+1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; JSON串，格式为<br />
+{result:返回结果, msg:错误信息}<br />
+<strong>result</strong><strong>、</strong><strong> msg</strong><strong>与</strong><strong>description</strong><strong>定义</strong><strong>：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:51px;"><strong>result</strong></td>
+	<td style="width:350px;"><strong>msg</strong></td>
+	<td style="width:161px;"><strong>description</strong></td>
+	<td style="width:76px;"><strong>count</strong></td>
+	</tr>
+	<tr>
+	<td style="width:51px;">error</td>
+	<td style="width:350px;">{&quot;result&quot;:&quot;error&quot;,&quot;msg&quot;:错误信息}</td>
+	<td style="width:161px;">查询通话记录失败原因</td>
+	<td style="width:76px;">0</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+    
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR"> 
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

@@ -1,0 +1,185 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+   <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/interface.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#33").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#33").parent("ul").css("display","block");
+            $(".jklist ul li ul li#33 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+<div class="body-r">
+    <h1>查看外呼任务接口</h1>
+     
+    <div class="conbar">
+      <h1>接口作用说明</h1>
+      <div class="concon grey">此接口可实现查看外呼任务状态<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>API URL</h1>
+      <div class="concon grey"><strong>接口URL（POST方式）</strong><br />
+接口类型：HTTP请求<br />
+接口使用账户：企业账户<br />
+接口地址：天润呼叫中心接口服务器IP或域名<br />
+接口参数：企业编号，用户名，密码，随机字符串，任务类型和任务id<br />
+返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+<a href="http://172.16.203.197/interfaceAction/cdrObInterface!getTasks.action?enterpriseId=3000008&amp;type=4">http://172.16.203.197/interfaceAction/cdrObInterface!getTasks.action?enterpriseId=&amp;userName=admin&amp;pwd=&amp;seed=&amp;type=&amp;id=</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">enterpriseId</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">企业id</td>
+	<td style="width:312px;">例如:3000008</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">用户名</td>
+	<td style="width:312px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">pwd</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">需和seed进行MD5加密，格式：md5(md5(对应userName的密码)+seed)，例如：md5(md5(123456)seed)</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">seed</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">随机字符串</td>
+	<td style="width:312px;">随机字符串：例如：aaa</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">type</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">任务类型</td>
+	<td style="width:312px;">1表示预览外呼,2表示预测外呼,3表示IVR</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">id</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">任务id</td>
+	<td style="width:312px;">根据任务的id查询该条外呼任务详情</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+      <div class="concon grey">URL实例：<br />
+<a href="http://172.16.203.190/interfaceAction/cdrObInterface!getTasks.action?enterpriseId=3000002&amp;userName=admin&amp;pwd=d0782bdf141e366014b4bc0d7dc6ea00&amp;seed=aaa&amp;type=1">http://172.16.203.190/interfaceAction/cdrObInterface!getTasks.action?enterpriseId=3000002&amp;userName=admin&amp;pwd=d0782bdf141e366014b4bc0d7dc6ea00&amp;seed=aaa&amp;type=1&amp;id=1</a><br />
+&nbsp;<br />
+根据参数returnType返回相应格式的数据，若该参数值不对，返回default的JSON格式的提示信息。<br />
+返回JSON：<br />
+JSON串，格式为<br />
+{result:返回结果,msg:[{来电IVR详细记录数据},{}..]}<br />
+<strong>result</strong><strong>、</strong><strong> msg</strong><strong>与</strong><strong>description</strong><strong>定义</strong><strong>：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:51px;"><strong>result</strong></td>
+	<td style="width:350px;"><strong>msg</strong></td>
+	<td style="width:161px;"><strong>description</strong></td>
+	<td style="width:76px;"><strong>count</strong></td>
+	</tr>
+	<tr>
+	<td style="width:51px;">success</td>
+	<td style="width:350px;">{&quot;result&quot;:&quot;success&quot;,&quot;msg&quot;:[{&quot;id&quot;:&quot;1&quot;,&quot;name&quot;:&quot;1231231&quot;,&quot;statu&quot;:&quot;未执行&quot;}]}</td>
+	<td style="width:161px;">成功返回外呼任务</td>
+	<td style="width:76px;">实际返回数据记录数</td>
+	</tr>
+</tbody>
+</table>
+<strong>说明： data</strong><strong>取值为json</strong><strong>数组。</strong><br />
+<strong>json</strong><strong>格式数据记录msg</strong><strong>的各属性定义：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:89px;"><strong>名称</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:161px;"><strong>数据格式</strong></td>
+	<td style="width:104px;"><strong>取值范围</strong></td>
+	<td style="width:104px;"><strong>例子</strong></td>
+	</tr>
+	<tr>
+	<td style="width:89px;">id</td>
+	<td style="width:132px;">任务id</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:104px;">&nbsp;</td>
+	<td style="width:104px;">1</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">name</td>
+	<td style="width:132px;">任务名称</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:104px;">&nbsp;</td>
+	<td style="width:104px;">任务1</td>
+	</tr>
+	<tr>
+	<td style="width:89px;">statu</td>
+	<td style="width:132px;">任务状态</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:104px;">&nbsp;</td>
+	<td style="width:104px;">执行中...</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+    
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR"> 
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.tinet.tcc.app.demo.mapper.DemoUserMapper">
+
+   <!-- <sql id="common">
+        <where>
+            <if test="id != null and id !=''">
+                id = #{id}
+            </if>
+            <if test="name != null and name !=''">
+                and name = #{name}
+            </if>
+        </where>
+    </sql>
+
+    <select id="selectUsersList" resultType="com.tinet.tcc.app.demo.model.DemoUserPojo">
+         <![CDATA[
+          select
+              id as id,
+              name as name,
+              create_time as createTime
+          from
+            p_sys_user
+        ]]>
+        <include refid="common"/>
+    </select>
+
+    <insert id="insert" parameterType="com.tinet.tcc.app.demo.model.DemoUserPojo" useGeneratedKeys="true" keyProperty="id">
+      <![CDATA[
+        insert  into p_sys_user(
+          name
+        )values (
+          #{name}
+        )
+      ]]>
+    </insert>
+
+    <delete id="del" parameterType="java.util.HashMap">
+       <![CDATA[
+        delete from p_sys_user
+       ]]>
+    <include refid="common"/>
+    </delete>-->
+</mapper>

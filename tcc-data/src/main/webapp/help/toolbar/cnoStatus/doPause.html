@@ -1,0 +1,143 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description"
+          content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet"/>
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet"/>
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet"/>
+    <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/toolbar.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function () {
+            $(".jklist ul li ul li#6").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#6").parent("ul").css("display", "block");
+            $(".jklist ul li ul li#6 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+    <div class="body-r">
+        <h1>置忙 – doPause</h1>
+
+
+        <div class="conbar">
+            <h1>接口作用说明</h1>
+            <div class="concon grey"><p>座席置忙</p>
+            </div>
+        </div>
+
+        <div class="conbar">
+            <h1>调用方式</h1>
+            <div class="concon grey">doPause(JSON)<br/>
+            </div>
+        </div>
+
+        <div class="conbar">
+            <h1>回调函数</h1>
+            <div class="concon grey">cbPause()<br/>
+            </div>
+        </div>
+
+        <div class="conbar">
+            <h1>相关参数</h1>
+            <div class="concon grey">
+                <table border="0" cellpadding="0" cellspacing="0" style="height:100%;width:100%;" width="423">
+                    <tbody>
+                    <tr>
+                        <td style="width:98px;">参数</td>
+                        <td style="width:44px;">要求</td>
+                        <td style="width:99px;">描述</td>
+                        <td style="width:323px;">备注</td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">description</td>
+                        <td style="width:44px;">可选</td>
+                        <td style="width:99px;">自定义置忙字符串</td>
+                        <td style="width:323px;">用户可以自定义置忙状态描述</td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <br/>
+            </div>
+        </div>
+
+        <div class="conbar">
+            <h1>返回值</h1>
+            <div class="concon grey">
+                无
+            </div>
+        </div>
+
+        <div class="conbar">
+            <h1>示例</h1>
+            <div class="concon grey">
+                var object = {};<br/>
+                object.description = "自定义";<br/>
+                executeAction('doPause', object);<br/>
+                回调 - cbPause()<br/>
+                {"type":"response","code":"0","msg":"ok","reqType":"pause"}<br/>
+            </div>
+        </div>
+
+        <div class="conbar">
+            <h1>返回json参数描述</h1>
+            <div class="concon grey">
+                <table border="0" cellpadding="0" cellspacing="0" style="height:100%;width:100%;" width="423">
+                    <tbody>
+                    <tr>
+                        <td style="width:98px;">参数名</td>
+                        <td style="width:44px;">类型</td>
+                        <td style="width:99px;">描述</td>
+                        <td style="width:323px;">备注</td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">code</td>
+                        <td style="width:44px;">String</td>
+                        <td style="width:99px;">返回代码</td>
+                        <td style="width:323px;">0：成功，2：连接中断 11：响铃、通话中置忙错误</td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">msg</td>
+                        <td style="width:44px;">String</td>
+                        <td style="width:99px;">返回信息</td>
+                        <td style="width:323px;"></td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <br/>
+            </div>
+        </div>
+
+    </div>
+    <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR">
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span
+        class="icon_m arrowup"></span></a></div>
+</body>
+</html>

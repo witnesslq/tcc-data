@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context" xmlns:dubbo="http://code.alibabatech.com/schema/dubbo"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+           http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+           http://code.alibabatech.com/schema/dubbo http://code.alibabatech.com/schema/dubbo/dubbo.xsd">
+
+    <!-- Dubbo全局配置 -->
+    <dubbo:application name="tcc-conf" version="${application.version}" />
+    <dubbo:registry address="${dubbo.registry.address}" />
+    <dubbo:consumer version="${application.version}" check="false" />
+    <dubbo:monitor protocol="registry" />
+
+    <!-- 使用注解自动注册和注入bean，并启用Dubbo的注解 -->
+    <dubbo:annotation />
+    <context:component-scan base-package="com.tinet.tcc.app.**.service">
+        <context:include-filter type="annotation" expression="com.alibaba.dubbo.config.annotation.Service" />
+    </context:component-scan>
+
+
+    <!-- 和本地bean一样实现服务 from cti-link-conf-api -->
+    <dubbo:reference id="ctiLinkAgentService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkAgentService" />
+    <dubbo:reference id="ctiLinkAgentSkillService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkAgentSkillService" />
+    <dubbo:reference id="ctiLinkAgentTelService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkAgentTelService" />
+    <dubbo:reference id="ctiLinkCacheService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkCacheService" />
+    <dubbo:reference id="ctiLinkEnterpriseAreaGroupService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkEnterpriseAreaGroupService" />
+    <dubbo:reference id="ctiLinkEnterpriseAreaService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkEnterpriseAreaService" />
+    <dubbo:reference id="ctiLinkEnterpriseClidService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkEnterpriseClidService" />
+    <dubbo:reference id="ctiLinkEnterpriseHangupSetService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkEnterpriseHangupSetService" />
+    <dubbo:reference id="ctiLinkEnterpriseInvestigationService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkEnterpriseInvestigationService" />
+    <dubbo:reference id="ctiLinkEnterpriseIvrAnchorService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkEnterpriseIvrAnchorService" />
+    <dubbo:reference id="ctiLinkEnterpriseIvrRouterService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkEnterpriseIvrRouterService" />
+    <dubbo:reference id="ctiLinkEnterpriseIvrService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkEnterpriseIvrService" />
+    <dubbo:reference id="ctiLinkEnterpriseMohService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkEnterpriseMohService" />
+    <dubbo:reference id="ctiLinkEnterprisePushActionService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkEnterprisePushActionService" />
+    <dubbo:reference id="ctiLinkEnterpriseRouterService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkEnterpriseRouterService" />
+    <dubbo:reference id="ctiLinkEnterpriseSettingService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkEnterpriseSettingService" />
+    <dubbo:reference id="ctiLinkEnterpriseTimeService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkEnterpriseTimeService" />
+    <dubbo:reference id="ctiLinkEnterpriseVoicemailService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkEnterpriseVoicemailService" />
+    <dubbo:reference id="ctiLinkEnterpriseVoiceService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkEnterpriseVoiceService" />
+    <dubbo:reference id="ctiLinkEntityService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkEntityService" />
+    <dubbo:reference id="ctiLinkExtenService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkExtenService" />
+    <dubbo:reference id="ctiLinkIvrProfileService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkIvrProfileService" />
+    <dubbo:reference id="ctiLinkQueueService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkQueueService" />
+    <dubbo:reference id="ctiLinkQueueSkillService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkQueueSkillService" />
+    <dubbo:reference id="ctiLinkRestrictTelService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkRestrictTelService" />
+    <dubbo:reference id="ctiLinkSkillService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkSkillService" />
+    <dubbo:reference id="ctiLinkTelSetService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkTelSetService" />
+    <dubbo:reference id="ctiLinkTelSetTelService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkTelSetTelService" />
+    <dubbo:reference id="ctiLinkEnterpriseHotlineService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkEnterpriseHotlineService" />
+    <dubbo:reference id="ctiLinkAreaCodeService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkAreaCodeService" />
+    <dubbo:reference id="ctiLinkTrunkService" interface="com.tinet.ctilink.conf.service.v1.CtiLinkTrunkService" />
+
+    <!-- 和本地bean一样实现服务 from cti-link-resource-manager-api -->
+    <dubbo:reference id="ctiLinkPublicVoiceService" interface="com.tinet.ctilink.resourcemanager.service.v1.CtiLinkPublicVoiceService" />
+    <dubbo:reference id="ctiLinkPublicMohService" interface="com.tinet.ctilink.resourcemanager.service.v1.CtiLinkPublicMohService" />
+</beans>

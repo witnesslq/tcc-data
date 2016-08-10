@@ -1,0 +1,80 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+    <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/interface.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#4").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#4").parent("ul").css("display","block");
+            $(".jklist ul li ul li#4 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+<div class="body-r">
+    <h1>对接方式介绍</h1>
+       
+    <div class="conbar">
+      <h1>对接说明</h1>
+      <div class="concon grey">实现通话记录内容及录音的查询、数据本地化存储（录音下载、在线试听）、Excel导出、推送等功能</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>对接方式</h1>
+      <div class="concon grey">对接方式有6种：<br />
+①：<a href="/help/webInterface/callRecording/callRecord.html"><span style="color:#0000ff;"><u>来电通话记录</u></span></a><br />
+介绍<br />
+查询来电通话记录的主体，可根据时间段、接听状态等进行查询，同时可实现录音的视听及下载，内容与前后台来电通话记录显示一致<br />
+②：<a href="/help/webInterface/callRecording/callDetails.html"><span style="color:#0000ff;"><u>来电通话记录详细</u></span></a><br />
+介绍<br />
+查询一通来电通话记录的详细内容，须根据通话记录唯一ID查询，内容与前后台来电通话记录显示一致<br />
+③：<a href="/help/webInterface/callRecording/callDb.html"><span style="color:#0000ff;"><u>来电通话记录</u><u>DB</u><u>同步</u></span></a><br />
+介绍<br />
+直接从数据库取来电通话记录主体，数据为原始数据<br />
+④：<a href="/help/webInterface/callRecording/callDetailDb.html"><span style="color:#0000ff;"><u>来电通话记录明细</u><u>DB</u><u>同步</u></span></a><br />
+介绍<br />
+直接从数据库取来电通话记录明细，数据为原始数据<br />
+⑤：<a href="/help/webInterface/callRecording/callIvrDetails.html"><span style="color:#0000ff;"><u>来电</u><u>IVR</u><u>记录详细</u></span></a><br />
+介绍<br />
+获取来电通话记录进入的IVR详情，数据与前后台通话记录中IVR详情相同<br />
+⑥：<a href="/help/webInterface/callRecording/callRecordExcel.html"><span style="color:#0000ff;"><u>来电通话记录根据查询条件导出</u><u>Excel</u><u>接口</u></span></a><br />
+介绍<br />
+通过接口去实现来电通话记录的Excel导出<br />
+    </div>
+    </div>
+          
+    
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR"> 
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

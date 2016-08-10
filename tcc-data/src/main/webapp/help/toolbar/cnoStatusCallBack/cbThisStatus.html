@@ -1,0 +1,349 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description"
+          content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet"/>
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet"/>
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet"/>
+    <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/toolbar.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function () {
+            $(".jklist ul li ul li#10").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#10").parent("ul").css("display", "block");
+            $(".jklist ul li ul li#10 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+    <div class="body-r">
+        <h1>当前座席状态 – cbThisStatus</h1>
+
+        <div class="conbar">
+            <h1>接口作用说明</h1>
+            <div class="concon grey"><p>座席状态监听</p>
+            </div>
+        </div>
+
+        <div class="conbar">
+            <h1>调用方式</h1>
+            <div class="concon grey">座席状态改变<br/>
+            </div>
+        </div>
+
+        <div class="conbar">
+            <h1>回调函数</h1>
+            <div class="concon grey">cbThisStatus()<br/>
+            </div>
+        </div>
+
+        <div class="conbar">
+            <h1>示例</h1>
+            <div class="concon grey">
+                不同eventName对应的JSON对象不同，通过deviceStatus.deviceStatusLoginStatus()处理可以返回对应的中文座席状态。<br/>
+                例如eventName = online(空闲状态)返回的JSON对象为<br/>
+                {"type":"event","name":"status","enterpriseId":"3000000","cno":"2002", "deviceStatus":"idle","loginStatus":"online","et":"e1","eventName":"online","action":"a1"}<br/>
+                eventName = pause(置忙状态) 返回的JSON对象为<br/>
+                {"type":"event","name":"status","enterpriseId":"3000000","cno":"2002","loginStatus":"pause", "deviceStatus":"idle","pauseDescription":"忙碌","et":"e2","eventName":"pause","action":"a14"}<br/>
+                eventName = stateRinging(响铃状态，没有电话详情) 返回的JSON对象为<br/>
+                {"type":"event","name":"status","enterpriseId":"3000000","cno":"2002","deviceStatus":"ringing", "loginStatus":"online","et":"e3","eventName":"stateRinging","action":"a3"}<br/>
+                eventName = comeRinging(呼入响铃状态，包含电话详情) 返回的JSON对象为<br/>
+                {"type":"event","name":"ringing","enterpriseId":"3000000","cno":"2002","customerNumber":"01087125968", "customerNumberType":"1","customerAreaCode":"010","numberTrunk":"6001","hotline":"4006006001", "callType":"1","uniqueId":"ccic_dev_11-1354265386.54","qid":"30000000001","et":"e7","ct":"呼入","eventName":"comeRinging","action":"a5"}<br/>
+                eventName = normalBusy(正常通话) 返回的JSON对象为<br/>
+                {"type":"event","name":"status","enterpriseId":"3000000","cno":"2002","deviceStatus":"busy", "loginStatus":"online","busyDescription":"","customerNumber":"01087125968","customerNumberType":"1", "callType":"1","et":"e5","ct":"呼入","eventName":"normalBusy","action":"a21" }<br/>
+                eventName = addBusy(断线后登陆系统直接进入通话状态，包含电话详细的信息) 返回的JSON对象为<br/>
+                {"type":"event","name":"status","enterpriseId":"3000000","cno":"2002","deviceStatus":"busy", "loginStatus":"online","busyDescription":"","customerNumber":"01087125968","customerNumberType":"1", "callType":"1","duration":"87","hotline":"4006006001", "customerAreaCode":"010","uniqueId":"ccic_dev_11-1354265386.54","et":"e5","ct":"呼入","eventName":"addBusy","action":"a7"}<br/>
+                eventName = outRinging(外呼响铃，包含电话详情) 返回的JSON对象为<br/>
+                {"type":"event","name":"ringing","enterpriseId":"3000000","cno":"2002","customerNumber":"01041005968", "customerNumberType":"1","customerAreaCode":"010","numberTrunk":"6001","hotline":"4006006001", "callType":"3","uniqueId":"ccic_dev_11-1354265616.60","qid":"","et":"e8","ct":"点击外呼", "eventName":"outRinging","action":"a17"}<br/>
+                eventName = waitLink(座席接听，等待客户接听) 返回的JSON对象为<br/>
+                {"type":"event","name":"status","enterpriseId":"3000000","cno":"2002","deviceStatus":"busy", "loginStatus":"online","busyDescription":"","customerNumber":"01041005968","customerNumberType":"1", "callType":"3","et":"e13","ct":"点击外呼","eventName":"waitLink","action":"a25"}<br/>
+                eventName = outBusy(外呼客户接听) 返回的JSON对象为<br/>
+                {"type":"event","name":"previewOutcallBridge","enterpriseId":"3000000","callType":"3", "customerNumber":"01041005968","customerNumberType":"1","customerAreaCode":"010","cno":"2002", "et":"e31","ct":"点击外呼","eventName":"outBusy","action":"a21"}<br/>
+                eventName = onlineUnlink(挂断后置闲，挂断后返回呼叫前状态) 返回的JSON对象为<br/>
+                {"type":"event","name":"status","enterpriseId":"3000000","cno":"2002","deviceStatus":"idle", "loginStatus":"online","et":"e1","eventName":"onlineUnlink","action":"a10"}<br/>
+                eventName = pauseUnlink(挂断后置忙，挂断后返回呼叫前状态) 返回的JSON对象为<br/>
+                {"type":"event","name":"status","enterpriseId":"3000000","cno":"2002","deviceStatus":"idle", "loginStatus":"pause","pauseDescription":"忙碌","et":"e2","eventName":"pauseUnlink","action":"a11"}<br/>
+                eventName = hold(保持) 返回的JSON对象为<br/>
+                {"type":"event","name":"status","enterpriseId":"3000000","cno":"2002","deviceStatus":"busy", "busyDescription":"busyOnhold","loginStatus":"pause","et":"e19","eventName":"hold","action":"a12" }<br/>
+                eventName = unHold(保持接回) 返回的JSON对象为<br/>
+                {"type":"event","name":"ringing","enterpriseId":"3000000","cno":"2002","customerNumber":"01041005968", "customerNumberType":"1","customerAreaCode":"010","numberTrunk":"6001","hotline":"4006006001", "callType":"3","uniqueId":"ccic_dev_11-1354265834.65","qid":"","et":"e13","ct":"点击外呼","eventName":"unHold", "action":"a18","deviceStatus":"busy","loginStatus":"online" }<br/>
+                eventName = neatenStart(整理开始) 返回的JSON对象为<br/>
+                {"type":"event","name":"status","enterpriseId":"3000000","cno":"2002","deviceStatus":"idle","loginStatus":"pause","pauseDescription":"pauseWrapup","wrapupTime":"30","et":"e20","eventName":"neatenStart","action":"a13"}<br/>
+                eventName = neatenEnd(整理结束) 返回的JSON对象为<br/>
+                {"type":"event","name":"status","enterpriseId":"3000000","cno":"2002","loginStatus":"online", "deviceStatus":"idle","et":"e1","eventName":"neatenEnd","action":"a19" }<br/>
+                eventName = consultLink(发起方咨询通话) 返回的JSON对象为<br/>
+                {"type":"event","name":"consultLink","enterpriseId":"3000000","cno":"2002","consultObject":"2000", "objectType":"1","et":"e22","eventName":"consultLink","action":"a20"}<br/>
+                eventName = consulterOrTransferBusy(被咨询或者转移的通话) 的时候<br/>
+                咨询通话返回的JSON为<br/>
+                {"type":"event","name":"status","enterpriseId":"3000000","cno":"2002","deviceStatus":"busy", "loginStatus":"online","busyDescription":"","customerNumber":"01041005968","customerNumberType":"1", "callType":"3","consulterCno":"2000","et":"e27","ct":"点击外呼","eventName":"consulterOrTransferBusy","action":"a9"}<br/>
+                转移通话返回的JSON为<br/>
+                {"type":"event","name":"status","enterpriseId":"3000000","cno":"2002","deviceStatus":"busy", "loginStatus":"online","busyDescription":"","customerNumber":"01041005968","customerNumberType":"1", "callType":"3","transferCno":"2000","et":"e29","ct":"点击外呼", "eventName":"consulterOrTransferBusy","action":"a9"}<br/>
+                eventName = consultThreeBusy(咨询三方通话) 返回的JSON对象<br/>
+                {"type":"response","code":"0","msg":"ok","reqType":"consultThreeway","eventName":"consultThreeBusy"}<br/>
+                eventName = consultationMove(咨询转接) 返回的JSON对象<br/>
+                {"type":"event","name":"consultTransfer","enterpriseId":"3000000","cno":"2002", "consulterCno":"2000","et":"e26","eventName":"consultationMove","action":"a24"}<br/>
+                eventName = spyBusy(监控通话) 返回的JSON对象<br/>
+                {"type":"event","name":"status","enterpriseId":"3000000","cno":"2002","deviceStatus":"busy", "loginStatus":"pause","pauseDescription":"小休","busyDescription":"","customerNumber":"","customerNumberType":"", "callType":"0","et":"e18","ct":"","eventName":"spyBusy","action":"a8" }<br/>
+                eventName = transferInteract(座席保持) 返回的JSON对象为<br/>
+                {"type":"response","code":"0","msg":"ok","reqType":"interact"}<br/>
+                eventName = interactReturn(座席保持接回) 返回的JSON对象为<br/>
+                {"type":"event","name":"interactReturn","enterpriseId":"3000000","cno":"2002" }<br/>
+            </div>
+        </div>
+
+        <div class="conbar">
+            <h1>返回json参数描述</h1>
+            <div class="concon grey">
+                <table border="0" cellpadding="0" cellspacing="0" style="height:100%;width:100%;" width="423">
+                    <tbody>
+                    <tr>
+                        <td style="width:98px;">参数名</td>
+                        <td style="width:44px;">类型</td>
+                        <td style="width:99px;">描述</td>
+                        <td style="width:323px;">备注</td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">uniqueId</td>
+                        <td style="width:44px;">String</td>
+                        <td style="width:99px;">通话记录ID</td>
+                        <td style="width:323px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">qid</td>
+                        <td style="width:44px;">String</td>
+                        <td style="width:99px;">队列ID</td>
+                        <td style="width:323px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">consulterCno</td>
+                        <td style="width:44px;">String</td>
+                        <td style="width:99px;">咨询自座席号</td>
+                        <td style="width:323px;">执行咨询操作的座席号</td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">transferCno</td>
+                        <td style="width:44px;">String</td>
+                        <td style="width:99px;">转移自座席号</td>
+                        <td style="width:323px;">执行转移操作的座席号</td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">customerNumber</td>
+                        <td style="width:44px;">String</td>
+                        <td style="width:99px;">电话号码</td>
+                        <td style="width:323px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">enterpriseId</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">企业号</td>
+                        <td style="width: 98px; height: 40px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">callType</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">电话类型</td>
+                        <td style="width: 98px; height: 40px;">0：监听电话，1：呼入，2：网上400，3：点击外呼，4：预览外呼，5：IVR外呼，6：直接外呼</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">customerNumberType</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">电话号码类型</td>
+                        <td style="width: 98px; height: 40px;">1：固话，2：手机</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">customerAreaCode</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">号码归属地</td>
+                        <td style="width: 98px; height: 40px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">duration</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">当前状态持续时间</td>
+                        <td style="width: 98px; height: 40px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">wrapupTime</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">整理时间</td>
+                        <td style="width: 98px; height: 40px;"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br/>
+            </div>
+        </div>
+        <div class="conbar">
+            <h1>eventName详细属性</h1>
+            <div class="concon grey">
+                <table border="0" cellpadding="0" cellspacing="0" style="height:100%;width:100%;" width="423">
+                    <tbody>
+                    <tr>
+                        <td style="width:98px;">状态</td>
+                        <td style="width:44px;">类型</td>
+                        <td style="width:99px;">描述</td>
+                        <td style="width:323px;">备注</td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">online</td>
+                        <td style="width:44px;">String</td>
+                        <td style="width:99px;">空闲状态</td>
+                        <td style="width:323px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">pause</td>
+                        <td style="width:44px;">String</td>
+                        <td style="width:99px;">置忙状态</td>
+                        <td style="width:323px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">stateRinging</td>
+                        <td style="width:44px;">String</td>
+                        <td style="width:99px;">响铃状态</td>
+                        <td style="width:323px;">只改变座席状态，没有电话详情</td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">comeRinging</td>
+                        <td style="width:44px;">String</td>
+                        <td style="width:99px;">呼入响铃状态</td>
+                        <td style="width:323px;">执行转移操作的座席号</td>
+                    </tr>
+                    <tr>
+                        <td style="width:98px;">normalBusy</td>
+                        <td style="width:44px;">String</td>
+                        <td style="width:99px;">进入正常通话状态</td>
+                        <td style="width:323px;">包含电话详细信息</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">addBusy</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">直接进入通话状态</td>
+                        <td style="width: 98px; height: 40px;">包含电话详情信息</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">outRinging</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">外呼响铃状态</td>
+                        <td style="width: 98px; height: 40px;">包含电话详情信息</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">waitLink</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">座席接听</td>
+                        <td style="width: 98px; height: 40px;">等待客户接听</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">onlineUnlink</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">挂断后置闲</td>
+                        <td style="width: 98px; height: 40px;">挂断后返回座席原状态</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">pauseUnlink</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">挂断后置忙</td>
+                        <td style="width: 98px; height: 40px;">挂断后返回座席原状态</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">hold</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">保持</td>
+                        <td style="width: 98px; height: 40px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">unHold</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">保持接回</td>
+                        <td style="width: 98px; height: 40px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">neatenStart</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">整理开始</td>
+                        <td style="width: 98px; height: 40px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">neatenEnd</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">整理结束</td>
+                        <td style="width: 98px; height: 40px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">consultLink</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">发起咨询方通话</td>
+                        <td style="width: 98px; height: 40px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">consulterOrTransferBusy</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">被转移的通话</td>
+                        <td style="width: 98px; height: 40px;">包括咨询转移和转移</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">consultThreeBusy</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">咨询三方通话</td>
+                        <td style="width: 98px; height: 40px;">客户、发起、接收三方</td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">consultationMove</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">咨询转接替换成转移</td>
+                        <td style="width: 98px; height: 40px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">spyBusy</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">监控通话</td>
+                        <td style="width: 98px; height: 40px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">transferInteract</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">座席保持</td>
+                        <td style="width: 98px; height: 40px;"></td>
+                    </tr>
+                    <tr>
+                        <td style="width: 98px; height: 40px;">interactReturn</td>
+                        <td style="width: 98px; height: 40px;">String</td>
+                        <td style="width: 98px; height: 40px;">座席保持接回</td>
+                        <td style="width: 98px; height: 40px;"></td>
+                    </tr>
+                    </tbody>
+                </table>
+                <br/>
+            </div>
+        </div>
+
+    </div>
+    <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR">
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span
+        class="icon_m arrowup"></span></a></div>
+</body>
+</html>

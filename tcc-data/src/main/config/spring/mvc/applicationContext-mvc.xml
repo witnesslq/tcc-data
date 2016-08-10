@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd
+        http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+    <!-- scan 目录 ，类能够使用spring的注解注入的方式 -->
+    <context:component-scan base-package="com.tinet.tcc.app.**.controller"/>
+
+    <mvc:annotation-driven/>
+    <!-- 视图解释类 -->
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <!-- 配置视图前缀 -->
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <!-- 配置视图后缀 -->
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <!-- 激活Tomcat的defaultServlet来处理静态文件,性能最好.web.xml中default配置-->
+    <mvc:resources mapping="/framework/**" location="/framework/" />
+
+    <!-- 添加spring拦截器进行操作日志处理 -->
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--&lt;!&ndash; 对所有的请求拦截使用/** ,对某个模块下的请求拦截使用：/myPath/* &ndash;&gt;-->
+            <!--<mvc:mapping path="/**" />-->
+            <!--<ref bean="actionLogInterceptor" />-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
+
+    <!--<bean id="actionLogInterceptor"-->
+          <!--class="com.framework.base.interceptor.ActionLogInterceptor">-->
+    <!--</bean>-->
+
+    <!-- 避免IE在ajax请求时，返回json出现下载 -->
+    <bean id="jacksonMessageConverter" class="org.springframework.http.converter.json.MappingJackson2HttpMessageConverter">
+        <property name="supportedMediaTypes">
+            <list>
+                <value>text/html;charset=UTF-8</value>
+            </list>
+        </property>
+    </bean>
+
+    <!-- 配置MultipartResolver 用于文件上传 使用spring的CommosMultipartResolver -->
+    <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver"
+                p:defaultEncoding="UTF-8"
+                p:maxUploadSize="10800000"
+                p:uploadTempDir="/framework"
+                p:maxInMemorySize="4096"
+    >
+    </bean>
+
+
+    <!-- 总错误处理-->
+    <bean id="exceptionResolver" class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">
+        <property name="defaultErrorView">
+            <value>error</value>
+        </property>
+        <property name="defaultStatusCode">
+            <value>500</value>
+        </property>
+        <property name="warnLogCategory">
+            <value>org.springframework.web.servlet.handler.SimpleMappingExceptionResolver</value>
+        </property>
+
+        <property name="exceptionMappings">
+            <props>
+                <!-- 遇到MaxUploadSizeExceededException异常时，自动跳转到/WEB-INF/jsp/error_fileupload.jsp页面 -->
+                <prop
+                        key="org.springframework.web.multipart.MaxUploadSizeExceededException">500</prop>
+            </props>
+        </property>
+    </bean>
+
+</beans>

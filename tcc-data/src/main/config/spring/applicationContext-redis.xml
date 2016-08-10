@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:p="http://www.springframework.org/schema/p"
+       xmlns:util="http://www.springframework.org/schema/util"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd">
+
+
+    <!--<context:property-placeholder location="classpath:redis.properties" ignore-unresolvable="true"/>-->
+
+    <bean id="jedisPoolConfig" class="redis.clients.jedis.JedisPoolConfig">
+        <property name="maxTotal" value="${redis.maxTotal}"/>
+        <property name="MaxIdle" value="${redis.maxIdle}"/>
+        <property name="MinIdle" value="${redis.minIdle}"/>
+        <property name="TestOnBorrow" value="${redis.testOnBorrow}"/>
+
+    </bean>
+
+    <bean id="redisConnectionFactory" class="com.framework.base.jedis.TccJedisConnectionFactory"
+          p:hostName="${redis.host}" p:port="${redis.port}" p:password="${redis.pass}" p:poolConfig-ref="jedisPoolConfig" p:database="${redis.db}"/>
+
+    <!-- 定义Spring Redis的序列化器 -->
+    <bean id="stringRedisSerializer" class="org.springframework.data.redis.serializer.StringRedisSerializer" />
+    <bean id="jsonRedisSerializer" class="org.springframework.data.redis.serializer.GenericJackson2JsonRedisSerializer" />
+
+    <!-- 定义Spring Redis模板（采用Json序列化） -->
+    <bean id="jsonRedisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
+        <!-- 序列化方式 建议key/hashKey采用StringRedisSerializer。 -->
+        <property name="connectionFactory" ref="redisConnectionFactory" />
+        <property name="keySerializer" ref="stringRedisSerializer" />
+        <property name="valueSerializer" ref="jsonRedisSerializer" />
+        <property name="hashKeySerializer" ref="stringRedisSerializer" />
+        <property name="hashValueSerializer" ref="jsonRedisSerializer" />
+    </bean>
+
+    <bean id="redisTemplate" class="com.framework.base.redis.RedisTemplate">
+        <property name="connectionFactory" ref="redisConnectionFactory" />
+    </bean>
+
+    <bean id="redisService" class="com.framework.base.redis.RedisService" />
+
+
+    <!-- Spring Session配置  将session放入redis -->
+    <util:constant static-field="org.springframework.session.data.redis.config.ConfigureRedisAction.NO_OP"/>
+    <bean class="org.springframework.session.data.redis.config.annotation.web.http.RedisHttpSessionConfiguration">
+        <property name="defaultRedisSerializer" ref="jsonRedisSerializer" />
+        <property name="maxInactiveIntervalInSeconds" value="36000" />
+    </bean>
+
+</beans>

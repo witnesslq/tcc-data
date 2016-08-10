@@ -1,0 +1,275 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+   <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/interface.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#22").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#22").parent("ul").css("display","block");
+            $(".jklist ul li ul li#22 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+ <div class="body-r">
+    <h1>满意度调查记录</h1>
+
+    <div class="conbar">
+      <h1>接口作用说明</h1>
+      <div class="concon grey">通过接口实现满意度调查记录的查询功能<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>API URL</h1>
+      <div class="concon grey"><strong>接口URL</strong><strong>（POST</strong><strong>方式）</strong><br />
+发起者：合作方<br />
+接受者：天润融通<br />
+接口类型：HTTP接口<br />
+调用方式：POST<br />
+返回格式：JSON数据<br />
+URL规范：<br />
+http://InterfaceServerIp:port/interface/entrance/OpenInterfaceEntrance?interfaceType=investigationList&amp;enterpriseId=3000000&amp;userName=admin&amp;pwd=c33367701511b4f6020ec61ded352059&amp;startDate=2013-04-23 08:00:00&amp;endDate=2013-04-30 23:59:59<br />
+说明：InterfaceServerIp:port 为使用账号登录<a href="http://www.ccic2.com">www.ccic2.com</a>之后，在浏览器地址栏看到的域名地址。<br />
+例如：xa.ccic2.com<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;bj.ccic2.com<br />
+&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;1.ccic2.com<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:98px;"><strong>参数</strong></td>
+	<td style="width:44px;"><strong>要求</strong></td>
+	<td style="width:99px;"><strong>描述</strong></td>
+	<td style="width:323px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:98px;">enterpriseId</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">企业Id</td>
+	<td style="width:323px;">必选企业id</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">interfaceType</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">请求类型</td>
+	<td style="width:323px;">1.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; investigationList: 获取当前企业的满意度调查记录<br />
+	2.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; ivrList: 获取当前企业IVR列表<br />
+	3.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; freeClients: 获取当前企业空闲座席<br />
+	4.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; webCallss</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">userName</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">用户名</td>
+	<td style="width:323px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">pwd</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">密码</td>
+	<td style="width:323px;">对应username的密码，md5(登录密码)，例如md5(123456)</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">cno</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">座席工号</td>
+	<td style="width:323px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">startDate</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">开始时间</td>
+	<td style="width:323px;">开始时间不能大于结束时间</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">endDate</td>
+	<td style="width:44px;">必选</td>
+	<td style="width:99px;">结束时间</td>
+	<td style="width:323px;">时间跨度不能大于30天</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">mainUniqueId</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">通话记录唯一标识</td>
+	<td style="width:323px;">例如：ccic_dev_11-1400747750.13</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">keys</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">评分值</td>
+	<td style="width:323px;">例如：1</td>
+	</tr>
+	<tr>
+	<td style="width:98px;">callType</td>
+	<td style="width:44px;">可选</td>
+	<td style="width:99px;">呼叫类型</td>
+	<td style="width:323px;">1.呼入&nbsp; 2.网上400 3.点击外呼 4.预览外呼 5.预测外呼6.直接外呼 7.自动录音 8.预约回呼</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+      <div class="concon grey">此接口返回JSON格式数据。<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:54px;height:24px;"><strong>result</strong></td>
+	<td style="width:365px;height:24px;"><strong>msg</strong></td>
+	<td style="width:168px;height:24px;"><strong>description</strong></td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:24px;">success</td>
+	<td style="width:365px;height:24px;">{&quot;getInvestigationList&quot;:[{&quot;id&quot;:1,&quot;mainUniqueId&quot;:&quot;ccic-211-1366947844.0&quot;,&quot;callType&quot;:3,&quot;enterpriseId&quot;:3000082,&quot;hotline&quot;:&quot;400600800&quot;,&quot;startTime&quot;:1366947871,&quot;endTime&quot;:1366947907,&quot;duration&quot;:36,&quot;cno&quot;:&quot;2000&quot;,&quot;clientCrmId&quot;:&quot;&quot;,&quot;clientName&quot;:&quot;雪峰&quot;,&quot;keys&quot;:&quot;&quot;,&quot;createTime&quot;:&quot;2013-04-26 11:45:07.073&quot;}]}</td>
+	<td style="width:168px;height:24px;">成功返回满意度调查详细信息</td>
+	</tr>
+	<tr>
+	<td style="width:54px;height:53px;">error</td>
+	<td style="width:365px;height:53px;">&quot;无权访问&quot;</td>
+	<td style="width:168px;height:53px;">查询满意度调查详细失败原因</td>
+	</tr>
+</tbody>
+</table>
+&nbsp;<br />
+<strong>json</strong><strong>格式数据记录的各属性定义：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:90px;height:22px;"><strong>名称</strong></td>
+	<td style="width:133px;height:22px;"><strong>描述</strong></td>
+	<td style="width:161px;height:22px;"><strong>数据格式</strong></td>
+	<td style="width:105px;height:22px;"><strong>取值范围</strong></td>
+	<td style="width:105px;height:22px;"><strong>例子</strong></td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:43px;">mainUniqueId</td>
+	<td style="width:133px;height:43px;">主外呼通话记录唯一标识</td>
+	<td style="width:161px;height:43px;">&nbsp;</td>
+	<td style="width:105px;height:43px;">&nbsp;</td>
+	<td style="width:105px;height:43px;">ccic_dev_11-1344323905.20</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:43px;">callType</td>
+	<td style="width:133px;height:43px;">满意度调查时的通话类型</td>
+	<td style="width:161px;height:43px;">&nbsp;</td>
+	<td style="width:105px;height:43px;">&nbsp;</td>
+	<td style="width:105px;height:43px;">3</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:22px;">enterpriseId</td>
+	<td style="width:133px;height:22px;">企业id</td>
+	<td style="width:161px;height:22px;">&nbsp;</td>
+	<td style="width:105px;height:22px;">&nbsp;</td>
+	<td style="width:105px;height:22px;">3000082</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:21px;">hotline</td>
+	<td style="width:133px;height:21px;">热线号码</td>
+	<td style="width:161px;height:21px;">&nbsp;</td>
+	<td style="width:105px;height:21px;">&nbsp;</td>
+	<td style="width:105px;height:21px;">400600800</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:22px;">startTime</td>
+	<td style="width:133px;height:22px;">开始满意度调查时间</td>
+	<td style="width:161px;height:22px;">&nbsp;</td>
+	<td style="width:105px;height:22px;">&nbsp;</td>
+	<td style="width:105px;height:22px;">1366947871</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:21px;">endTime</td>
+	<td style="width:133px;height:21px;">结束满意度调查时间</td>
+	<td style="width:161px;height:21px;">&nbsp;</td>
+	<td style="width:105px;height:21px;">&nbsp;</td>
+	<td style="width:105px;height:21px;">1366947907</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:22px;">duration</td>
+	<td style="width:133px;height:22px;">持续时长秒</td>
+	<td style="width:161px;height:22px;">&nbsp;</td>
+	<td style="width:105px;height:22px;">&nbsp;</td>
+	<td style="width:105px;height:22px;">36</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:21px;">cno</td>
+	<td style="width:133px;height:21px;">座席号</td>
+	<td style="width:161px;height:21px;">&nbsp;</td>
+	<td style="width:105px;height:21px;">&nbsp;</td>
+	<td style="width:105px;height:21px;">2000</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:22px;">clientCrmId</td>
+	<td style="width:133px;height:22px;">座席号对应crmid</td>
+	<td style="width:161px;height:22px;">&nbsp;</td>
+	<td style="width:105px;height:22px;">&nbsp;</td>
+	<td style="width:105px;height:22px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:21px;">clientName</td>
+	<td style="width:133px;height:21px;">座席名称</td>
+	<td style="width:161px;height:21px;">&nbsp;</td>
+	<td style="width:105px;height:21px;">&nbsp;</td>
+	<td style="width:105px;height:21px;">雪峰</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:44px;">keys</td>
+	<td style="width:133px;height:44px;">满意度调查结果，多按键无分隔符顺序存放</td>
+	<td style="width:161px;height:44px;">&nbsp;</td>
+	<td style="width:105px;height:44px;">&nbsp;</td>
+	<td style="width:105px;height:44px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:90px;height:44px;">createTime</td>
+	<td style="width:133px;height:44px;">创建时间</td>
+	<td style="width:161px;height:44px;">&nbsp;</td>
+	<td style="width:105px;height:44px;">&nbsp;</td>
+	<td style="width:105px;height:44px;">2013-04-26 11:45:07.073s</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+    
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR"> 
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

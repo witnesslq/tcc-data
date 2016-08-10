@@ -1,0 +1,424 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+   <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/interface.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#47").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#47").parent("ul").css("display","block");
+            $(".jklist ul li ul li#47 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+<div class="body-r">
+    <h1>数据存储接口</h1>
+       
+     
+     
+    <div class="conbar">
+      <h1>保存</h1>
+      <div class="concon grey"><strong>接口URL（GET方式）</strong><br />
+接口类型：HTTP请求<br />
+接口使用账户：企业账户<br />
+接口地址：天润呼叫中心接口服务器IP或域名<br />
+接口参数：企业编号，用户名，密码，键，值<br />
+返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+<a href="javascript:void(0)">http://TIWebServer:TIPort/interfaceAction/dataManager!set.action?enterpriseId=&amp;userName=&amp;pwd=&amp;seed=&amp;key=&amp;value=</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">enterpriseId</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">企业id</td>
+	<td style="width:312px;">管理员后台登陆后，位于右上角位置</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">企业后台登录用户</td>
+	<td style="width:312px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">pwd</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">需和seed进行MD5加密，格式：md5(md5(对应userName的密码)+seed)，例如：md5(md5(123456)seed)</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">seed</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">随机字符串</td>
+	<td style="width:312px;"></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">key</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">键</td>
+	<td style="width:312px;">不能为空</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">value</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">值</td>
+	<td style="width:312px;">不能为空；如果key已经存在，覆盖原有value</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{result:返回结果, code:结果代码,msg:描述}<br />
+
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result</strong></td>
+	<td style="width:69px;height:24px;"><strong>code</strong></td>
+	<td style="width:489px;height:24px;"><strong>msg</strong></td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:69px;height:24px;">0</td>
+	<td style="width:489px;height:24px;">操作成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:69px;height:24px;">1</td>
+	<td style="width:489px;height:24px;">参数[具体参数名]不能为空</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:69px;height:24px;">2</td>
+	<td style="width:489px;height:24px;">参数[具体参数名]格式不正确</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:69px;height:24px;">3</td>
+	<td style="width:489px;height:24px;">企业不存在或状态不正常</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:69px;height:24px;">4</td>
+	<td style="width:489px;height:24px;">无权操作，接口未开通/td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:69px;height:24px;">5</td>
+	<td style="width:489px;height:24px;">验证失败，用户名或密码不正确</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:69px;height:24px;">6</td>
+	<td style="width:489px;height:24px;">优先级已存在</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:69px;height:24px;">99</td>
+	<td style="width:489px;height:24px;">其他错误，操作失败</td>
+	</tr>
+
+</tbody>
+</table>
+</div><br />
+</div>
+
+<br />
+<br />
+<br />
+
+
+   <div class="conbar">
+      <h1>获取</h1>
+      <div class="concon grey"><strong>接口URL（GET方式）</strong><br />
+接口类型：HTTP请求<br />
+接口使用账户：企业账户<br />
+接口地址：天润呼叫中心接口服务器IP或域名<br />
+接口参数：企业编号，用户名，密码，键，值<br />
+返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+<a href="javascript:void(0)">http://TIWebServer:TIPort/interfaceAction/dataManager!get.action?enterpriseId=&amp;userName=&amp;pwd=&amp;seed=&amp;key=</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">enterpriseId</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">企业id</td>
+	<td style="width:312px;">管理员后台登陆后，位于右上角位置</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">企业后台登录用户</td>
+	<td style="width:312px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">pwd</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">需和seed进行MD5加密，格式：md5(md5(对应userName的密码)+seed)，例如：md5(md5(123456)seed)</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">seed</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">随机字符串</td>
+	<td style="width:312px;"></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">key</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">键</td>
+	<td style="width:312px;">不能为空</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{result:返回结果, code:结果代码,msg:描述,value:xxx}<br />
+
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result</strong></td>
+	<td style="width:69px;height:24px;"><strong>code</strong></td>
+	<td style="width:489px;height:24px;"><strong>msg</strong></td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:69px;height:24px;">0</td>
+	<td style="width:489px;height:24px;">操作成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:69px;height:24px;">1</td>
+	<td style="width:489px;height:24px;">参数[具体参数名]不能为空</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:69px;height:24px;">2</td>
+	<td style="width:489px;height:24px;">参数[具体参数名]格式不正确</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:69px;height:24px;">3</td>
+	<td style="width:489px;height:24px;">企业不存在或状态不正常</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:69px;height:24px;">4</td>
+	<td style="width:489px;height:24px;">无权操作，接口未开通/td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:69px;height:24px;">5</td>
+	<td style="width:489px;height:24px;">验证失败，用户名或密码不正确</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:69px;height:24px;">6</td>
+	<td style="width:489px;height:24px;">优先级已存在</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:69px;height:24px;">99</td>
+	<td style="width:489px;height:24px;">其他错误，操作失败</td>
+	</tr>
+
+</tbody>
+</table>
+</div><br />
+</div>    
+
+
+<br />
+<br />
+<br />
+
+
+   <div class="conbar">
+      <h1>删除</h1>
+      <div class="concon grey"><strong>接口URL（GET方式）</strong><br />
+接口类型：HTTP请求<br />
+接口使用账户：企业账户<br />
+接口地址：天润呼叫中心接口服务器IP或域名<br />
+接口参数：企业编号，用户名，密码，键，值<br />
+返回值：JSON格式返回结果<br />
+接口URL<br />
+URL示例：<br />
+<a href="javascript:void(0)">http://TIWebServer:TIPort/interfaceAction/dataManager!del.action?enterpriseId=&amp;userName=&amp;pwd=&amp;seed=&amp;key=</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">enterpriseId</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">企业id</td>
+	<td style="width:312px;">管理员后台登陆后，位于右上角位置</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">企业后台登录用户</td>
+	<td style="width:312px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">pwd</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">需和seed进行MD5加密，格式：md5(md5(对应userName的密码)+seed)，例如：md5(md5(123456)seed)</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">seed</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">随机字符串</td>
+	<td style="width:312px;"></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">key</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">键</td>
+	<td style="width:312px;">不能为空</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{result:返回结果, code:结果代码,msg:描述}<br />
+
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result</strong></td>
+	<td style="width:69px;height:24px;"><strong>code</strong></td>
+	<td style="width:489px;height:24px;"><strong>msg</strong></td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:69px;height:24px;">0</td>
+	<td style="width:489px;height:24px;">操作成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:69px;height:24px;">1</td>
+	<td style="width:489px;height:24px;">参数[具体参数名]不能为空</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:69px;height:24px;">2</td>
+	<td style="width:489px;height:24px;">参数[具体参数名]格式不正确</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:69px;height:24px;">3</td>
+	<td style="width:489px;height:24px;">企业不存在或状态不正常</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:69px;height:24px;">4</td>
+	<td style="width:489px;height:24px;">无权操作，接口未开通/td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:69px;height:24px;">5</td>
+	<td style="width:489px;height:24px;">验证失败，用户名或密码不正确</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:69px;height:24px;">6</td>
+	<td style="width:489px;height:24px;">优先级已存在</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:69px;height:24px;">99</td>
+	<td style="width:489px;height:24px;">其他错误，操作失败</td>
+	</tr>
+
+</tbody>
+</table>
+</div><br />
+</div>      
+
+    
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR"> 
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

@@ -1,0 +1,245 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+   <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/interface.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#51").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#51").parent("ul").css("display","block");
+            $(".jklist ul li ul li#51 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+<div class="body-r">
+    <h1>留言记录接口</h1>
+       
+    <div class="conbar">
+      <h1>接口作用说明</h1>
+      <div class="concon grey">查看留言记录。<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>新建或修改接口</h1>
+      <div class="concon grey"><strong>接口URL（GET方式）</strong><br />
+接口类型：HTTP请求<br />
+接口使用账户：企业账户<br />
+接口地址：呼叫中心系统IP<br />
+接口参数：企业账号、企业账户密码、技能id、名称、备注<br />
+接口返回值：操作结果<br />
+接口URL<br />
+URL示例：<br />
+<a href="javascript:void(0)">http://172.16.203.190/interfaceAction/commentRecordInterface!view.action?enterpriseId=3000002&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e&amp;customerNumber=15120054657&amp;hotline=4006004321&amp;startTime=2013-09-01%2000:00:00&amp;endTime=2013-09-30%2014:39:49</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">enterpriseId</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">企业id</td>
+	<td style="width:312px;">enterpriseId与hotline必须二选一</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">用户名</td>
+	<td style="width:312px;">登录后台用户名，如admin</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">pwd</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">对应username的密码，md5(登录密码），例如：md5(123456)</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">customerNumber</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">来电号码</td>
+	<td style="width:312px;">添加来电号码查询条件</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">hotline</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">热线号码</td>
+	<td style="width:312px;">添加热线号码查询条件</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">startTime</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">开始时间</td>
+	<td style="width:312px;">格式“yyyy-mm-dd hh:mm:ss”，例如：2012-08-01 00:00:00，默认当月第一天</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">endTime</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">结束时间</td>
+	<td style="width:312px;">格式“yyyy-mm-dd hh:mm:ss”，例如：2012-08-08 00:00:00，默认当月最后一天</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">start</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">从第几条开始取</td>
+	<td style="width:312px;">正整数，大于等于0，默认0</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">limit</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">需要取出的数据条数</td>
+	<td style="width:312px;">正整数，大于0，不输入默认1000条</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON串，格式为{result:xxx,msg:xxx},result表示返回结果状态码，msg表示结果状态的描述。<br />
+JSON格式数据<br />
+{"result":"success","msg":{"data":[{"uniqueId":"wangjing- 1378187478.0","customerNumber":"15120054657","customerProvince":"北 京","customerCity":"北 京","clientNumber":"","hotline":"4006004321","startTime":"2013-09-03 13:51:18","endTime":"2013-09-03 13:51:47","bridgeDuration":"0","totalDuration":"29"}],"paging":{"start":0,"totalSize":1,"pageSize":1}}}<br />
+
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>名称</strong></td>
+	<td style="width:69px;height:24px;"><strong>描述</strong></td>
+	<td style="width:489px;height:24px;"><strong>数据格式</strong></td>
+	<td style="width:69px;height:24px;"><strong>取值范围</strong></td>
+	<td style="width:69px;height:24px;"><strong>例子</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">uniqueId</td>
+	<td style="width:69px;height:24px;">电话唯一标识</td>
+	<td style="width:489px;height:24px;"></td>
+	<td style="width:69px;height:24px;"></td>
+	<td style="width:69px;height:24px;">ccic_dev_11-1334563616.70</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">customerNumber</td>
+	<td style="width:69px;height:24px;">来电号码</td>
+	<td style="width:489px;height:24px;">区号 + 7或8位的固话号码，区号与固话号码之间无'-'；或11位长度的手机号码。</td>
+	<td style="width:69px;height:24px;">中国国内固话或手机</td>
+	<td style="width:69px;height:24px;">01059222999或18701051984</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">customerProvince</td>
+	<td style="width:69px;height:24px;">来电省份</td>
+	<td style="width:489px;height:24px;"></td>
+	<td style="width:69px;height:24px;"></td>
+	<td style="width:69px;height:24px;">北京</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">customerCity</td>
+	<td style="width:69px;height:24px;">来电城市</td>
+	<td style="width:489px;height:24px;"></td>
+	<td style="width:69px;height:24px;"></td>
+	<td style="width:69px;height:24px;">北京</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">startTime</td>
+	<td style="width:69px;height:24px;">电话进入系统时间</td>
+	<td style="width:489px;height:24px;">时间格式“yyyy-mm-dd hh:mm:ss”</td>
+	<td style="width:69px;height:24px;"></td>
+	<td style="width:69px;height:24px;">2012-05-01 15:00:02</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">endTime</td>
+	<td style="width:489px;height:24px;">结束时间</td>
+	<td style="width:69px;height:24px;">时间格式“yyyy-mm-dd hh:mm:ss”</td>
+	<td style="width:69px;height:24px;"></td>
+	<td style="width:69px;height:24px;">2012-05-01 15:00:02</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">bridgeDuration</td>
+	<td style="width:69px;height:24px;">通话时长</td>
+	<td style="width:489px;height:24px;">格式“hh:mm:ss”</td>
+	<td style="width:69px;height:24px;"></td>
+	<td style="width:69px;height:24px;">00:02:26</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">totalDuration</td>
+	<td style="width:69px;height:24px;">总时长</td>
+	<td style="width:489px;height:24px;">格式“hh:mm:ss”</td>
+	<td style="width:69px;height:24px;"></td>
+	<td style="width:69px;height:24px;">00:02:36</td>
+	</tr>
+</tbody>
+</table>
+</div>
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>res返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">操作成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">失败原因</td>
+	</tr>
+</tbody>
+</table>
+</div>
+URL示例：<br />
+使用enterpriseId<br />
+http://xxx.ccic2.com/interface/ivrCallback?enterpriseId=3000072&amp;userName=admin&amp;pwd=66b7146abd2f6fc7d78e854f0c94cffb&amp;uniqueId=dev18-1415787391.4&amp;paramNames=a&amp;a=1<br />
+成功返回：<br />
+{"result":"success","code":"0","msg":""}<br />
+失败返回：<br />
+{"result":"error","code":"5","msg":"回调已超时"}<br />
+<br />
+</div>
+    </div>
+          
+
+    
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR"> 
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

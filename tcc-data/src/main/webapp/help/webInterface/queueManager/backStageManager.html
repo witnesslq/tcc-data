@@ -1,0 +1,2097 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+   <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/interface.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#24").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#24").parent("ul").css("display","block");
+            $(".jklist ul li ul li#24 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+<div class="body-r">
+    <h1>后台管理</h1>
+
+     
+    <div class="conbar">
+      <h1>接口作用说明</h1>
+      <div class="concon grey">后台管理接口主要实现：新增、修改查询座席及队列</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>规范</h1>
+      <div class="concon grey">InterfaceServerIp：天润融通接口服务器Ip或域名<br />
+port：天润融通接口服务器接收端口<br />
+接口URL中的InterfaceServerIp:port地址，是登录座席前台或管理员后台在浏览器地址栏看到的域名地址，如图标注部分<br />
+<img alt="" src="/framework/images/helpcenter/20151014050531553.png" style="width: 523px; height: 80px;" /><br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>座席接口-新建或修改</h1>
+      <div class="concon grey">接口类型：HTTP<br />
+接口使用账户：企业账户<br />
+接口地址：呼叫中心系统IP<br />
+接口参数：企业账号、企业账户密码、工号、姓名等<br />
+接口返回值：操作结果<br />
+接口说明<br />
+添加一个座席。<br />
+接口URL<br />
+URL示例： <a href="http://172.16.203.197/interfaceAction/clientInterface!save.action?enterpriseId=3000008&amp;userName=admin&amp;password=e10adc3949ba59abbe56e057f20f883e&amp;cno=1003&amp;name=%E5%BA%A7%E5%B8%AD&amp;active=1&amp;wrapup=10&amp;areaCode=010&amp;power=0&amp;callPower=0">http://172.16.203.197/interfaceAction/clientInterface!save.action?enterpriseId=3000008&amp;userName=admin&amp;password=e10adc3949ba59abbe56e057f20f883e&amp;cno=1003&amp;name=%E5%BA%A7%E5%B8%AD&amp;active=1&amp;wrapup=10&amp;areaCode=010&amp;power=0&amp;callPower=0</a><br />
+说明：该示例中password = e10adc3949ba59abbe56e057f20f883e = MD5Encoder.encode(&#39;123456)，name值是经过URLEncode按&ldquo;UTF-8&rdquo;格式编码的，中文是&ldquo;座席&rdquo;。<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:70px;"><strong>参数</strong></td>
+	<td style="width:42px;"><strong>要求</strong></td>
+	<td style="width:104px;"><strong>描述</strong></td>
+	<td style="width:348px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:70px;"><strong>enterpriseId</strong></td>
+	<td style="width:42px;"><strong>必选</strong></td>
+	<td style="width:104px;">企业Id</td>
+	<td style="width:348px;">例如:3000008</td>
+	</tr>
+	<tr>
+	<td style="width:70px;"><strong>userName</strong></td>
+	<td style="width:42px;"><strong>必选</strong></td>
+	<td style="width:104px;">角色名称</td>
+	<td style="width:348px;">例如:admin</td>
+	</tr>
+	<tr>
+	<td style="width:70px;"><strong>password</strong></td>
+	<td style="width:42px;"><strong>必选</strong></td>
+	<td style="width:104px;">登录密码</td>
+	<td style="width:348px;">md5(登录密码))</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">id</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">座席id</td>
+	<td style="width:348px;"><strong>如修改时为必选</strong></td>
+	</tr>
+	<tr>
+	<td style="width:70px;"><strong>cno</strong></td>
+	<td style="width:42px;"><strong>必选</strong></td>
+	<td style="width:104px;">座席工号</td>
+	<td style="width:348px;">座席工号取值2000-9999</td>
+	</tr>
+	<tr>
+	<td style="width:70px;"><strong>name</strong></td>
+	<td style="width:42px;"><strong>必选</strong></td>
+	<td style="width:104px;">座席姓名</td>
+	<td style="width:348px;">需进行UTF-8格式的URLEncode编码</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">pwd</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">座席登录密码</td>
+	<td style="width:348px;">新增时为空则默认密码：123456,修改时为空则默认为不修改密码</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">crmId</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">座席crmId</td>
+	<td style="width:348px;">整型数字</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">sex</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">性别</td>
+	<td style="width:348px;">0表示男,1表示女；默认男</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">power</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">座席角色</td>
+	<td style="width:348px;">0表示普通座席,1表示班长座席；默认普通坐席</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">isSendMsg</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">座席发送短信功能</td>
+	<td style="width:348px;">0表示不开启,1表示开启；默认不开启</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">isMsgRecord</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">座席查看短信记录功能</td>
+	<td style="width:348px;">0表示不开启,1表示开启；默认不开启</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">active</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">是否激活</td>
+	<td style="width:348px;">0表示不激活,1表示激活；默认激活</td>
+	</tr>
+	<tr>
+	<td style="width:70px;"><strong>areaCode</strong></td>
+	<td style="width:42px;"><strong>必选</strong></td>
+	<td style="width:104px;">座席所属区号</td>
+	<td style="width:348px;">区号格式</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">callPower</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">呼叫权限</td>
+	<td style="width:348px;">0表示无限制,1表示国内长途,2表示国内本市,3表示内部呼叫；默认无限制</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">isOb</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">是否可以外呼</td>
+	<td style="width:348px;">0表示不允许,1表示允许；默认允许</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">ibRecord</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">呼入是否录音</td>
+	<td style="width:348px;">0表示不录音,1表示录音；默认录音</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">obRecord</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">外呼是否录音</td>
+	<td style="width:348px;">0表示不录音,1表示录音</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">wrapup</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">座席整理时间（单位：秒）</td>
+	<td style="width:348px;">整型数字；默认10秒</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">clientType</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">座席类型</td>
+	<td style="width:348px;">1表示电话坐席,2表示电脑座席；默认电话坐席</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">birth</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">出生日期</td>
+	<td style="width:348px;">日期类型(yyyy-MM-dd)</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">certificateId</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">身份证号</td>
+	<td style="width:348px;">整型数字</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">mobile</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">移动电话</td>
+	<td style="width:348px;">手机格式</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">otherTel</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">联系电话</td>
+	<td style="width:348px;">区号+7/8位固话号码</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">fax</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">传真号码</td>
+	<td style="width:348px;">区号+7/8位固话号码</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">email</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">电子邮箱</td>
+	<td style="width:348px;">电子邮箱格式</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">address</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">联系地址</td>
+	<td style="width:348px;">需进行UTF-8格式的URLEncode编码</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">post</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">邮编</td>
+	<td style="width:348px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">skillIds</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">所选的技能id</td>
+	<td style="width:348px;">多个间用英文标点逗号间隔.例如:1,2,3</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">skillLevels</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">所选的技能的等级(值越小技能越高)</td>
+	<td style="width:348px;">多个间用英文标点逗号间隔.(与技能id相对应) 例如:5,1,1表示技能id为1的等级是5; 技能id为2的等级是1; 技能id为3的等级是1.</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">obClid</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">外显号码</td>
+	<td style="width:348px;">多个用英文逗号间隔</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">obClidRule</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">外显规则</td>
+	<td style="width:348px;">0 随机 1轮选&nbsp; 默认随机</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">obClidRecurrentselectionName</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">轮选设置，按天或者按次更换外显号码</td>
+	<td style="width:348px;">0 按天轮选<br />
+	1 按次轮选</td>
+	</tr>
+	<tr>
+	<td style="width:70px;">obClidRecurrentselectionValue</td>
+	<td style="width:42px;">可选</td>
+	<td style="width:104px;">轮选取值</td>
+	<td style="width:348px;">1到30</td>
+	</tr>
+</tbody>
+</table>
+&nbsp;<br />
+返回值<br />
+JSON串，格式为{result:xxx,msg:xxx},result表示返回结果状态码，msg表示结果状态的描述。<br />
+如果成功添加座席，将返回座席id，JSON串为 {result:xxx,msg:xxx,id:xxx}<br />
+<strong>result</strong><strong>与</strong><strong>description</strong><strong>属性值的定义</strong><strong>：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:127px;"><strong>result</strong></td>
+	<td style="width:189px;"><strong>description</strong></td>
+	</tr>
+	<tr>
+	<td style="width:127px;">error</td>
+	<td style="width:189px;">添加座席失败原因</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">success</td>
+	<td style="width:189px;">成功添加座席</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>座席接口-删除座席</h1>
+      <div class="concon grey">接口类型：HTTP<br />
+接口使用账户：企业账户<br />
+接口地址：呼叫中心系统IP<br />
+接口参数：企业账号、企业账户密码、座席id<br />
+接口返回值：操作结果<br />
+接口说明<br />
+删除一个指定座席。<br />
+接口URL<br />
+URL示例： .http://172.16.203.197/interfaceAction/clientInterface!delete.action?enterpriseId=3000008&amp;userName=admin&amp;password=e10adc3949ba59abbe56e057f20f883e&amp;id=4<br />
+说明：该示例中password = e10adc3949ba59abbe56e057f20f883e = MD5Encoder.encode(&#39;123456)。<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:66px;"><strong>参数</strong></td>
+	<td style="width:46px;"><strong>要求</strong></td>
+	<td style="width:104px;"><strong>描述</strong></td>
+	<td style="width:348px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:66px;"><strong>username</strong></td>
+	<td style="width:46px;"><strong>必选</strong></td>
+	<td style="width:104px;">角色名称</td>
+	<td style="width:348px;">例如:admin</td>
+	</tr>
+	<tr>
+	<td style="width:66px;"><strong>password</strong></td>
+	<td style="width:46px;"><strong>必选</strong></td>
+	<td style="width:104px;">登录密码</td>
+	<td style="width:348px;">md5(登录密码))</td>
+	</tr>
+	<tr>
+	<td style="width:66px;"><strong>id</strong></td>
+	<td style="width:46px;"><strong>必选</strong></td>
+	<td style="width:104px;">座席id</td>
+	<td style="width:348px;">座席id</td>
+	</tr>
+</tbody>
+</table>
+返回值<br />
+JSON串，格式为{result:xxx,msg:xxx},result表示返回结果状态码，msg表示结果状态的描述。<br />
+&nbsp;<br />
+<strong>result</strong><strong>与</strong><strong>description</strong><strong>属性值的定义</strong><strong>：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:127px;"><strong>result</strong></td>
+	<td style="width:353px;"><strong>msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:127px;">error</td>
+	<td style="width:353px;">删除座席失败原因</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">success</td>
+	<td style="width:353px;">成功删除座席</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>座席接口-查询座席技能</h1>
+      <div class="concon grey">接口类型：HTTP<br />
+接口使用账户：企业账户<br />
+接口地址：呼叫中心系统IP<br />
+接口参数：企业账号、座席id<br />
+接口返回值：操作结果<br />
+&nbsp;<br />
+接口说明<br />
+查询座席技能<br />
+接口URL<br />
+URL示例：<br />
+http://172.16.203.197/interfaceAction/clientInterface!viewClientSkills.action?enterpriseId=3000008&amp;id=1<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:66px;"><strong>参数</strong></td>
+	<td style="width:46px;"><strong>要求</strong></td>
+	<td style="width:104px;"><strong>描述</strong></td>
+	<td style="width:348px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:66px;"><strong>enterpriseId</strong></td>
+	<td style="width:46px;"><strong>必选</strong></td>
+	<td style="width:104px;">企业id</td>
+	<td style="width:348px;">例如:3000008</td>
+	</tr>
+	<tr>
+	<td style="width:66px;"><strong>id</strong></td>
+	<td style="width:46px;"><strong>必选</strong></td>
+	<td style="width:104px;">座席id</td>
+	<td style="width:348px;">&nbsp;</td>
+	</tr>
+</tbody>
+</table>
+返回值<br />
+JSON串，格式为{result:xxx,msg:{data:[{ xxx }{}&hellip;]} },result表示返回结果状态码，msg表示结果状态的描述。<br />
+&nbsp;<br />
+<strong>result</strong><strong>与</strong><strong>description</strong><strong>属性值的定义</strong><strong>：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:127px;"><strong>result</strong></td>
+	<td style="width:353px;"><strong>description</strong></td>
+	</tr>
+	<tr>
+	<td style="width:127px;">error</td>
+	<td style="width:353px;">查询座席技能失败原因</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">success</td>
+	<td style="width:353px;">&quot;msg&quot;:{&quot;data&quot;:[{&quot;id&quot;:1,&quot;clientId&quot;:1,&quot;skillId&quot;:1,&quot;skillLevel&quot;:1},{&quot;id&quot;:7,&quot;clientId&quot;:1,&quot;skillId&quot;:2,&quot;skillLevel&quot;:1}]}</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>座席接口-查看所有座席</h1>
+      <div class="concon grey">接口说明<br />
+查看某企业下的所有座席的基本信息<br />
+接口URL<br />
+URL示例： http://172.16.203.197/interfaceAction/clientInterface!list.action?enterpriseId=3000008&amp;userName=admin&amp;password=e10adc3949ba59abbe56e057f20f883e<br />
+说明：该示例中password = e10adc3949ba59abbe56e057f20f883e = MD5Encoder.encode(&#39;123456)。<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:66px;"><strong>参数</strong></td>
+	<td style="width:46px;"><strong>要求</strong></td>
+	<td style="width:104px;"><strong>描述</strong></td>
+	<td style="width:348px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:66px;"><strong>username</strong></td>
+	<td style="width:46px;"><strong>必选</strong></td>
+	<td style="width:104px;">角色名称</td>
+	<td style="width:348px;">例如:admin</td>
+	</tr>
+	<tr>
+	<td style="width:66px;"><strong>password</strong></td>
+	<td style="width:46px;"><strong>必选</strong></td>
+	<td style="width:104px;">登录密码</td>
+	<td style="width:348px;">md5(登录密码))</td>
+	</tr>
+	<tr>
+	<td style="width:66px;">condition</td>
+	<td style="width:46px;">可选</td>
+	<td style="width:104px;">查询条件</td>
+	<td style="width:348px;">name表示座席名称,cno表示座席工号</td>
+	</tr>
+	<tr>
+	<td style="width:66px;">conditionValue</td>
+	<td style="width:46px;">可选</td>
+	<td style="width:104px;">查询条件的值</td>
+	<td style="width:348px;">需进行UTF-8格式的URLEncode编码</td>
+	</tr>
+	<tr>
+	<td style="width:66px;">loginStatus</td>
+	<td style="width:46px;">可选</td>
+	<td style="width:104px;">状态</td>
+	<td style="width:348px;">0表示离线,1表示在线，active_off表示停用</td>
+	</tr>
+	<tr>
+	<td style="width:66px;">start</td>
+	<td style="width:46px;">可选</td>
+	<td style="width:104px;">从第几条开始取</td>
+	<td style="width:348px;">正整数，大于等于0</td>
+	</tr>
+	<tr>
+	<td style="width:66px;">limit</td>
+	<td style="width:46px;">可选</td>
+	<td style="width:104px;">需要取出的数据条数</td>
+	<td style="width:348px;">正数，大于0</td>
+	</tr>
+</tbody>
+</table>
+返回值<br />
+JSON串，格式为{result:xxx,msg:{data:[{xxx},{}..],paging:{XXX} }},result表示返回结果状态码，data表示包含所有座席基本信息的JSON格式数据的数组，paging表示实际返回的分页数据。<br />
+<strong>result</strong><strong>、msg</strong><strong>与description</strong><strong>的定义：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:106px;"><strong>result</strong></td>
+	<td style="width:219px;"><strong>data</strong></td>
+	<td style="width:142px;"><strong>description</strong></td>
+	<td style="width:142px;"><strong>count</strong></td>
+	</tr>
+	<tr>
+	<td style="width:106px;">success</td>
+	<td style="width:219px;">{&quot;result&quot;:&quot;success&quot;,&quot;msg&quot;:{&quot;data&quot;:[{&quot;id&quot;:2,&quot;name&quot;:&quot;张三&quot;,&quot;power&quot;:1,&quot;clientType&quot;:2,&quot;cno&quot;:&quot;1002&quot;,&quot;active&quot;:1,&quot;isOb&quot;:1,&quot;loginStatus&quot;:0,&quot;queueNames&quot;:&quot;投诉队列&quot;,&quot;tel&quot;:&quot;01041005978&quot;}],&quot;paging&quot;:{&quot;start&quot;:&quot;0&quot;,&quot;totalSize&quot;:1,&quot;pageSize&quot;:10}}}</td>
+	<td style="width:142px;">成功返回座席信息</td>
+	<td style="width:142px;">实际返回数据数</td>
+	</tr>
+	<tr>
+	<td style="width:106px;">error</td>
+	<td style="width:219px;">[]</td>
+	<td style="width:142px;">查询座席信息原因</td>
+	<td style="width:142px;">0</td>
+	</tr>
+</tbody>
+</table>
+&nbsp;<br />
+<strong>data</strong><strong>属性值的定义：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:52px;"><strong>属性名</strong></td>
+	<td style="width:113px;"><strong>描述</strong></td>
+	<td style="width:123px;"><strong>数据长度或格式</strong></td>
+	<td style="width:91px;"><strong>取值范围</strong></td>
+	<td style="width:107px;"><strong>例子</strong></td>
+	</tr>
+	<tr>
+	<td style="width:52px;">cno</td>
+	<td style="width:113px;">座席工号</td>
+	<td style="width:123px;">4位</td>
+	<td style="width:91px;">2000-9999</td>
+	<td style="width:107px;">2010</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">id</td>
+	<td style="width:113px;">座席id</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">name</td>
+	<td style="width:113px;">座席姓名</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">张三</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">power</td>
+	<td style="width:113px;">角色</td>
+	<td style="width:123px;">0/1</td>
+	<td style="width:91px;">0表示普通座席,1表示班长座席</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">clientType</td>
+	<td style="width:113px;">座席类型</td>
+	<td style="width:123px;">1/2</td>
+	<td style="width:91px;">1表示电话座席,2表示电脑座席</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">active</td>
+	<td style="width:113px;">是否激活</td>
+	<td style="width:123px;">0/1</td>
+	<td style="width:91px;">0表示未激活,1表示激活</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">isOb</td>
+	<td style="width:113px;">是否可以外呼</td>
+	<td style="width:123px;">0/1</td>
+	<td style="width:91px;">0表示不允许,1表示允许</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">loginStatus</td>
+	<td style="width:113px;">登录状态</td>
+	<td style="width:123px;">0/1</td>
+	<td style="width:91px;">0:离线 1:在线</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">queueNames</td>
+	<td style="width:113px;">座席所在队列</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">咨询队列,投诉队列</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">tel</td>
+	<td style="width:113px;">座席绑定电话</td>
+	<td style="width:123px;">电话号码格式.手机或区号+固话号码</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">01041005978</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">start</td>
+	<td style="width:113px;">从第几条开始取</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">正整数，大于等于0</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">pageSize</td>
+	<td style="width:113px;">需要取出的数据条数</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">正数，大于0</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">totalSize</td>
+	<td style="width:113px;">总条数</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+</tbody>
+</table>
+<strong>paging</strong><strong>属性值的定义：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:98px;height:20px;"><strong>属性名</strong></td>
+	<td style="width:98px;height:20px;"><strong>描述</strong></td>
+	<td style="width:98px;height:20px;"><strong>数据长度与格式</strong></td>
+	<td style="width:98px;height:20px;"><strong>取值范围</strong></td>
+	<td style="width:98px;height:20px;"><strong>例子</strong></td>
+	</tr>
+	<tr>
+	<td style="width:98px;height:21px;">start</td>
+	<td style="width:98px;height:21px;">从第几条开始取</td>
+	<td style="width:98px;height:21px;">&nbsp;</td>
+	<td style="width:98px;height:21px;">正整数，大于等于0</td>
+	<td style="width:98px;height:21px;">0</td>
+	</tr>
+	<tr>
+	<td style="width:98px;height:20px;">pagesize</td>
+	<td style="width:98px;height:20px;">需要取出的数据条数</td>
+	<td style="width:98px;height:20px;">&nbsp;</td>
+	<td style="width:98px;height:20px;">正数，大于0</td>
+	<td style="width:98px;height:20px;">10</td>
+	</tr>
+	<tr>
+	<td style="width:98px;height:21px;">totalsize</td>
+	<td style="width:98px;height:21px;">总条数</td>
+	<td style="width:98px;height:21px;">&nbsp;</td>
+	<td style="width:98px;height:21px;">&nbsp;</td>
+	<td style="width:98px;height:21px;">50</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>座席接口-验证座席工号是否重复</h1>
+      <div class="concon grey">接口类型：HTTP<br />
+接口使用账户：企业账户<br />
+接口地址：呼叫中心系统IP<br />
+接口参数：企业账号、座席工号<br />
+接口返回值：操作结果<br />
+接口说明<br />
+验证座席工号是否重复。<br />
+接口URL<br />
+URL示例： <a href="http://172.16.203.197/interfaceAction/clientInterface!validateCno.action?enterpriseId=3000008&amp;cno=1001">http://172.16.203.197/interfaceAction/clientInterface!validateCno.action?enterpriseId=3000008&amp;cno=1001</a><br />
+&nbsp;<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:66px;"><strong>参数</strong></td>
+	<td style="width:46px;"><strong>要求</strong></td>
+	<td style="width:104px;"><strong>描述</strong></td>
+	<td style="width:348px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:66px;"><strong>enterpriseId</strong></td>
+	<td style="width:46px;"><strong>必选</strong></td>
+	<td style="width:104px;">企业id</td>
+	<td style="width:348px;">例如:3000008</td>
+	</tr>
+	<tr>
+	<td style="width:66px;"><strong>cno</strong></td>
+	<td style="width:46px;"><strong>必选</strong></td>
+	<td style="width:104px;">座席工号</td>
+	<td style="width:348px;">1001</td>
+	</tr>
+</tbody>
+</table>
+返回值<br />
+JSON串，格式为{result:xxx },result表示返回结果状态码<br />
+&nbsp;<br />
+<strong>result</strong><strong>与</strong><strong>description</strong><strong>属性值的定义</strong><strong>：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:127px;"><strong>result</strong></td>
+	<td style="width:353px;"><strong>msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:127px;">true</td>
+	<td style="width:353px;">已存在</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">false</td>
+	<td style="width:353px;">未存在</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>座席接口-查看座席信息</h1>
+      <div class="concon grey">接口类型：HTTP<br />
+接口使用账户：企业账户<br />
+接口地址：呼叫中心系统IP<br />
+接口参数：企业账号、座席cno<br />
+接口返回值：操作结果<br />
+接口说明<br />
+根据座席和企业ID查看座席信息。<br />
+接口URL<br />
+URL示例： http://172.16.203.190/interfaceAction/clientInterface!view.action?enterpriseId=3000002&amp;cno=2000<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:66px;"><strong>参数</strong></td>
+	<td style="width:46px;"><strong>要求</strong></td>
+	<td style="width:104px;"><strong>描述</strong></td>
+	<td style="width:348px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:66px;"><strong>enterpriseId</strong></td>
+	<td style="width:46px;"><strong>必选</strong></td>
+	<td style="width:104px;">企业id</td>
+	<td style="width:348px;">例如:3000002</td>
+	</tr>
+	<tr>
+	<td style="width:66px;"><strong>cno</strong></td>
+	<td style="width:46px;"><strong>必选</strong></td>
+	<td style="width:104px;">座席号cno</td>
+	<td style="width:348px;">例如:2000</td>
+	</tr>
+</tbody>
+</table>
+返回值<br />
+JSON串，格式为{result:xxx,msg:XXX },result表示返回结果状态码<br />
+&nbsp;<br />
+<strong>result</strong><strong>与</strong><strong>description</strong><strong>属性值的定义</strong><strong>：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:127px;"><strong>result</strong></td>
+	<td style="width:353px;"><strong>msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:127px;">success</td>
+	<td style="width:353px;">{&quot;id&quot;:1,&quot;cno&quot;:&quot;1001&quot;,&quot;crmId&quot;:&quot;&quot;,&quot;active&quot;:1,&quot;wrapup&quot;:30,&quot;areaCode&quot;:&quot;010&quot;,&quot;name&quot;:&quot;王云龙&quot;,&quot;pwd&quot;:&quot;123456&quot;,&quot;power&quot;:1,&quot;callPower&quot;:0,&quot;sex&quot;:0,&quot;birth&quot;:&quot;&quot;,&quot;certificateId&quot;:&quot;&quot;,&quot;mobile&quot;:&quot;&quot;,&quot;otherTel&quot;:&quot;&quot;,&quot;fax&quot;:&quot;&quot;,&quot;email&quot;:&quot;&quot;,&quot;address&quot;:&quot;&quot;,&quot;post&quot;:&quot;&quot;,&quot;clientType&quot;:2,&quot;isOb&quot;:1,&quot;ibRecord&quot;:1,&quot;obRecord&quot;:1,&quot;isAgentObserver&quot;:1,&quot;isSkillObserver&quot;:1,&quot;isSendMsg&quot;:1,&quot;isMsgRecord&quot;:1,&quot;lastLoginTime&quot;:&quot;2012-05-03 10:25:24&quot;}</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">Error</td>
+	<td style="width:353px;">失败原因</td>
+	</tr>
+</tbody>
+</table>
+&nbsp;<br />
+<strong>msg</strong><strong>属性值的定义：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:52px;"><strong>属性名</strong></td>
+	<td style="width:113px;"><strong>描述</strong></td>
+	<td style="width:123px;"><strong>数据长度或格式</strong></td>
+	<td style="width:91px;"><strong>取值范围</strong></td>
+	<td style="width:107px;"><strong>例子</strong></td>
+	</tr>
+	<tr>
+	<td style="width:52px;">cno</td>
+	<td style="width:113px;">座席工号</td>
+	<td style="width:123px;">4位</td>
+	<td style="width:91px;">2000-9999</td>
+	<td style="width:107px;">2010</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">id</td>
+	<td style="width:113px;">座席id</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">crmId</td>
+	<td style="width:113px;">座席CRM编号</td>
+	<td style="width:123px;">数字</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">name</td>
+	<td style="width:113px;">座席姓名</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">张三</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">wrapup</td>
+	<td style="width:113px;">座席整理时间</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">30</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">areaCode</td>
+	<td style="width:113px;">座席所属区号</td>
+	<td style="width:123px;">区号</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">010</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">pwd</td>
+	<td style="width:113px;">座席登录密码</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">123456</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">power</td>
+	<td style="width:113px;">角色</td>
+	<td style="width:123px;">0/1</td>
+	<td style="width:91px;">0表示普通座席,1表示班长座席</td>
+	<td style="width:107px;">&nbsp;<br />
+	&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">sex</td>
+	<td style="width:113px;">性别</td>
+	<td style="width:123px;">0表示男,1表示女</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">birth</td>
+	<td style="width:113px;">出生日期</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">certificateId</td>
+	<td style="width:113px;">身份证号</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">mobile</td>
+	<td style="width:113px;">移动电话</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">otherTel</td>
+	<td style="width:113px;">联系电话</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">fax</td>
+	<td style="width:113px;">传真号码</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">email</td>
+	<td style="width:113px;">邮箱</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">address</td>
+	<td style="width:113px;">住址</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">post</td>
+	<td style="width:113px;">邮政编码</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">clientType</td>
+	<td style="width:113px;">座席类型</td>
+	<td style="width:123px;">1/2</td>
+	<td style="width:91px;">1表示电话座席,2表示电脑座席</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">active</td>
+	<td style="width:113px;">是否激活</td>
+	<td style="width:123px;">0/1</td>
+	<td style="width:91px;">0表示未激活,1表示激活</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">isOb</td>
+	<td style="width:113px;">是否可以外呼</td>
+	<td style="width:123px;">0/1</td>
+	<td style="width:91px;">0表示不允许,1表示允许</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">ibRecord</td>
+	<td style="width:113px;">呼入是否录音</td>
+	<td style="width:123px;">0表示不录音,1表示录音</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">obRecord</td>
+	<td style="width:113px;">外呼是否录音</td>
+	<td style="width:123px;">0表示不录音,1表示录音</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">isAgentObserver</td>
+	<td style="width:113px;">座席监控功能</td>
+	<td style="width:123px;">0：不开启，1：开启</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">isSkillObserver</td>
+	<td style="width:113px;">是否开启队列监控功能</td>
+	<td style="width:123px;">0：不开启，1：开启</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">isSendMsg</td>
+	<td style="width:113px;">是否开启座席发送短信功能</td>
+	<td style="width:123px;">0：不开启，1：开启</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">isMsgRecord</td>
+	<td style="width:113px;">是否开启座席查看短信记录功能</td>
+	<td style="width:123px;">0：不开启，1：开启</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">lastLoginTime</td>
+	<td style="width:113px;">座席上一次登录时间</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>队列接口-新建或修改</h1>
+      <div class="concon grey">接口类型：HTTP<br />
+接口使用账户：企业账户<br />
+接口地址：呼叫中心系统IP<br />
+接口参数：企业账号、企业账户密码、队列号、队列名、队列其他参数<br />
+接口返回值：操作结果<br />
+接口说明<br />
+添加一个队列。<br />
+URL示例：<br />
+<a href="http://172.16.203.197/interfaceAction/queueInterface!save.action?enterpriseId=3000008&amp;userName=admin&amp;password=e10adc3949ba59abbe56e057f20f883e&amp;qno=1111&amp;description=%E5%8C%97%E4%BA%AC&amp;skillIds=1,2&amp;skillLevels=4,5&amp;id=7">http://172.16.203.197/interfaceAction/queueInterface!save.action?enterpriseId=3000008&amp;userName=admin&amp;password=e10adc3949ba59abbe56e057f20f883e&amp;qno=1111&amp;description=%E5%8C%97%E4%BA%AC&amp;skillIds=1,2&amp;skillLevels=4,5&amp;id=7</a><br />
+说明：该示例中password = e10adc3949ba59abbe56e057f20f883e = MD5Encoder.encode(&#39;123456)，description值是经过URLEncode按&ldquo;UTF-8&rdquo;格式编码的，中文是&ldquo;北京&rdquo;。<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:94px;"><strong>参数</strong></td>
+	<td style="width:45px;"><strong>要求</strong></td>
+	<td style="width:130px;"><strong>描述</strong></td>
+	<td style="width:295px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:94px;">enterpriseId</td>
+	<td style="width:45px;">必选</td>
+	<td style="width:130px;">企业Id</td>
+	<td style="width:295px;">例如:3000008</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">username</td>
+	<td style="width:45px;">必选</td>
+	<td style="width:130px;">角色名称</td>
+	<td style="width:295px;">例如:admin</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">password</td>
+	<td style="width:45px;">必选</td>
+	<td style="width:130px;">登录密码</td>
+	<td style="width:295px;">md5(登录密码))</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">id</td>
+	<td style="width:45px;">可选</td>
+	<td style="width:130px;">队列id</td>
+	<td style="width:295px;">如修改时为必选</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">qno</td>
+	<td style="width:45px;">必选</td>
+	<td style="width:130px;">队列号</td>
+	<td style="width:295px;">四位数字</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">description</td>
+	<td style="width:45px;">必选</td>
+	<td style="width:130px;">队列名</td>
+	<td style="width:295px;">需进行UTF-8格式的URLEncode编码</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">queueTimeout</td>
+	<td style="width:45px;">可选</td>
+	<td style="width:130px;">队列超时时间</td>
+	<td style="width:295px;">默认取值600，单位：秒，范围30-600</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">sayAgentno</td>
+	<td style="width:45px;">可选</td>
+	<td style="width:130px;">是否语音报号</td>
+	<td style="width:295px;">boolean值，默认取值<strong>false</strong></td>
+	</tr>
+	<tr>
+	<td style="width:94px;">memberTimeout</td>
+	<td style="width:45px;">可选</td>
+	<td style="width:130px;">座席超时时间</td>
+	<td style="width:295px;">默认取值25，单位：秒，范围20-60</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">wrapupTime</td>
+	<td style="width:45px;">可选</td>
+	<td style="width:130px;">整理时间</td>
+	<td style="width:295px;">默认取值15，单位：秒，范围3-300</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">maxLen</td>
+	<td style="width:45px;">可选</td>
+	<td style="width:130px;">最大等待数</td>
+	<td style="width:295px;">默认取值5，范围0-999</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">weight</td>
+	<td style="width:45px;">可选</td>
+	<td style="width:130px;">队列优先级</td>
+	<td style="width:295px;">默认取值1，取值范围1-10(数值越高优先级越高)</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">vipSupport</td>
+	<td style="width:45px;">可选</td>
+	<td style="width:130px;">是否支持VIP级别</td>
+	<td style="width:295px;">默认取值0，1表示支持,0表示不支持</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">strategy</td>
+	<td style="width:45px;">可选</td>
+	<td style="width:130px;">呼叫策略</td>
+	<td style="width:295px;">order表示顺序,rrmemory表示轮选,fewestcalls表示平均,random表示随机,skill表示技能优先,leastrecent表示最长空闲时间.&nbsp; 默认取值rrmemory</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">musicClass</td>
+	<td style="width:45px;">可选</td>
+	<td style="width:130px;">等待音乐</td>
+	<td style="width:295px;">默认公共语音库&quot;default_moh.wav&quot;.</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">musicinuse</td>
+	<td style="width:45px;">可选</td>
+	<td style="width:130px;">等待语音播报是否开启</td>
+	<td style="width:295px;">0表示关闭,1表示开启</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">announcePath</td>
+	<td style="width:45px;">可选</td>
+	<td style="width:130px;">等待语音播报语音文件</td>
+	<td style="width:295px;">默认queue_thankyou(语音文件后缀名需去掉)</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">announceType</td>
+	<td style="width:45px;">可选</td>
+	<td style="width:130px;">等待语音播报类型</td>
+	<td style="width:295px;">0表示循环间隔,1表示多于,2表示少于</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">announceValue</td>
+	<td style="width:45px;">可选</td>
+	<td style="width:130px;">等待语音播报类型的值</td>
+	<td style="width:295px;">如 announceValue = 1.在announceType为0时表示循环间隔1秒播报,为1时表示多于1位播报,为2时表示少于1位播报.</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">isNext</td>
+	<td style="width:45px;">可选</td>
+	<td style="width:130px;">是否播报您是下一位</td>
+	<td style="width:295px;">0表示关闭,1表示开启</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">skillIds</td>
+	<td style="width:45px;">可选</td>
+	<td style="width:130px;">所选的技能id</td>
+	<td style="width:295px;">多个间用英文标点逗号间隔.例如:1,2,3</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">skillLevels</td>
+	<td style="width:45px;">可选</td>
+	<td style="width:130px;">所选的技能的等级(值越小技能越高)</td>
+	<td style="width:295px;">多个间用英文标点逗号间隔.(与技能id相对应) 例如:5,1,1表示技能id为1的等级是5; 技能id为2的等级是1; 技能id为3的等级是1.</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">timeoutRestart</td>
+	<td style="width:45px;">可选</td>
+	<td style="width:130px;">呼叫超时后是否重新计时</td>
+	<td style="width:295px;">boolean值，默认取值<strong>true</strong></td>
+	</tr>
+	<tr>
+	<td style="width:94px;">serviceLevel</td>
+	<td style="width:45px;">可选</td>
+	<td style="width:130px;">服务水平秒数</td>
+	<td style="width:295px;">单位：秒，范围1-60(低于此时间内接听的认为是高水平服务)，默认取值10</td>
+	</tr>
+	<tr>
+	<td style="width:94px;">retry</td>
+	<td style="width:45px;">可选</td>
+	<td style="width:130px;">呼叫下一个座席延期秒数</td>
+	<td style="width:295px;">单位：秒，范围3-20 默认取值5</td>
+	</tr>
+</tbody>
+</table>
+返回值<br />
+JSON串，格式为{result:xxx,msg:xxx}, result表示返回结果状态码， msg表示结果状态的描述。<br />
+如果成功添加队列，将返回队列id，JSON串为 {result:xxx,msg:xxx,id:xxx}。<br />
+<strong>result</strong><strong>与</strong><strong>msg</strong><strong>描述定义</strong><strong>：</strong><br />
+<table align="left" border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:127px;"><strong>result</strong></td>
+	<td style="width:353px;"><strong>Msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:127px;"><strong>error</strong></td>
+	<td style="width:353px;">添加队列失败原因</td>
+	</tr>
+	<tr>
+	<td style="width:127px;"><strong>success</strong></td>
+	<td style="width:353px;">成功添加队列</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>队列接口-删除队列</h1>
+      <div class="concon grey">接口类型：HTTP<br />
+接口使用账户：企业账户<br />
+接口地址：呼叫中心系统IP<br />
+接口参数：企业账号、企业账户密码、队列id<br />
+接口返回值：操作结果<br />
+接口说明<br />
+删除一个队列。<br />
+接口URL<br />
+URL示例： http://172.16.203.197/interfaceAction/queueInterface!delete.action?enterpriseId=3000008&amp;userName=admin&amp;password=e10adc3949ba59abbe56e057f20f883e&amp;id=4<br />
+说明：该示例中password = e10adc3949ba59abbe56e057f20f883e = MD5Encoder.encode(&#39;123456&#39;)。<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:66px;"><strong>参数</strong></td>
+	<td style="width:46px;"><strong>要求</strong></td>
+	<td style="width:104px;"><strong>描述</strong></td>
+	<td style="width:348px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:66px;">username</td>
+	<td style="width:46px;">必选</td>
+	<td style="width:104px;">角色名称</td>
+	<td style="width:348px;">例如:admin</td>
+	</tr>
+	<tr>
+	<td style="width:66px;">password</td>
+	<td style="width:46px;">必选</td>
+	<td style="width:104px;">登录密码</td>
+	<td style="width:348px;">md5(登录密码))</td>
+	</tr>
+	<tr>
+	<td style="width:66px;">id</td>
+	<td style="width:46px;">必选</td>
+	<td style="width:104px;">队列Id</td>
+	<td style="width:348px;">&nbsp;</td>
+	</tr>
+</tbody>
+</table>
+返回值<br />
+JSON串，格式为{result:xxx,msg:xxx}<br />
+&nbsp;<br />
+<strong>result</strong><strong>与</strong><strong>msg</strong><strong>描述定义</strong><strong>：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:127px;"><strong>result</strong></td>
+	<td style="width:353px;"><strong>Msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:127px;">error</td>
+	<td style="width:353px;">删除队列失败原因</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">success</td>
+	<td style="width:353px;">成功删除队列</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>队列接口-查看所有队列</h1>
+      <div class="concon grey">接口说明<br />
+查看某企业下的所有队列的基本信息<br />
+接口URL<br />
+URL示例： http://172.16.203.197/interfaceAction/queueInterface!list.action?enterpriseId=3000008&amp;userName=admin&amp;password=e10adc3949ba59abbe56e057f20f883e<br />
+说明：该示例中password = e10adc3949ba59abbe56e057f20f883e = MD5Encoder.encode(&#39;123456)<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:66px;"><strong>参数</strong></td>
+	<td style="width:46px;"><strong>要求</strong></td>
+	<td style="width:104px;"><strong>描述</strong></td>
+	<td style="width:348px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:66px;">userName</td>
+	<td style="width:46px;">必选</td>
+	<td style="width:104px;">角色名称</td>
+	<td style="width:348px;">例如:admin</td>
+	</tr>
+	<tr>
+	<td style="width:66px;">password</td>
+	<td style="width:46px;">必选</td>
+	<td style="width:104px;">登录密码</td>
+	<td style="width:348px;">md5(登录密码))</td>
+	</tr>
+	<tr>
+	<td style="width:66px;height:18px;">enterpriseId</td>
+	<td style="width:46px;height:18px;">必选</td>
+	<td style="width:104px;height:18px;">企业Id</td>
+	<td style="width:348px;height:18px;">例如:3000008</td>
+	</tr>
+</tbody>
+</table>
+返回值<br />
+JSON串，格式为{result:xxx,msg{data:[{xxx},{}&hellip;]} },result表示返回结果状态码，data表示包含所有队列基本信息的JSON格式数据的数组<br />
+<strong>result</strong><strong>与msg</strong><strong>属性值的定义：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:106px;"><strong>result</strong></td>
+	<td style="width:257px;"><strong>msg</strong></td>
+	<td style="width:142px;"><strong>description</strong></td>
+	<td style="width:95px;"><strong>count</strong></td>
+	</tr>
+	<tr>
+	<td style="width:106px;">error</td>
+	<td style="width:257px;">[]</td>
+	<td style="width:142px;">查询失败原因</td>
+	<td style="width:95px;">0</td>
+	</tr>
+	<tr>
+	<td style="width:106px;">success</td>
+	<td style="width:257px;">&quot;data&quot;:[{&quot;id&quot;:1,&quot;name&quot;:&quot;30000080001&quot;,&quot;description&quot;:&quot;咨询队列&quot;,&quot;maxLen&quot;:5,&quot;qno&quot;:&quot;0001&quot;,&quot;queueTimeOut&quot;:60,&quot;memberTimeOut&quot;:25,&quot;wrapupTime&quot;:30,&quot;sayAgentno&quot;:true,&quot;musicClass&quot;:&quot;default_moh.wav&quot;,&quot;queueThankyou&quot;:&quot;&quot;}&hellip;]</td>
+	<td style="width:142px;">成功返回企业各队列信息</td>
+	<td style="width:95px;">实际返回的队列数</td>
+	</tr>
+</tbody>
+</table>
+&nbsp;<br />
+<strong>data</strong><strong>属性值的定义：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:99px;"><strong>属性名</strong></td>
+	<td style="width:123px;"><strong>描述</strong></td>
+	<td style="width:161px;"><strong>数据长度或格式</strong></td>
+	<td style="width:85px;"><strong>取值范围</strong></td>
+	<td style="width:76px;"><strong>例子</strong></td>
+	</tr>
+	<tr>
+	<td style="width:99px;">id</td>
+	<td style="width:123px;">队列Id</td>
+	<td style="width:161px;">数字</td>
+	<td style="width:85px;">&nbsp;</td>
+	<td style="width:76px;">1</td>
+	</tr>
+	<tr>
+	<td style="width:99px;">name</td>
+	<td style="width:123px;">企业号+队列号</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:85px;">&nbsp;</td>
+	<td style="width:76px;">30000080001</td>
+	</tr>
+	<tr>
+	<td style="width:99px;">qno</td>
+	<td style="width:123px;">队列号</td>
+	<td style="width:161px;">四位数字</td>
+	<td style="width:85px;">0000-9999</td>
+	<td style="width:76px;">0001</td>
+	</tr>
+	<tr>
+	<td style="width:99px;">description</td>
+	<td style="width:123px;">队列名</td>
+	<td style="width:161px;">需进行UTF-8格式的URLEncode编码</td>
+	<td style="width:85px;">&nbsp;</td>
+	<td style="width:76px;">咨询队列</td>
+	</tr>
+	<tr>
+	<td style="width:99px;">queueTimeout</td>
+	<td style="width:123px;">队列超时时间</td>
+	<td style="width:161px;">默认取值600，单位：秒，queueTimeout必须大于等于memberTimeout。</td>
+	<td style="width:85px;">30-600</td>
+	<td style="width:76px;">50</td>
+	</tr>
+	<tr>
+	<td style="width:99px;">memberTimeout</td>
+	<td style="width:123px;">座席超时时间</td>
+	<td style="width:161px;">默认取值25，单位：秒</td>
+	<td style="width:85px;">20-60</td>
+	<td style="width:76px;">20</td>
+	</tr>
+	<tr>
+	<td style="width:99px;">wrapupTime</td>
+	<td style="width:123px;">整理时间</td>
+	<td style="width:161px;">默认取值30 ，单位：秒</td>
+	<td style="width:85px;">3-300</td>
+	<td style="width:76px;">10</td>
+	</tr>
+	<tr>
+	<td style="width:99px;">maxLen</td>
+	<td style="width:123px;">最大等待数</td>
+	<td style="width:161px;">默认取值5</td>
+	<td style="width:85px;">0-999</td>
+	<td style="width:76px;">3</td>
+	</tr>
+	<tr>
+	<td style="width:99px;">sayAgentno</td>
+	<td style="width:123px;">是否语音报号</td>
+	<td style="width:161px;">布尔值，默认取值<strong>true</strong></td>
+	<td style="width:85px;">true,false</td>
+	<td style="width:76px;">true</td>
+	</tr>
+	<tr>
+	<td style="width:99px;">musicClass</td>
+	<td style="width:123px;">等待音乐</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:85px;">&nbsp;</td>
+	<td style="width:76px;">default_moh.wav</td>
+	</tr>
+	<tr>
+	<td style="width:99px;">queueThankyou</td>
+	<td style="width:123px;">等待语音播报</td>
+	<td style="width:161px;">&nbsp;</td>
+	<td style="width:85px;">&nbsp;</td>
+	<td style="width:76px;">&nbsp;</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>队列接口-查看队列信息</h1>
+      <div class="concon grey">接口类型：HTTP<br />
+接口使用账户：企业账户<br />
+接口地址：呼叫中心系统IP<br />
+接口参数：企业账号、队列Id<br />
+接口返回值：操作结果<br />
+接口说明<br />
+根据队列Id查看队列信息。<br />
+接口URL<br />
+URL示例： http://172.16.203.190/interfaceAction/queueInterface!view.action?enterpriseId=3000002&amp;qno=0000<br />
+&nbsp;<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:66px;"><strong>参数</strong></td>
+	<td style="width:46px;"><strong>要求</strong></td>
+	<td style="width:104px;"><strong>描述</strong></td>
+	<td style="width:348px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:66px;">enterpriseId</td>
+	<td style="width:46px;">必选</td>
+	<td style="width:104px;">企业id</td>
+	<td style="width:348px;">例如:3000008</td>
+	</tr>
+	<tr>
+	<td style="width:66px;">qno</td>
+	<td style="width:46px;">必选</td>
+	<td style="width:104px;">队列qno</td>
+	<td style="width:348px;">例如:0000</td>
+	</tr>
+</tbody>
+</table>
+返回值<br />
+JSON串，格式为{result:xxx,msg:XXX },result表示返回结果状态码<br />
+&nbsp;<br />
+<strong>result</strong><strong>与</strong><strong>msg</strong><strong>属性值的定义</strong><strong>：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:127px;"><strong>result</strong></td>
+	<td style="width:353px;"><strong>msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:127px;">success</td>
+	<td style="width:353px;">&nbsp;{&quot;id&quot;:1,&quot;qno&quot;:&quot;0001&quot;,&quot;name&quot;:&quot;咨询队列&quot;,&quot;maxLen&quot;:5,&quot;memberTimeout&quot;:25,&quot;queueTimeout&quot;:60,&quot;wrapupTime&quot;:30,&quot;weight&quot;:1,&quot;sayAgentno&quot;:true,&quot;vipSupport&quot;:1,&quot;strategy&quot;:&quot;order&quot;,&quot;musicClass&quot;:&quot;default_moh.wav&quot;, announcePosition&quot;:&quot;yes&quot;,&quot;announceFrequency&quot;:5,&quot;queueThankyou&quot;:&quot;queue_thankyou&quot;,&quot;queueYouarenext&quot;:&quot;queue_youarenext&quot;,&quot;timeoutRestart&quot;:true,&quot;serviceLevel&quot;:10,&quot;retry&quot;:1}</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">Error</td>
+	<td style="width:353px;">失败原因</td>
+	</tr>
+</tbody>
+</table>
+&nbsp;<br />
+<strong>msg</strong><strong>属性值的定义：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:52px;"><strong>属性名</strong></td>
+	<td style="width:113px;"><strong>描述</strong></td>
+	<td style="width:123px;"><strong>数据长度或格式</strong></td>
+	<td style="width:91px;"><strong>取值范围</strong></td>
+	<td style="width:107px;"><strong>例子</strong></td>
+	</tr>
+	<tr>
+	<td style="width:52px;">id</td>
+	<td style="width:113px;">队列Id</td>
+	<td style="width:123px;">数字</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">1</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">qno</td>
+	<td style="width:113px;">队列号</td>
+	<td style="width:123px;">四位数字</td>
+	<td style="width:91px;">0000-9999</td>
+	<td style="width:107px;">0001</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">name</td>
+	<td style="width:113px;">队列名</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">咨询队列</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">queueTimeout</td>
+	<td style="width:113px;">队列超时时间</td>
+	<td style="width:123px;">默认取值600，单位：秒，queueTimeout必须大于等于memberTimeout。</td>
+	<td style="width:91px;">30-600</td>
+	<td style="width:107px;">50</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">memberTimeout</td>
+	<td style="width:113px;">座席超时时间</td>
+	<td style="width:123px;">默认取值25，单位：秒</td>
+	<td style="width:91px;">20-60</td>
+	<td style="width:107px;">20</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">wrapupTime</td>
+	<td style="width:113px;">整理时间</td>
+	<td style="width:123px;">默认取值15 ，单位：秒</td>
+	<td style="width:91px;">3-300</td>
+	<td style="width:107px;">10</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">weight</td>
+	<td style="width:113px;">优先级</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">1-10</td>
+	<td style="width:107px;">1</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">maxLen</td>
+	<td style="width:113px;">最大等待数</td>
+	<td style="width:123px;">默认取值5</td>
+	<td style="width:91px;">0-999</td>
+	<td style="width:107px;">3</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">sayAgentno</td>
+	<td style="width:113px;">是否语音报号</td>
+	<td style="width:123px;">布尔值，默认取值<strong>true</strong></td>
+	<td style="width:91px;">true,false</td>
+	<td style="width:107px;">true</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">vipSupport</td>
+	<td style="width:113px;">是否支持VIP级别</td>
+	<td style="width:123px;">0表示不支持,1表示支持</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">strategy</td>
+	<td style="width:113px;">呼叫策略</td>
+	<td style="width:123px;">order表示顺序,rrmemory表示轮选,fewestcalls表示平均,random表示随机,skill表示技能优先,leastrecent表示最长空闲时间.</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">musicClass</td>
+	<td style="width:113px;">等待音乐</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">default_moh.wav</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">announcePosition</td>
+	<td style="width:113px;">等待语音播报</td>
+	<td style="width:123px;">no表示关闭,yes表示循环间隔,more表示多于,limit表示少于</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">Yes</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">announceFrequency</td>
+	<td style="width:113px;">播报周期,30-600秒之间</td>
+	<td style="width:123px;">announcePosition为yes时的值</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">5</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">announcePositionLimit</td>
+	<td style="width:113px;">&nbsp;</td>
+	<td style="width:123px;">announcePosition等于more或limit时使用的值</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">queueThankyou</td>
+	<td style="width:113px;">等待语音文件</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">queue_thankyou</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">queueYouarenext</td>
+	<td style="width:113px;">您是下一位</td>
+	<td style="width:123px;">&ldquo;queue_youarenext&rdquo;为开启,&rdquo;&rdquo;为关闭</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&ldquo;queue_youarenext&rdquo;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">timeoutRestart</td>
+	<td style="width:113px;">呼叫超时后是否重新计时</td>
+	<td style="width:123px;">True为是,false为否</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">True</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">serviceLevel</td>
+	<td style="width:113px;">服务水平秒数，低于此时间内接听的认为是高服务水平</td>
+	<td style="width:123px;">数字</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">retry</td>
+	<td style="width:113px;">呼叫一轮过后没有接起来，开始下一轮系统等待时间</td>
+	<td style="width:123px;">数字</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">&nbsp;</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>队列接口-查询队列技能</h1>
+      <div class="concon grey">接口类型：HTTP<br />
+接口使用账户：企业账户<br />
+接口地址：呼叫中心系统IP<br />
+接口参数：企业账号、队列id<br />
+接口返回值：操作结果<br />
+&nbsp;<br />
+接口说明<br />
+查询队列技能<br />
+接口URL<br />
+URL示例：<br />
+<a href="http://172.16.203.197/interfaceAction/queueInterface!viewQueueSkills.action?enterpriseId=3000008&amp;id=1">http://172.16.203.197/interfaceAction/queueInterface!viewQueueSkills.action?enterpriseId=3000008&amp;id=1</a><br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:66px;"><strong>参数</strong></td>
+	<td style="width:46px;"><strong>要求</strong></td>
+	<td style="width:104px;"><strong>描述</strong></td>
+	<td style="width:348px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:66px;">enterpriseId</td>
+	<td style="width:46px;">必选</td>
+	<td style="width:104px;">企业id</td>
+	<td style="width:348px;">例如:3000008</td>
+	</tr>
+	<tr>
+	<td style="width:66px;">id</td>
+	<td style="width:46px;">必选</td>
+	<td style="width:104px;">队列id</td>
+	<td style="width:348px;">&nbsp;</td>
+	</tr>
+</tbody>
+</table>
+返回值<br />
+JSON串，格式为{result:xxx,msg:{data:[{ xxx }{}&hellip;]} },result表示返回结果状态码，msg表示结果状态的描述。<br />
+&nbsp;<br />
+<strong>result</strong><strong>与</strong><strong>msg</strong><strong>属性值的定义</strong><strong>：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:127px;"><strong>result</strong></td>
+	<td style="width:353px;"><strong>Msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:127px;">error</td>
+	<td style="width:353px;">查询队列技能失败原因</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">success</td>
+	<td style="width:353px;">&quot;msg&quot;:{&quot;data&quot;:[{&quot;id&quot;:1,&quot;queueId&quot;:1,&quot;skillId&quot;:1,&quot;skillLevel&quot;:1},{&quot;id&quot;:7,&quot; queueId &quot;:1,&quot;skillId&quot;:2,&quot;skillLevel&quot;:1}]}</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>队列接口-验证队列号是否重复</h1>
+      <div class="concon grey">接口类型：HTTP<br />
+接口使用账户：企业账户<br />
+接口地址：呼叫中心系统IP<br />
+接口参数：企业账号、队列号<br />
+接口返回值：操作结果<br />
+接口说明<br />
+验证队列号是否重复。<br />
+接口URL<br />
+URL示例： http://172.16.203.197/interfaceAction/queueInterface!validateQno.action?enterpriseId=3000008&amp;qno=0001<br />
+&nbsp;<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:66px;"><strong>参数</strong></td>
+	<td style="width:46px;"><strong>要求</strong></td>
+	<td style="width:104px;"><strong>描述</strong></td>
+	<td style="width:348px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:66px;">enterpriseId</td>
+	<td style="width:46px;">必选</td>
+	<td style="width:104px;">企业id</td>
+	<td style="width:348px;">例如:3000008</td>
+	</tr>
+	<tr>
+	<td style="width:66px;">qno</td>
+	<td style="width:46px;">必选</td>
+	<td style="width:104px;">队列号</td>
+	<td style="width:348px;">0001</td>
+	</tr>
+</tbody>
+</table>
+返回值<br />
+JSON串，格式为{result:xxx },result表示返回结果状态码<br />
+&nbsp;<br />
+<strong>result</strong><strong>与</strong><strong>description</strong><strong>属性值的定义</strong><strong>：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:127px;"><strong>result</strong></td>
+	<td style="width:353px;"><strong>msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:127px;">true</td>
+	<td style="width:353px;">已存在</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">false</td>
+	<td style="width:353px;">未存在</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>队列接口-获取企业等待音</h1>
+      <div class="concon grey">接口类型：HTTP<br />
+接口使用账户：企业账户<br />
+接口地址：呼叫中心系统IP<br />
+接口参数：企业账号、企业用户名,密码<br />
+接口返回值：操作结果<br />
+接口说明<br />
+获取企业等待语音数据<br />
+接口URL<br />
+URL示例： <a href="http://172.16.203.197/interfaceAction/queueInterface!getEnterpriseMohs.action?enterpriseId=3000008&amp;userName=admin&amp;password=e10adc3949ba59abbe56e057f20f883e">http://172.16.203.197/interfaceAction/queueInterface!getEnterpriseMohs.action?enterpriseId=3000008&amp;userName=admin&amp;password=e10adc3949ba59abbe56e057f20f883e</a><br />
+说明：该示例中password = e10adc3949ba59abbe56e057f20f883e = MD5Encoder.encode(&#39;123456)<br />
+&nbsp;<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:66px;">&ldquo;&rdquo;enterpriseId</td>
+	<td style="width:46px;">必选</td>
+	<td style="width:104px;">企业id</td>
+	<td style="width:348px;">例如:3000008</td>
+	</tr>
+	<tr>
+	<td style="width:66px;">username</td>
+	<td style="width:46px;">必选</td>
+	<td style="width:104px;">角色名称</td>
+	<td style="width:348px;">例如:admin</td>
+	</tr>
+	<tr>
+	<td style="width:66px;">password</td>
+	<td style="width:46px;">必选</td>
+	<td style="width:104px;">登录密码</td>
+	<td style="width:348px;">md5(登录密码))</td>
+	</tr>
+</tbody>
+</table>
+返回值<br />
+JSON串，格式为{result:xxx,msg:{data:[{XXX},{}&hellip;]} },result表示返回结果状态码<br />
+&nbsp;<br />
+<strong>result</strong><strong>与</strong><strong>msg</strong><strong>属性值的定义</strong><strong>：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:127px;"><strong>result</strong></td>
+	<td style="width:353px;"><strong>msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:127px;">success</td>
+	<td style="width:353px;">data:[{&quot;name&quot;:&quot;the_number_is.wav&quot;,&quot;path&quot;:&quot;3000008/1336013211322.wav&quot;}]</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">error</td>
+	<td style="width:353px;">失败原因</td>
+	</tr>
+</tbody>
+</table>
+&nbsp;<br />
+<strong>msg</strong><strong>属性值的定义：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:52px;"><strong>属性名</strong></td>
+	<td style="width:113px;"><strong>描述</strong></td>
+	<td style="width:123px;"><strong>数据长度或格式</strong></td>
+	<td style="width:91px;"><strong>取值范围</strong></td>
+	<td style="width:107px;"><strong>例子</strong></td>
+	</tr>
+	<tr>
+	<td style="width:52px;">name</td>
+	<td style="width:113px;">语音文件名字</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">the_number_is.wav</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">path</td>
+	<td style="width:113px;">文件路径</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">3000008/1336013211322.wav</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>队列接口-获取公共等待语音</h1>
+      <div class="concon grey">接口类型：HTTP<br />
+接口使用账户：企业账户<br />
+接口地址：呼叫中心系统IP<br />
+接口参数：<br />
+接口返回值：操作结果<br />
+接口说明<br />
+获取公共等待语音数据<br />
+接口URL<br />
+URL示例： http://172.16.203.197/interfaceAction/queueInterface!getPublicMohs.action<br />
+返回值<br />
+JSON串，格式为{result:xxx,msg:{data:[{XXX},{}&hellip;]} },result表示返回结果状态码<br />
+&nbsp;<br />
+<strong>result</strong><strong>与</strong><strong>msg</strong><strong>属性值的定义</strong><strong>：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:127px;"><strong>result</strong></td>
+	<td style="width:353px;"><strong>msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:127px;">success</td>
+	<td style="width:353px;">&quot;data&quot;:[{&quot;name&quot;:&quot;系统默认等待音乐&quot;,&quot;path&quot;:&quot;default_moh.wav&quot;}]</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">error</td>
+	<td style="width:353px;">失败原因</td>
+	</tr>
+</tbody>
+</table>
+&nbsp;<br />
+<strong>msg</strong><strong>属性值的定义：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:52px;"><strong>属性名</strong></td>
+	<td style="width:113px;"><strong>描述</strong></td>
+	<td style="width:123px;"><strong>数据长度或格式</strong></td>
+	<td style="width:91px;"><strong>取值范围</strong></td>
+	<td style="width:107px;"><strong>例子</strong></td>
+	</tr>
+	<tr>
+	<td style="width:52px;">name</td>
+	<td style="width:113px;">语音文件名字</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">the_number_is.wav</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">path</td>
+	<td style="width:113px;">文件路径</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">default_moh.wav</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>队列接口-获取企业语音</h1>
+      <div class="concon grey">接口类型：HTTP<br />
+接口使用账户：企业账户<br />
+接口地址：呼叫中心系统IP<br />
+接口参数：企业账号、企业用户名,密码<br />
+接口返回值：操作结果<br />
+接口说明<br />
+获取企业语音数据<br />
+接口URL<br />
+URL示例： http://172.16.203.197/interfaceAction/queueInterface!getEnterpriseVoices.action?enterpriseId=3000008&amp;userName=admin&amp;password=e10adc3949ba59abbe56e057f20f883e<br />
+说明：该示例中password = e10adc3949ba59abbe56e057f20f883e = MD5Encoder.encode(&#39;123456)<br />
+&nbsp;<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:66px;"><strong>参数</strong></td>
+	<td style="width:46px;"><strong>要求</strong></td>
+	<td style="width:104px;"><strong>描述</strong></td>
+	<td style="width:348px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:66px;">enterpriseId</td>
+	<td style="width:46px;">必选</td>
+	<td style="width:104px;">企业id</td>
+	<td style="width:348px;">例如:3000008</td>
+	</tr>
+	<tr>
+	<td style="width:66px;">username</td>
+	<td style="width:46px;">必选</td>
+	<td style="width:104px;">角色名称</td>
+	<td style="width:348px;">例如:admin</td>
+	</tr>
+	<tr>
+	<td style="width:66px;">password</td>
+	<td style="width:46px;">必选</td>
+	<td style="width:104px;">登录密码</td>
+	<td style="width:348px;">md5(登录密码))</td>
+	</tr>
+</tbody>
+</table>
+返回值<br />
+JSON串，格式为{result:xxx,msg:{data:[{XXX},{}&hellip;]} },result表示返回结果状态码<br />
+&nbsp;<br />
+<strong>result</strong><strong>与</strong><strong>msg</strong><strong>属性值的定义</strong><strong>：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:127px;"><strong>result</strong></td>
+	<td style="width:353px;"><strong>msg</strong></td>
+	</tr>
+	<tr>
+	<td style="width:127px;">success</td>
+	<td style="width:353px;">data:[{&quot;name&quot;:&quot;the_number_is.wav&quot;,&quot;path&quot;:&quot;3000008/1336013211322.wav&quot;}]</td>
+	</tr>
+	<tr>
+	<td style="width:127px;">error</td>
+	<td style="width:353px;">失败原因</td>
+	</tr>
+</tbody>
+</table>
+&nbsp;<br />
+<strong>msg</strong><strong>属性值的定义：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:52px;"><strong>属性名</strong></td>
+	<td style="width:113px;"><strong>描述</strong></td>
+	<td style="width:123px;"><strong>数据长度或格式</strong></td>
+	<td style="width:91px;"><strong>取值范围</strong></td>
+	<td style="width:107px;"><strong>例子</strong></td>
+	</tr>
+	<tr>
+	<td style="width:52px;">name</td>
+	<td style="width:113px;">语音文件名字</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">the_number_is.wav</td>
+	</tr>
+	<tr>
+	<td style="width:52px;">path</td>
+	<td style="width:113px;">文件路径</td>
+	<td style="width:123px;">&nbsp;</td>
+	<td style="width:91px;">&nbsp;</td>
+	<td style="width:107px;">3000008/1336013211322.wav</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>队列接口-队列下座席管理</h1>
+      <div class="concon grey">查看队列下面所有座席接口<br />
+接口URL<br />
+URL示例：<br />
+http://172.16.203.190/interfaceAction/queueInterface!clientInfoByQueue.action?enterpriseId=3000002&amp;userName=admin&amp;pwd=e10adc3949ba59abbe56e057f20f883e&amp;qno=0000<br />
+说明：该示例中password = e10adc3949ba59abbe56e057f20f883e = MD5Encoder.encode(&#39;123456)<br />
+参数说明<br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:66px;"><strong>参数</strong></td>
+	<td style="width:46px;"><strong>要求</strong></td>
+	<td style="width:104px;"><strong>描述</strong></td>
+	<td style="width:348px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:66px;">enterprisrId</td>
+	<td style="width:46px;">必选</td>
+	<td style="width:104px;">企业id</td>
+	<td style="width:348px;">例：3000002</td>
+	</tr>
+	<tr>
+	<td style="width:66px;">userName</td>
+	<td style="width:46px;">必选</td>
+	<td style="width:104px;">角色名称</td>
+	<td style="width:348px;">例：admin</td>
+	</tr>
+	<tr>
+	<td style="width:66px;">pwd</td>
+	<td style="width:46px;">必选</td>
+	<td style="width:104px;">密码</td>
+	<td style="width:348px;">md5(登录密码)</td>
+	</tr>
+	<tr>
+	<td style="width:66px;">qno</td>
+	<td style="width:46px;">必选</td>
+	<td style="width:104px;">队列号</td>
+	<td style="width:348px;">四位数字，0000-9999</td>
+	</tr>
+</tbody>
+</table>
+返回值<br />
+JSON串，格式为{result:xxx,data:xxx,description:xxx,count:xxx}，,result表示返回结果状态码，data表示包含所有座席基本信息的JSON格式数据的数组，description表示结果状态的描述,count表示实际返回的座席总数。<br />
+&nbsp;<br />
+<strong>result</strong><strong>、</strong><strong>data</strong><strong>、</strong><strong> description</strong><strong>和</strong><strong>count</strong><strong>属性值定义</strong><strong>：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:51px;"><strong>result</strong></td>
+	<td style="width:151px;"><strong>data</strong></td>
+	<td style="width:189px;"><strong>description</strong></td>
+	<td style="width:150px;"><strong>count</strong></td>
+	</tr>
+	<tr>
+	<td style="width:51px;">0</td>
+	<td style="width:151px;">[]</td>
+	<td style="width:189px;">查看队列的绑定电话失败的原因</td>
+	<td style="width:150px;">0</td>
+	</tr>
+	<tr>
+	<td style="width:51px;">1</td>
+	<td style="width:151px;">[{cno:xxx,name:xxx,tel:xxx},&hellip;.]</td>
+	<td style="width:189px;">成功返回队列的各绑定座席信息</td>
+	<td style="width:150px;">绑定到该队列下的座席数</td>
+	</tr>
+</tbody>
+</table>
+<strong>说明： data</strong><strong>取值为json</strong><strong>数组。</strong><br />
+<strong>json</strong><strong>格式数据记录data</strong><strong>的各属性定义：</strong><br />
+<table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:81px;"><strong>名称</strong></td>
+	<td style="width:107px;"><strong>描述</strong></td>
+	<td style="width:184px;"><strong>数据格式</strong></td>
+	<td style="width:88px;"><strong>取值范围</strong></td>
+	<td colspan="2" style="width:182px;"><strong>例子</strong></td>
+	</tr>
+	<tr>
+	<td style="width:81px;">cno</td>
+	<td style="width:107px;">座席工号</td>
+	<td style="width:184px;">4位数字</td>
+	<td style="width:88px;">2000-9999</td>
+	<td style="width:182px;">2008</td>
+	<td>&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:81px;">name</td>
+	<td style="width:107px;">座席姓名</td>
+	<td style="width:184px;">&nbsp;</td>
+	<td style="width:88px;">&nbsp;</td>
+	<td style="width:182px;">&nbsp;</td>
+	<td>&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:81px;">tel</td>
+	<td style="width:107px;">绑定电话</td>
+	<td style="width:184px;">区号 + 7或8位的固话号码，区号与固话号码之间无&#39;-&#39;；或11位长度的手机号码。</td>
+	<td style="width:88px;">中国国内固话或手机</td>
+	<td style="width:182px;">01059222999<br />
+	或18701051984</td>
+	<td>&nbsp;</td>
+	</tr>
+	<tr>
+	<td style="width:81px;">obClid</td>
+	<td style="width:107px;">外呼外显号码</td>
+	<td style="width:184px;">&nbsp;</td>
+	<td style="width:88px;">&nbsp;</td>
+	<td style="width:182px;">600800</td>
+	<td>&nbsp;</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+    
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR"> 
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

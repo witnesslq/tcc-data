@@ -1,0 +1,329 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>crm系统</title>
+</head>
+
+<script type="text/javascript" >
+var agentNumber = "";
+var orderCallbackCount = 0;
+function callout(tel){
+	var params = {};
+	params.tel = document.getElementById('tel').value;
+	params.callType = '3'; //3点击外呼
+	document.getElementById("toolbar").contentWindow.executeAction("doPreviewOutCall", params);
+}
+function login(){//登录
+	var params = {};
+	params.hotLine = document.getElementById('hotLine').value;  
+	params.cno =  document.getElementById('cno').value; 
+	params.pwd =  document.getElementById('pwd').value; 
+	params.bindTel =  document.getElementById('bindTel').value; 
+	params.bindType = document.getElementById('bindType').value;
+	params.initStatus =  document.getElementById('initStatus').value;
+	if(params.bindType == "3"){
+		params.sipIp = document.getElementById('sipIp').value;
+		params.sipPwd = document.getElementById('sipPwd').value;
+	}
+	document.getElementById("toolbar").contentWindow.executeAction('doLogin',  params);//执行登陆 ccic2里面的js类
+	agentNumber = params.cno;
+}
+function logout(){//登出
+	var params = {};
+	params.type=1;
+	document.getElementById("toolbar").contentWindow.executeAction('doLogout', params);
+}
+
+function readyLoad(d){
+	//在这里登录
+	//login();
+}
+
+//----------- 回调函数 ------------
+/**
+ * 登录回调 cbLogin
+ * 返回json对象token:  {"type":"response","code":"0","msg":"ok","reqType":"login", 
+	"sessionId":"812c16f96fa7f4bf34d75e07de4950bb", "hotline":"4006006001",
+	"enterpriseId":"3000000","cno":"2002", "cname":"test","bindTel":"01041005975","bindType":"1"} 
+ * code描述
+0 ：登录成功
+4 ：座席不在任何一个队列
+29 ：在线座席数超过并发限制
+23 ：默认自定义置忙状态配置错误 
+ * hotline 热线号码
+ * enterpriseId 企业号
+ * cno 座席工号
+ * cname 座席姓名
+ * bindTel 绑定电话
+ * bindType 绑定电话类型
+*/
+function cbLogin(token){//登陆
+	if(token.code == "0"){
+		alert("登录成功");
+		
+		orderCallbackCount = token.allCallBackCount;
+		document.getElementById("toolbar").contentWindow.executeAction('doQueueStatus');//获取队列数据
+		
+	}else{
+		alert("登录失败！" + token.msg);
+	}
+}
+
+/**
+ * 外呼回调 cbPreviewOutCall
+ * 返回json对象token:  "type":"response","code":"0","msg":"ok","reqType":"previewOutCall" 
+ * code描述
+0  ：成功
+6  ：外呼失败，参数错误
+13 ：外呼失败，外呼号码格式错误
+20 ：外呼失败，呼叫范围受限
+25 ：外呼失败，此号码为黑名单
+26 ：外呼失败，座席没有外呼权限，请联系管理员
+27 ：外呼失败，余额不足
+28 ：外呼失败，没有路由  
+*/
+function cbPreviewOutCall(token) {  //外呼回调
+	
+}
+
+/**
+ * 有预约回呼
+*/
+function cbOrderCallBack(token) {
+	if(token.addORReduce == 1) {
+		orderCallbackCount++;
+	}
+	if(token.addORReduce == -1) {
+		orderCallbackCount--;
+	}
+}
+
+function cbLogout(token) {//退出
+	if(token.code == "0"){
+		document.getElementById("toolbar").src = 'toolbarIframe.html?type=bs';
+		alert("已退出");
+	}
+}
+
+//状态回调：来电弹屏等
+function cbThisStatus(token){
+	if(token.cno == agentNumber){
+		//callType：
+		//1：呼入，2：网上400,3：点击外呼，4：预览外呼，5：IVR外呼，6：分机直接外呼
+		if(token.eventName == "comeRinging"&&token.name == "ringing"){	//呼入响铃
+			alert("来电号码：" + token.customerNumber);
+			//var call_id = token.uniqueId;		//获取录音编号
+		}
+		if(token.eventName == "normalBusy"&&token.name == "status"){
+			alert("来电号码：" + token.customerNumber + "已接听");
+		}
+		if(token.eventName == "consultLink"&&token.name == "consultLink"){	//咨询接听
+			alert("咨询号码" + token.consultObject + "已接听");
+		}
+		if(token.eventName == "normalBusy"&&token.name == "consultError"){	//咨询失败
+			alert("咨询失败");
+		}
+		if(token.eventName == "neatenStart"){	//客户挂断，整理开始：呼入、空闲时外呼
+			alert("已挂机，开始整理");
+		}
+		if(token.eventName == "neatenEnd"){	//客户挂断，整理结束：呼入、空闲时外呼
+			alert("整理结束");
+		}
+		if(token.eventName == "outRinging"&&token.name == "ringing"&&token.callType == "3"){	//外呼时座席响铃:3、点击外呼
+			alert("外呼号码：" + token.customerNumber);
+			//var call_id = token.uniqueId;		//获取录音编号
+		}
+		if(token.eventName == "waitLink"&&token.callType == "3"){	//座席接听后外呼客户:3、点击外呼
+			alert("座席接听，开始呼叫客户");
+		}
+		if(token.eventName == "outBusy"&&token.name == "previewOutcallBridge"&&token.callType == "3"){	//外呼客户:3、点击外呼
+			alert("外呼号码：" + token.customerNumber + "已接听");
+		}
+		if(token.eventName == "onlineUnlink"){	//空闲时外呼，客户无应答，座席挂机
+			alert("已挂机");
+		}
+		if(token.eventName == "pauseUnlink"){	//置忙时外呼，客户挂断或无应答，座席挂机
+			alert("已挂机");
+		}
+	}
+	//alert("Token:"+json2str(token));	//Token的JSON对象内容
+}
+
+function consult(){
+	var consultText = document.getElementById("consultText").value;
+	if(consultText == ''){
+		alert("号码不能为空")	;
+	}else{
+		var obj = {};
+		obj.consultObject = consultText;
+		obj.objectType = '0';
+		document.getElementById("toolbar").contentWindow.executeAction('doConsult',  obj);
+	}
+}
+function consult(){
+	var consultText = document.getElementById("consultText").value;
+	if(consultText == ''){
+		alert("号码不能为空");
+	}else{
+		var obj = {};
+		obj.consultObject = consultText;
+		obj.objectType = document.getElementById("consultType").value;
+		document.getElementById("toolbar").contentWindow.executeAction('doConsult',  obj);
+	}
+}
+function transfer(){
+	var transferText = document.getElementById("transferText").value;
+	var obj = {};
+	obj.transferObject = transferText;
+	obj.objectType = document.getElementById("transferType").value;
+	document.getElementById("toolbar").contentWindow.executeAction('doTransfer', obj);
+}
+function consultCancel(){
+	document.getElementById("toolbar").contentWindow.executeAction('doConsultCancel');	
+}
+
+var us='0';
+function cbQueueStatus(data){//得到队列数据
+	document.getElementById('monitoring').contentWindow.queue(data,us);
+}
+function cbStatus(json){//改变队列座席状态
+	document.getElementById('monitoring').contentWindow.queueMonitoringStatus(json);
+}
+function qMonitoring(qid){//获取队列数据
+	us = qid;
+	document.getElementById("toolbar").contentWindow.executeAction('doQueueStatus');
+}
+
+function cbQueue(json){
+	if(json.customerNumber != undefined && json.customerNumber == 'unknown_number'){//转义未知号码
+		json.customerNumber ='未知号码';
+	}
+	if(json.name == 'joinQueue'){
+		
+			document.getElementById('monitoring').contentWindow.joinQueue(json);
+		
+	}
+	if(json.name == 'leaveQueue'){
+		
+			document.getElementById('monitoring').contentWindow.leaveQueue(json);
+		
+	}
+	if(json.name == 'queueCall'){
+		
+			document.getElementById('monitoring').contentWindow.queueCall(json);
+		
+	}
+}
+
+/**
+* json对象转字符串形式
+*/
+function json2str(o) {
+	var arr = [];
+	var fmt = function(s) {
+		if (typeof s == 'object' && s != null) return json2str(s);
+		return /^(string|number)$/.test(typeof s) ? "'" + s + "'" : s;
+	}
+	for (var i in o) arr.push("'" + i + "':" + fmt(o[i]));
+	return '{' + arr.join(',') + '}';
+}
+</script>
+
+<style>
+body{
+	font-size:12px;}
+</style>
+<body>
+<div><iframe width="100%" height="100" name="toolbar" id="toolbar" scrolling='no' frameborder="0" src="toolbarIframe.html?type=bs" style="border:solid 1px #ddd;"></iframe></div><br/>
+<div>
+<table width="100%" border="0" cellspacing="0" cellpadding="0">
+  <tr>
+    <td colspan="2" align="left">
+    <table cellspacing="2" cellpadding="2" style="border:solid 0px #ccc;background-color:#eee;">
+     <tr>
+    <td width="100" height="30" align="right">热线号码：</td>
+    <td align="left"><input type="text" value="" id="hotLine"/></td>
+  </tr>
+  <tr>
+    <td width="100" height="30" align="right">座席号：</td>
+    <td align="left"><input type="text" value="" id="cno"/></td>
+  </tr>
+  <tr>
+    <td width="100" height="30" align="right">密码：</td>
+    <td align="left"><input type="text" value="" id="pwd"/></td>
+  </tr>
+  <tr>
+    <td width="100" height="30" align="right">绑定电话：</td>
+    <td align="left"><input type="text" value="" id="bindTel"/></td>
+  </tr>
+  <tr>
+    <td width="100" height="30" align="right">电话类型：</td>
+    <td align="left">
+   		<span style="float:left">
+        <select id="bindType">
+        	<option value="1" selected>电话号码</option>
+            <option value="2" >分机号码</option>
+            <option value="3">软电话</option>
+        </select>
+       </span>
+        <span style="display:none; float:left;" id="sipSpan">软电话IP：<input id="sipIp" type="text" value="" />软电话密码：<input id="sipPwd" type="text" value=""/></span>
+    </td>
+  </tr>
+  <tr>
+    <td width="0" align="right" height="30">初始状态：</td>
+    <td align="left">
+    	<select id="initStatus">
+        	<option value="online">空闲</option>
+            <option value="pause">置忙</option>
+        </select>
+    </td>
+  </tr>
+  <tr>
+    <td colspan="2" height="30" align="center">
+    	<input type="button" value="登陆" onclick="login()" />
+        <input type="button" value="退出" onclick="logout()"/>
+    </td>
+    </tr>
+    </table>
+    
+    <div style="position:absolute; top:120px; left:400px; width:1200px; height:500px;">
+    	<iframe width="100%" height="500" name="monitoring" id="monitoring" scrolling='no' frameborder="0" src="queueMonitoring.html" style="border:solid 1px #ddd;"></iframe>
+    </div>
+    
+    </td>
+    
+  </tr>
+  <tr>
+    <td colspan="2" height="45" align="left">
+    <div style="width:718px;border:0px solid #999; padding:3px;">
+	  <input type="text" id="tel"/>
+      <input type="button" id="phoneCallDiv" value="呼叫" onclick="callout()"/>
+      <br />
+      <input type="text" id="consultText" value=""/>
+      <input type="button" id="consultButton" value="咨询" onclick="consult()"/>
+       <input type="button" id="consultCancel" value="咨询取消" onclick="consultCancel()"/><br/>
+       
+      咨询类型：<select id="consultType">
+      <option value="0" selected="selected">普通电话</option>
+      <option value="1">座席号</option>
+      <option value="2">分机</option>
+      </select>
+       <br />
+       
+      <input type="text" id="transferText" value=""/>
+      <input type="button" id="transfer" value="转移" onclick="transfer()"/>
+      转移类型：<select id="transferType">
+      <option value="0" selected="selected">普通电话</option>
+      <option value="1">座席号</option>
+      <option value="2">分机</option>
+      <option value="3">IVR</option>
+      </select>
+      <div>本页面模拟第三方CRM页面</div>
+      </div>
+      </td>
+  </tr>
+</table>
+</div>
+</body>
+</html>

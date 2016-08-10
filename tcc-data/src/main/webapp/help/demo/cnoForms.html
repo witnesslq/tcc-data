@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>云计算呼叫中心-天润融通</title>
+<script type="text/javascript" src="js/jquery.js"></script>
+<script language="JavaScript" src="js/FusionCharts.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+	var chart = new FusionCharts("/components/fusionChart/charts/Doughnut2D.swf", "ChartId", "400", "180", "0", "0");
+	var str;
+	var data = "<graph showNames='1' decimalPrecision='0'>"+
+					"<set name='空闲' value='#{Idle}' color='00ff55' />"+
+					"<set name='离线' value='#{offline}' color='cccccc' />"+
+					"<set name='整理' value='#{neaten}' color='87bdff' />"+
+					"<set name='响铃' value='#{ring}' color='eaff00' />"+
+					"<set name='通话' value='#{busy}' color='ff5847' />"+
+					"<set name='置忙' value='#{pause}' color='e0cc6d' />"+
+				"</graph>";
+	var winObj = window.parent.$('#cnoTable tr');
+	var Idle = winObj.find("img[name='statusName'][title='空闲']").length;
+	var offline =  winObj.find("img[name='statusName'][title='离线']").length;
+	var neaten =  winObj.find("img[name='statusName'][title='整理']").length;
+	var ring =  winObj.find("img[name='statusName'][title='响铃']").length;
+	var busy =  winObj.find("img[name='statusName'][title='通话']").length;
+	var pause =  winObj.find("img[name='statusName'][title!='空闲'][title!='离线'][title!='整理'][title!='响铃'][title!='通话']").length;
+	data = data.replace(/#\{Idle\}/g,Idle);
+	data = data.replace(/#\{offline\}/g,offline);
+	data = data.replace(/#\{neaten\}/g,neaten);
+	data = data.replace(/#\{ring\}/g,ring);
+	data = data.replace(/#\{busy\}/g,busy);
+	data = data.replace(/#\{pause\}/g,pause);
+	chart.setDataXML(data);
+	chart.render("chartDiv");
+	
+})
+
+</script>
+</head>
+<body style="padding:0; margin:0; font-size:12px; color:#F00">
+<div id="chartDiv"></div>
+</body>
+</html>

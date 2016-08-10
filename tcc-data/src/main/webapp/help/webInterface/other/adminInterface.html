@@ -1,0 +1,2147 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>TCC开放接口帮助中心</title>
+    <meta name="keywords" content="接口支持">
+    <meta name="description" content="天润融通为客户提供服务型呼叫中心系统、外呼型呼叫中心系统、分布 式呼叫中心系统、智能语音云平台,是呼叫中心（call center）行业的创新者.为百度、大众点评等众多客户提 供呼叫中心解决方案.">
+    <link href="/framework/stylesheet/helpcenter/commonstyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/homestyle.css" type="text/css" rel="stylesheet" />
+    <link href="/framework/stylesheet/helpcenter/substyle.css" type="text/css" rel="stylesheet" />
+   <script src="/framework/scripts/jquery-1.11.1.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/interface.js" type="text/javascript"></script>
+    <script src="/framework/scripts/helpcenter/webjs.js" type="text/javascript"></script>
+    <script>
+        /* 当前展开 */
+        window.onload = function ()
+        {
+            $(".jklist ul li ul li#41").parent("ul").parent("li").children("span").removeClass("open").addClass("close");
+            $(".jklist ul li ul li#41").parent("ul").css("display","block");
+            $(".jklist ul li ul li#41 a").addClass("cure");
+        }
+    </script>
+</head>
+<body>
+
+<div class="topbody"></div>
+
+<div class="mainbody">
+    <div class="body-l">
+        <div id="jklist" class="jklist">
+        </div>
+
+    </div>
+<div class="body-r">
+    <h1>CCIC分平台提供给营帐内部接口</h1>
+       
+     
+    <div class="conbar">
+      <h1><strong>Agi Server接口</strong></h1>
+      <div class="concon grey">
+URL示例：<br />
+<a href="javascript:void(0)">http://172.16.203.197/interfaceAction/adminInterface!agiServer.action?userName=ccic&amp;password=287178f04d1be58dd1f30422933b5744&amp;cmd=status</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">账户</td>
+	<td style="width:312px;">接口用户名</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">password</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">md5(客户密码)</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">cmd</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">命令</td>
+	<td style="width:312px;">start、stop、restart、status</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{&quot;result&quot;:&quot;success&quot;,&quot;msg&quot;:&quot;1&quot;}<br />
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">Msg</td>
+	<td style="width:489px;height:24px;">1表示成功,0表示失败</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+<strong>cmd=status</strong>返回:<br />
+JSON格式数据<br />
+{result:&quot;success&quot;,msg:&quot;1&quot;}<br />
+
+<div class="concon grey">
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">msg</td>
+	<td style="width:489px;height:24px;">1表示agi server正在运行(对应status),0表示agi server已经关闭(对应status)</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div>
+
+<br />
+<br />
+<br />
+
+ <div class="conbar">
+      <h1><strong>Ami Server接口</strong></h1>
+      <div class="concon grey">
+URL示例：<br />
+<a href="javascript:void(0)">http://172.16.203.197/interfaceAction/adminInterface!amiServer.action?userName=ccic&amp;password=287178f04d1be58dd1f30422933b5744&amp;cmd=status</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">账户</td>
+	<td style="width:312px;">接口用户名</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">password</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">md5(客户密码)</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">cmd</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">命令</td>
+	<td style="width:312px;">start、stop、restart、status</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{&quot;result&quot;:&quot;success&quot;,&quot;msg&quot;:&quot;1&quot;}<br />
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">Msg</td>
+	<td style="width:489px;height:24px;">1表示成功,0表示失败</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+<strong>cmd=status</strong>返回:<br />
+JSON格式数据<br />
+{result:&quot;success&quot;,msg:&quot;[{'cti':'172.16.203.11','status':'1'}]&quot;}<br />
+
+<div class="concon grey">
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">msg</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>msg返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">cti</td>
+	<td style="width:489px;height:24px;">cti服务器地址</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">status</td>
+	<td style="width:489px;height:24px;">cti服务器连接状态:1表示已连接</td>
+	</tr>
+	多个cti返回数组
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div>
+
+<br />
+<br />
+<br />
+
+
+ <div class="conbar">
+      <h1><strong>定时任务执行</strong></h1>
+      <div class="concon grey">
+URL示例：<br />
+<a href="javascript:void(0)">http://172.16.203.197/interfaceAction/adminInterface!crontab.action?userName=ccic&amp;password=287178f04d1be58dd1f30422933b574&amp;service=&amp;method=&amp;param=</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">账户</td>
+	<td style="width:312px;">接口用户名</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">password</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">md5(客户密码)</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">service</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">service name</td>
+	<td style="width:312px;">service名称</td>
+	</tr>
+    <tr>
+	<td style="width:80px;">method</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">调用方法</td>
+	<td style="width:312px;"></td>
+	</tr>
+    <tr>
+	<td style="width:80px;">param</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">调用方法的参数</td>
+	<td style="width:312px;"></td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{&quot;result&quot;:&quot;success&quot;,&quot;msg&quot;:&quot;操作成功&quot;}<br />
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">msg</td>
+	<td style="width:489px;height:24px;">操作的消息</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div>
+
+
+<br />
+<br />
+<br />
+
+
+ <div class="conbar">
+      <h1><strong>清理 statistic开头报表某一天数据</strong></h1>
+      <div class="concon grey">
+URL示例：<br />
+<a href="javascript:void(0)">http://172.16.203.197/interfaceAction/adminInterface!memoryStatus.action?userName=ccic&amp;password=287178f04d1be58dd1f30422933b574</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">账户</td>
+	<td style="width:312px;">接口用户名</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">password</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">md5(客户密码)</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">service</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">service name</td>
+	<td style="width:312px;">service名称</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">method</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">调用方法</td>
+	<td style="width:312px;">deleteStatisticData</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">param</td>
+	<td style="width:47px;">可选</td>
+	<td style="width:132px;">调用方法的参数</td>
+	<td style="width:312px;">要删除的数据日期</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{&quot;result&quot;:&quot;success&quot;,&quot;msg&quot;:&quot;操作成功&quot;}<br />
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">msg</td>
+	<td style="width:489px;height:24px;">操作的消息</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div>
+
+<br />
+<br />
+<br />
+
+
+ <div class="conbar">
+      <h1><strong>分平台JVM内存状态 </strong></h1>
+      <div class="concon grey">
+URL示例：<br />
+<a href="javascript:void(0)">http://172.16.203.197/interfaceAction/adminInterface!memoryStatus.action?userName=ccic&amp;password=287178f04d1be58dd1f30422933b574</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">账户</td>
+	<td style="width:312px;">接口用户名</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">password</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">md5(客户密码)</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{&quot;result&quot;:&quot;success&quot;,&quot;free&quot;:109,&quot;max&quot;:247,&quot;total&quot;:247}<br />
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">free</td>
+	<td style="width:489px;height:24px;">空闲内存(MB)</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">max</td>
+	<td style="width:489px;height:24px;">最大内存(MB)</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">total</td>
+	<td style="width:489px;height:24px;">总计内存(MB)</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div>
+
+
+<br />
+<br />
+<br />
+
+
+ <div class="conbar">
+      <h1><strong>分平台系统内存状态 </strong></h1>
+      <div class="concon grey">
+URL示例：<br />
+<a href="javascript:void(0)">http://172.16.203.197/interfaceAction/adminInterface!sysMemoryStatus.action?userName=ccic&amp;password=287178f04d1be58dd1f30422933b574</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">账户</td>
+	<td style="width:312px;">接口用户名</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">password</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">md5(客户密码)</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{&quot;result&quot;:&quot;success&quot;,&quot;loadaverage&quot;:0.03,&quot;free&quot;:102,&quot;total&quot;:1024}<br />
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">free</td>
+	<td style="width:489px;height:24px;">空闲内存(MB)</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">max</td>
+	<td style="width:489px;height:24px;">最大内存(MB)</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">total</td>
+	<td style="width:489px;height:24px;">总计内存(MB)</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div>
+
+<br />
+<br />
+<br />
+
+
+ <div class="conbar">
+      <h1><strong>Radius Server接口 </strong></h1>
+      <div class="concon grey">
+URL示例：<br />
+<a href="javascript:void(0)">http://172.16.203.197/interfaceAction/adminInterface!radiusServer.action?userName=ccic&amp;password=287178f04d1be58dd1f30422933b5744&amp;cmd=restart</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">账户</td>
+	<td style="width:312px;">接口用户名</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">password</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">md5(客户密码)</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">cmd</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">命令</td>
+	<td style="width:312px;">start、stop、restart</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{&quot;result&quot;:&quot;success&quot;,&quot;msg&quot;:1&quot;}<br />
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">msg</td>
+	<td style="width:489px;height:24px;">1表示成功,0表示失败</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div>  
+<strong>cmd=status</strong>返回:<br />
+JSON格式数据<br />
+{result:&quot;success&quot;,msg:&quot;1&quot;}<br />
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">msg</td>
+	<td style="width:489px;height:24px;">
+		<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>msg返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">1</td>
+	<td style="width:489px;height:24px;">radius server正在运行(对应status)</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">0</td>
+	<td style="width:489px;height:24px;">radius server已经关闭(对应status)</td>
+	</tr>
+
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div>
+
+<br />
+<br />
+<br />
+
+ <div class="conbar">
+      <h1><strong>WebSocket Server接口 </strong></h1>
+      <div class="concon grey">
+URL示例：<br />
+<a href="javascript:void(0)">http://172.16.203.197/interfaceAction/adminInterface!webSocketServer.action?userName=ccic&amp;password=287178f04d1be58dd1f30422933b5744&amp;cmd=status</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">账户</td>
+	<td style="width:312px;">接口用户名</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">password</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">md5(客户密码)</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">cmd</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">命令</td>
+	<td style="width:312px;">start、stop、restart</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{&quot;result&quot;:&quot;success&quot;,&quot;msg&quot;:1&quot;}<br />
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">msg</td>
+	<td style="width:489px;height:24px;">1表示成功,0表示失败</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div>  
+<strong>cmd=status</strong>返回:<br />
+JSON格式数据<br />
+{result:&quot;success&quot;,msg:&quot;1&quot;}<br />
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">msg</td>
+	<td style="width:489px;height:24px;">
+		<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>msg返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">1</td>
+	<td style="width:489px;height:24px;">radius server正在运行(对应status)</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">0</td>
+	<td style="width:489px;height:24px;">radius server已经关闭(对应status)</td>
+	</tr>
+
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div>
+
+
+<br />
+<br />
+<br />
+
+ <div class="conbar">
+      <h1><strong>System Command接口 </strong></h1>
+      <div class="concon grey">
+URL示例：<br />
+<a href="javascript:void(0)">http://172.16.203.197/interfaceAction/adminInterface!systemCmd.action?userName=ccic&&amp;password=287178f04d1be58dd1f30422933b5744&amp;cmd=date</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">账户</td>
+	<td style="width:312px;">接口用户名</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">password</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">md5(客户密码)</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">cmd</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">命令</td>
+	<td style="width:312px;"></td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{&quot;result&quot;:&quot;success&quot;,&quot;msg&quot;:Wed May 9 15:25:26 CST 2012\n&quot;}<br />
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">msg</td>
+	<td style="width:489px;height:24px;">操作返回的数据</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div>  
+
+<br />
+<br />
+<br />
+
+ <div class="conbar">
+      <h1><strong>UpdateRouter接口 </strong></h1>
+      <div class="concon grey">
+URL示例：<br />
+<a href="javascript:void(0)">http://172.16.203.197/interfaceAction/adminInterface!updateRouter.action?userName=ccic&amp;password=287178f04d1be58dd1f30422933b5744&amp;params=e</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">账户</td>
+	<td style="width:312px;">接口用户名</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">password</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">md5(客户密码)</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">params</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">routersetId</td>
+	<td style="width:312px;">routersetIds更新路由的routerset id</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{&quot;result&quot;:&quot;success&quot;,&quot;msg&quot;:&quot;}<br />
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">msg</td>
+	<td style="width:489px;height:24px;">操作返回的数据</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div>  
+
+
+<br />
+<br />
+<br />
+
+ <div class="conbar">
+      <h1><strong>删除企业语音文件接口 </strong></h1>
+      <div class="concon grey">
+URL示例：<br />
+<a href="javascript:void(0)">http://172.16.203.197/interfaceAction/adminInterface!rmEnterpriseVoiceFiles.action?userName=ccic&amp;password=287178f04d1be58dd1f30422933b5744&amp;enterpriseId=</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">账户</td>
+	<td style="width:312px;">接口用户名</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">password</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">md5(客户密码)</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">enterpriseId</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">企业Id</td>
+	<td style="width:312px;">企业Id</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{&quot;result&quot;:&quot;success&quot;,&quot;msg&quot;:&quot;}<br />
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">msg</td>
+	<td style="width:489px;height:24px;">操作返回的数据</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div>  
+
+
+<br />
+<br />
+<br />
+
+ <div class="conbar">
+      <h1><strong>Cti数据同步到内存接口</strong></h1>
+      <div class="concon grey">
+URL示例：<br />
+<a href="javascript:void(0)">http://172.16.203.197/interfaceAction/adminInterface!syncCti.action?userName=ccic&amp;password=287178f04d1be58dd1f30422933b5744</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">账户</td>
+	<td style="width:312px;">接口用户名</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">password</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">md5(客户密码)</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{&quot;result&quot;:&quot;success&quot;,&quot;msg&quot;:&quot;}<br />
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">msg</td>
+	<td style="width:489px;height:24px;">操作返回的数据</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div>  
+  
+  
+<br />
+<br />
+<br />
+
+ <div class="conbar">
+      <h1><strong>初始化全局数据接口</strong></h1>
+      <div class="concon grey">
+URL示例：<br />
+<a href="javascript:void(0)">http://172.16.203.197/interfaceAction/adminInterface!syncMacro.action?userName=ccic&amp;password=287178f04d1be58dd1f30422933b5744</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">账户</td>
+	<td style="width:312px;">接口用户名</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">password</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">md5(客户密码)</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{&quot;result&quot;:&quot;success&quot;,&quot;msg&quot;:&quot;}<br />
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">msg</td>
+	<td style="width:489px;height:24px;">操作返回的数据</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div>  
+
+
+<br />
+<br />
+<br />
+
+ <div class="conbar">
+      <h1><strong>Gateway数据同步到内存接口</strong></h1>
+      <div class="concon grey">
+URL示例：<br />
+<a href="javascript:void(0)">http://172.16.203.197/interfaceAction/adminInterface!syncGateway.action?userName=ccic&amp;password=287178f04d1be58dd1f30422933b5744</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">账户</td>
+	<td style="width:312px;">接口用户名</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">password</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">md5(客户密码)</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{&quot;result&quot;:&quot;success&quot;,&quot;msg&quot;:&quot;}<br />
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">msg</td>
+	<td style="width:489px;height:24px;">操作返回的数据</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div>  
+
+<br />
+<br />
+<br />
+
+ <div class="conbar">
+      <h1><strong>获取从数据库配置接口</strong></h1>
+      <div class="concon grey">
+URL示例：<br />
+<a href="javascript:void(0)">http://172.16.203.197/interfaceAction/adminInterface!getSlaveDb.action?userName=ccic&amp;password=287178f04d1be58dd1f30422933b5744</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">账户</td>
+	<td style="width:312px;">接口用户名</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">password</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">md5(客户密码)</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{&quot;result&quot;:&quot;success&quot;,&quot;msg&quot;:&quot;}<br />
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">jdbcBackUrl</td>
+	<td style="width:489px;height:24px;">从数据库url：jdbc:postgresql://172.16.203.18:5432/CCIC2</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">jdbcBackUsername</td>
+	<td style="width:489px;height:24px;">从数据库用户名</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">jdbcBackPassword</td>
+	<td style="width:489px;height:24px;">从数据库密码</td>
+	</tr>
+		<tr>
+	<td style="width:69px;height:24px;">jdbcBackRandomCoefficient</td>
+	<td style="width:489px;height:24px;">从数据库使用概率</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div> 
+
+<br />
+<br />
+<br />
+
+ <div class="conbar">
+      <h1><strong>设置从数据库配置接口</strong></h1>
+      <div class="concon grey">
+URL示例：<br />
+<a href="javascript:void(0)">http://172.16.203.197/interfaceAction/adminInterface!syncMacro.action?userName=ccic&amp;password=287178f04d1be58dd1f30422933b5744&amp;jdbcBackUrl=&amp;jdbcBackUsername=&amp;jdbcBackPassword=&amp;jdbcBackRandomCoefficient=</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">账户</td>
+	<td style="width:312px;">接口用户名</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">password</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">md5(客户密码)</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">jdbcBackUrl</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">url</td>
+	<td style="width:312px;">从数据库url：jdbc:postgresql://172.16.203.18:5432/CCIC2</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">jdbcBackUsername</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">用户名</td>
+	<td style="width:312px;">从数据库用户名</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">jdbcBackPassword</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">从数据库密码</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">jdbcBackRandomCoefficient</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">使用概率</td>
+	<td style="width:312px;">从数据库使用概率</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{&quot;result&quot;:&quot;success&quot;,&quot;msg&quot;:&quot;}<br />
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">msg</td>
+	<td style="width:489px;height:24px;">操作返回数据</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div> 
+
+<br />
+<br />
+<br />
+
+ <div class="conbar">
+      <h1><strong>CTI切换接口</strong></h1>
+      <div class="concon grey">
+URL示例：<br />
+<a href="javascript:void(0)">http://172.16.203.197/interfaceAction/adminInterface!updateCti.action?userName=ccic&amp;password=287178f04d1be58dd1f30422933b5744&amp;ctiIp=&amp;newCtiIp=</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">账户</td>
+	<td style="width:312px;">接口用户名</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">password</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">md5(客户密码)</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">ctiIp</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">原ctiIp</td>
+	<td style="width:312px;">172.16.203.18</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">newCtiIp</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">切换后的ctiIp</td>
+	<td style="width:312px;">172.16.203.19</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{&quot;result&quot;:&quot;success&quot;,&quot;msg&quot;:&quot;}<br />
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">msg</td>
+	<td style="width:489px;height:24px;">操作返回数据</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div> 
+
+<br />
+<br />
+<br />
+
+ <div class="conbar">
+      <h1><strong>获取log级别接口</strong></h1>
+      <div class="concon grey">
+URL示例：<br />
+<a href="javascript:void(0)">http://172.16.203.197/interfaceAction/adminInterface!getLogLevel.action?userName=ccic&amp;password=287178f04d1be58dd1f30422933b5744&amp;mod=</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">账户</td>
+	<td style="width:312px;">接口用户名</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">password</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">md5(客户密码)</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">mod</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">模块名</td>
+	<td style="width:312px;">com.tinet.ccic.agi</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{&quot;result&quot;:&quot;success&quot;,&quot;msg&quot;:&quot;}<br />
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">msg</td>
+	<td style="width:489px;height:24px;">操作返回数据</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div> 
+
+<br />
+<br />
+<br />
+
+ <div class="conbar">
+      <h1><strong>设置log级别接口</strong></h1>
+      <div class="concon grey">
+URL示例：<br />
+<a href="javascript:void(0)">http://172.16.203.197/interfaceAction/adminInterface!setLogLevel.action?userName=ccic&amp;password=287178f04d1be58dd1f30422933b5744&amp;mod=&amp;level=</a></div>
+    </div>
+     
+    <div class="conbar">
+      <h1>相关参数</h1>
+      <div class="concon grey"><table border="1" cellpadding="0" cellspacing="0">
+<tbody>
+	<tr>
+	<td style="width:80px;"><strong>参数</strong></td>
+	<td style="width:47px;"><strong>要求</strong></td>
+	<td style="width:132px;"><strong>描述</strong></td>
+	<td style="width:312px;"><strong>备注</strong></td>
+	</tr>
+	<tr>
+	<td style="width:80px;">userName</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">账户</td>
+	<td style="width:312px;">接口用户名</td>
+	</tr>
+	<tr>
+	<td style="width:80px;">password</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">密码</td>
+	<td style="width:312px;">md5(客户密码)</td>
+	</tr>
+		<tr>
+	<td style="width:80px;">mod</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">模块名</td>
+	<td style="width:312px;">com.tinet.ccic.agi</td>
+	</tr>
+			<tr>
+	<td style="width:80px;">level</td>
+	<td style="width:47px;">必选</td>
+	<td style="width:132px;">级别</td>
+	<td style="width:312px;">DEBUG/ERROR/INFO等</td>
+	</tr>
+</tbody>
+</table>
+<br />
+</div>
+    </div>
+     
+    <div class="conbar">
+      <h1>返回值</h1>
+JSON格式数据<br />
+{&quot;result&quot;:&quot;success&quot;,&quot;msg&quot;:&quot;}<br />
+参数说明：<br />
+
+<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>返回参数</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">result</td>
+	<td style="width:489px;height:24px;">
+	<!-- table in table start-->
+	<div class="concon grey"><table border="1" cellpadding="0" cellspacing="0" width="402">
+<tbody>
+	<tr>
+	<td style="width:69px;height:24px;"><strong>result返回值</strong></td>
+	<td style="width:489px;height:24px;"><strong>描述</strong></td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">success</td>
+	<td style="width:489px;height:24px;">调用成功</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">error</td>
+	<td style="width:489px;height:24px;">参数不正确/用户验证没有通过</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">exception</td>
+	<td style="width:489px;height:24px;">发生异常</td>
+	</tr>
+</tbody>
+</table>
+</div>
+	<!-- table in table end-->
+	</td>
+	</tr>
+	<tr>
+	<td style="width:69px;height:24px;">msg</td>
+	<td style="width:489px;height:24px;">操作返回数据</td>
+	</tr>
+</tbody>
+</table>
+</div><br />
+</div> 
+
+
+    
+  </div>
+  <div class="clear"></div>
+</div>
+
+<div class="footer">
+    <div class="mcon posR"> 
+        <p class="posA" style="left:0">COPYRIGHT © 2014 TI-NET. ALL RIGHTS RESERVED. 版权所有 北京天润融通科技股份有限公司</p>
+        <p class="posA" style="right:0">呼叫中心运营许可证：B2-20070013 京ICP备06029233号 北京市公安局海淀分局备案号：1101085008</p>
+    </div>
+</div>
+
+
+<div style="right:50px;" class="go2top"><a style="display: block;" href="#top" title="回到顶部"><span class="icon_m arrowup"></span></a></div>
+</body>
+</html>

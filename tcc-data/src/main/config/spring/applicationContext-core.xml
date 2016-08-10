@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+       http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+    <!-- ﻿需要把controller去掉，否则影响事务管理-->
+    <context:component-scan base-package="com.tinet.tcc.app.**.service"/>
+    <context:component-scan base-package="com.framework.**.service"/>
+    <context:component-scan base-package="com.framework.base.redis.dao"/>
+    <context:component-scan base-package="com.tinet.tcc.app.**.mapper.redis"/>
+
+    <!--<context:component-scan base-package="com.framework.websockets.config"/>-->
+    <!--<context:component-scan base-package="com.framework.websockets.handler"/>-->
+    <!--<context:component-scan base-package="com.framework.websockets.interceptor"/>-->
+
+
+    <context:property-placeholder location="classpath:jdbc.properties,classpath:redis.properties,classpath:dubbo.properties" ignore-unresolvable="true"/>
+
+    <import resource="applicationContext-db.xml"/>
+    <import resource="applicationContext-redis.xml"/>
+    <import resource="applicationContext-initBaseinfo.xml"/>
+    <import resource="applicationContext-dubbo.xml"/>
+
+    <!-- 初始化菜单页 -->
+    <bean class="com.tinet.tcc.app.system.service.Impl.TccConfResourceGroupServiceImpl" id="tccConfResourceGroupService"/>
+    <bean class="com.tinet.tcc.app.system.service.Impl.TccConfResourcePageServiceImpl" id="tccConfResourcePageService"/>
+
+
+
+</beans>

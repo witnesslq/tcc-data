@@ -1,0 +1,8 @@
+---------------websocket相关------------------
+
+
+1.spring-websocket
+
+2.sockjs
+    https://github.com/sockjs/sockjs-client
+    https://github.com/sockjs/sockjs-client/tree/master/lib
